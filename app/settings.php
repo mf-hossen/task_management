@@ -24,9 +24,9 @@ return [
         // pdo settings
         'db' => [
             'host' => 'localhost',
-            'user' => 'root',
-            'pass' => '<?phpmoN12',
-            'dbname' => 'slim3',
+            'user' => 'user',
+            'pass' => 'password',
+            'dbname' => 'database_name',
         ],
     ],
 ];
