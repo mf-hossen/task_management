@@ -1,4 +1,6 @@
-# Slim 3 Skeleton
+# Settings your database from app/src/settings.php
+
+## Slim 3 Skeleton
 
 This is a simple skeleton project for Slim 3 that includes Twig, Flash messages and Monolog.
 
