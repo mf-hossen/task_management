@@ -1,0 +1,88 @@
+{% extends "layout.twig" %}
+{% block title %}Employee List{% endblock %}
+{% block placeholder %}
+
+        <legend>Employee Registration</legend>
+    <form action="/insert" method="post" class="well">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" name="name" class="form-control" id="" placeholder="Enter employee name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Email</label>
+                    <input type="email" name="email" class="form-control" id="" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Phone</label>
+                    <input type="text" name="phone" class="form-control" id="" placeholder="Enter phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Gender</label>
+                    <select class="form-control" name="gender" required>
+                        <option  value="">--Select Gender--</option>
+                        <option  value="male">Male</option>
+                        <option  value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="dept">Work Type:</label>
+                    <select name="work_time" class="form-control" id="wtype" required>
+                        <option value="">--Select Work type--</option>
+                        <option value="day">Day</option>
+                        <option value="night">Night</option>
+                        <option value="full">Full</option>
+                    </select>
+                    <!--<input type="text" name="Work_time" class="form-control" id="wtype">-->
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="des">Designation</label>
+                    <select name="designation_id" class="form-control" id="dept" required>
+                        <option value="">--Select Designation--</option>
+                        {% for designation in desi %}
+                            <option value="{{ designation.id }}">{{ designation.name }}</option>
+                        {% endfor %}
+
+                    </select>
+                    <!--<input type="text" name="designation" class="form-control" id="desi">-->
+                </div>
+
+
+                <div class="form-group">
+                    <label for="des">Department</label>
+                    <select name="department_id" class="form-control" id="dept" required>
+                        <option value="">--Select Designation--</option>
+                        {% for department in dept %}
+                            <option value="{{ department.id }}">{{ department.name }}</option>
+                        {% endfor %}
+
+                    </select>
+                    <!--<input type="text" name="designation" class="form-control" id="desi">-->
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Salary</label>
+                    <input type="text" name="salary" class="form-control" id="" placeholder="Enter salary" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="desc">Description:</label>
+                    <textarea name="description" class="form-control" id="desc" style="width: 550px; height: 100px" required></textarea>
+                </div>
+            <button class="btn btn-success">Submit</button>
+        </div>
+        </div>
+        </div>
+    </form>
+
+{% endblock %}
