@@ -2,23 +2,16 @@
 {% block title %} Task{% endblock %}
 {% block contant_wrapper %}
 
-    <div class="container">
-
         <div class="row">
-                <div style="width: 450px">
+                <div class="panel panel-default" style="width: 450px; margin: 30px"">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Assign Task</h3>
+                        <h3 class="panel-title">Task Assign</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="/insert" method="post" >
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Title" name="name" type="text" autofocus>
-                                </div>
-
-                                <div class="form-group" >
-
-                                    <textarea name="description" class="form-control" id="desc" style="height: 100px;color: #999999">Description</textarea>
+                                    <input class="form-control" placeholder="Title" name="title" type="text" required autofocus>
                                 </div>
                                 <div class="form-group">
                                     <select name="status" class="form-control" id="dept" style="color: #999999" required>
@@ -31,8 +24,10 @@
                                 </div>
 
 
+                                <div class="form-group" >
 
-
+                                    <textarea name="description" class="form-control" id="desc" style="width: 350px; height: 100px;color: #999999">Description</textarea>
+                                </div>
                                 <!--
                                 <div class="checkbox">
                                     <label>
@@ -48,6 +43,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+
+
 {% endblock %}
