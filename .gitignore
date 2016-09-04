@@ -4,3 +4,4 @@ cache/*
 .idea
 /app/db.php
 cache/
+/app/settings.php
