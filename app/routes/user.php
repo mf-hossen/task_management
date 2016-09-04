@@ -13,6 +13,11 @@ return $this->view->render($response, 'login.twig');
 
 $app->post('/login', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-    var_dump($data);die();
-    return $this->view->render($response, 'login.twig');
+    $mapper = new \App\UserMapper($this->db);
+    $chkData = $mapper->checkUser($data);
+    if(!empty($chkData)){
+        return $response->withStatus(302)->withHeader('Location', '/');
+    }
+
+    //return $this->view->render($response, 'login.twig');
 });
