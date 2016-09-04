@@ -7,12 +7,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require "routes/task.php";
 require "routes/user.php";
 
-$app->get('/', function (Request $request, Response $response) {
 
-    //var_dump(R::dispense('tasks')); die();
-   // return $this->view->render($response, 'layout.twig');
-    return $this->view->render($response, 'welcome.twig');
-});
 
 
 

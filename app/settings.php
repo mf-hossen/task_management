@@ -1,5 +1,4 @@
 <?php
-session_start();
 return [
     'settings' => [
         // Slim Settings
@@ -27,7 +26,7 @@ return [
             'host' => 'localhost',
             'user' => 'root',
             'pass' => 'Preview@Dev!@#',
-            'dbname' => 'task_manage',
+            'dbname' => 'task',
         ],
     ],
 ];

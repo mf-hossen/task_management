@@ -5,3 +5,4 @@ cache/*
 /app/db.php
 cache/
 /app/settings.php
+.idea/workspace.xml
