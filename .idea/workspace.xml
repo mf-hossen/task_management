@@ -2,143 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64251941-d5d9-4ce8-b02c-bbdc31e309ca" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/images/Sorting icons.psd" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/images/favicon.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/images/sort_asc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/images/sort_asc_disabled.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/images/sort_both.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/images/sort_desc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/images/sort_desc_disabled.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/fonts/fontawesome-webfont.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap-social/bootstrap-social.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap-social/bootstrap-social.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap-social/bootstrap-social.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap/css/bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap/js/bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/bootstrap/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables-plugins/dataTables.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables-plugins/dataTables.bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables-plugins/dataTables.bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables-plugins/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables-responsive/dataTables.responsive.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables-responsive/dataTables.responsive.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables-responsive/dataTables.responsive.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.bootstrap4.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.bootstrap4.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.foundation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.foundation.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.jqueryui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.jqueryui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.material.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.material.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.semanticui.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.semanticui.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.uikit.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/dataTables.uikit.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/jquery.dataTables.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/jquery.dataTables.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/css/jquery.dataTables_themeroller.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.bootstrap4.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.bootstrap4.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.foundation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.foundation.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.jqueryui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.jqueryui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.material.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.material.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.semanticui.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.semanticui.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.uikit.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/dataTables.uikit.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/jquery.dataTables.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/jquery.dataTables.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/datatables/js/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot-tooltip/jquery.flot.tooltip.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot-tooltip/jquery.flot.tooltip.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot-tooltip/jquery.flot.tooltip.source.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/excanvas.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/excanvas.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.colorhelpers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.canvas.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.categories.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.crosshair.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.errorbars.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.fillbetween.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.image.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.navigate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.pie.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.resize.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.selection.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.stack.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.symbol.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.threshold.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.flot.time.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/flot/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/HELP-US-OUT.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/css/font-awesome.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/css/font-awesome.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/css/font-awesome.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/animated.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/bordered-pulled.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/core.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/extras.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/fixed-width.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/font-awesome.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/icons.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/larger.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/list.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/mixins.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/path.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/rotated-flipped.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/screen-reader.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/spinning.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/stacked.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/less/variables.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_animated.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_bordered-pulled.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_core.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_extras.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_fixed-width.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_icons.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_larger.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_list.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_mixins.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_path.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_rotated-flipped.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_screen-reader.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_spinning.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_stacked.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/_variables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/font-awesome/scss/font-awesome.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/jquery/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/jquery/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/metisMenu/metisMenu.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/metisMenu/metisMenu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/metisMenu/metisMenu.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/metisMenu/metisMenu.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/morrisjs/morris.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/morrisjs/morris.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/morrisjs/morris.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/raphael/raphael.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/assest/jsplugin/raphael/raphael.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/settings.php" afterPath="$PROJECT_DIR$/app/settings.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.php" afterPath="$PROJECT_DIR$/app/routes.php" />
     </list>
     <ignored path="stp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -159,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
                 <element signature="e#7#63#0#PHP" expanded="true" />
               </folding>
@@ -174,8 +39,8 @@
       <file leaf-file-name="layout.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/layout.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="91" column="25" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
+            <state relative-caret-position="180">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -184,8 +49,8 @@
       <file leaf-file-name="welcome.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/templates/welcome.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="27" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -194,8 +59,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -204,18 +69,18 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+            <state relative-caret-position="360">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/settings.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+            <state relative-caret-position="240">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -238,10 +103,10 @@
         <option value="$PROJECT_DIR$/app/templates/another.twig" />
         <option value="$PROJECT_DIR$/app/templates/home.twig" />
         <option value="$PROJECT_DIR$/app/dependencies.php" />
-        <option value="$PROJECT_DIR$/app/routes.php" />
+        <option value="$PROJECT_DIR$/app/settings.php" />
         <option value="$PROJECT_DIR$/app/templates/welcome.twig" />
         <option value="$PROJECT_DIR$/app/templates/layout.twig" />
-        <option value="$PROJECT_DIR$/app/settings.php" />
+        <option value="$PROJECT_DIR$/app/routes.php" />
       </list>
     </option>
   </component>
@@ -287,6 +152,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -329,31 +195,12 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assest" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="task_management" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="task_management" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -437,6 +284,7 @@
       <workItem from="1472970466688" duration="5119000" />
       <workItem from="1472977074375" duration="5000" />
       <workItem from="1472977532671" duration="795000" />
+      <workItem from="1472978534158" duration="964000" />
     </task>
     <task id="LOCAL-00001" summary="default database settings  and add gitignore file">
       <created>1471994356489</created>
@@ -494,22 +342,28 @@
       <option name="project" value="LOCAL" />
       <updated>1472977840807</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Silly change">
+      <created>1472980331613</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1472980331613</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15121000" />
+    <option name="totallyTimeSpent" value="16085000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="24" width="1321" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27450982" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2792157" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.504315" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32817337" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.495685" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.4978425" order="7" side_tool="false" content_ui="tabs" />
@@ -520,6 +374,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32817337" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -564,7 +419,8 @@
     <MESSAGE value="clean unnecessary code" />
     <MESSAGE value="create master layout  and welcome" />
     <MESSAGE value="js plugin is fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="js plugin is fixed" />
+    <MESSAGE value="Silly change" />
+    <option name="LAST_COMMIT_MESSAGE" value="Silly change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -787,53 +643,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.php">
+    <entry file="file://$PROJECT_DIR$/app/settings.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-          <folding>
-            <element signature="e#7#63#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="240">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/welcome.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="27" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/layout.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="91" column="25" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
+        <state relative-caret-position="180">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+        <state relative-caret-position="360">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/settings.php">
+    <entry file="file://$PROJECT_DIR$/app/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="32" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-          <folding />
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="e#7#63#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
