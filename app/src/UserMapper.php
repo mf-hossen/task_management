@@ -2,6 +2,6 @@
     namespace App;
     class UserMapper extends Mapper
     {
-        
+
 
     }

@@ -25,8 +25,8 @@ return [
         'db' => [
             'host' => 'localhost',
             'user' => 'root',
-            'pass' => '11221122',
-            'dbname' => 'task',
+            'pass' => 'Preview@Dev!@#',
+            'dbname' => 'task_manage',
         ],
     ],
 ];
