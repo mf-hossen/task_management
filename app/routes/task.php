@@ -17,4 +17,4 @@ $app->post('/task/insert', function (Request $request, Response $response) {
     //var_dump($task);die();
     return $response->withRedirect('/task');
 
-});
+})->add($mw);
