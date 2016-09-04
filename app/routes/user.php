@@ -15,9 +15,10 @@ $app->post('/login', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     $mapper = new \App\UserMapper($this->db);
     $chkData = $mapper->checkUser($data);
+    $_SESSION['username']= $chkData;
     if(!empty($chkData)){
         return $response->withStatus(302)->withHeader('Location', '/');
     }
 
     //return $this->view->render($response, 'login.twig');
-});
+});    
