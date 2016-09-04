@@ -10,6 +10,13 @@ $app->get('/', function (Request $request, Response $response) {
     return $this->view->render($response, 'welcome.twig');
 });
 
+$app->get('/login', function (Request $request, Response $response) {
+
+    //var_dump(R::dispense('tasks')); die();
+    // return $this->view->render($response, 'layout.twig');
+    return $this->view->render($response, 'login.twig');
+});
+
 $app->get('/task', function (Request $request, Response $response) {
 
     //var_dump(R::dispense('tasks')); die();
