@@ -10,3 +10,9 @@ $app->get('/login', function (Request $request, Response $response) {
 // return $this->view->render($response, 'layout.twig');
 return $this->view->render($response, 'login.twig');
 });
+
+$app->post('/login', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    var_dump($data);die();
+    return $this->view->render($response, 'login.twig');
+});
