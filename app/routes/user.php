@@ -20,10 +20,7 @@ $app->post('/login', function (Request $request, Response $response) {
     if(!empty($chkData)){
         return $response->withStatus(302)->withHeader('Location', '/');
     }
-
-    //return $this->view->render($response, 'login.twig');
 });
-
 
 $app->get('/logout', function(Request $request,  Response $response){
     session_destroy();

@@ -9,7 +9,6 @@ require "routes/task.php";
 require "routes/user.php";
 
 
-
 $app->get('/', function (Request $request, Response $response) {
     return $this->view->render($response, 'welcome.twig');
 })->add($mw);
