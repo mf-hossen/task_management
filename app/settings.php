@@ -26,7 +26,7 @@ return [
             'host' => 'localhost',
             'user' => 'root',
             'pass' => 'Preview@Dev!@#',
-            'dbname' => 'task_manage',
+            'dbname' => 'task',
         ],
     ],
 ];

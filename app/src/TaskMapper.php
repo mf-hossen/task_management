@@ -22,4 +22,10 @@ class TaskMapper extends Mapper
         }
     }
 
+    public function getTask() {
+        $sql = "SELECT * from tasks";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll();
+    }
+
 }
