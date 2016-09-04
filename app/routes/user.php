@@ -16,7 +16,7 @@ $app->post('/login', function (Request $request, Response $response) {
     $mapper = new \App\UserMapper($this->db);
     $chkData = $mapper->checkUser($data);
     $_SESSION['user']= $chkData;
-    var_dump($_SESSION);die();
+    //var_dump($_SESSION);die();
     if(!empty($chkData)){
         return $response->withStatus(302)->withHeader('Location', '/');
     }
