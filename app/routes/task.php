@@ -16,5 +16,12 @@ $app->post('/task/insert', function (Request $request, Response $response) {
     $mapper->addTask($data);
     //var_dump($task);die();
     return $response->withRedirect('/task');
+});
 
+$app->get('/task/tasklist', function (Request $request, Response $response) {
+    $mapper = new \App\TaskMapper($this->db);
+    $task=$mapper->getTask();
+    //var_dump($task); die();
+    $response = $this->view->render($response, "tasklist.twig",['task'=>$task]);
+    return $response;
 });
