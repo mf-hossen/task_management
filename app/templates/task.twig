@@ -7,7 +7,7 @@
         <div class="row">
                 <div style="width: 450px">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Add Employee</h3>
+                        <h3 class="panel-title">Assign Task</h3>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="/insert" method="post" >
@@ -15,45 +15,24 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Title" name="name" type="text" autofocus>
                                 </div>
-                                <div class="form-group">
-                                    <select name="designation_id" class="form-control" id="dept" style="color: #999999" required>
-                                        <option value="">Select Designation</option>
-                                        <?php
-                                    foreach($designation as $data){?>
-                                        <option value='<?php echo $data['id']?>'><?php echo $data['name']?></option>
-                                        <?php } ?>
-
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <select name="department_id" class="form-control" id="dept" style="color: #999999" required>
-                                        <option value="">Select Department</option>
-                                        <?php
-                                    foreach($department as $data){?>
-                                        <option value='<?php echo $data['id']?>'><?php echo $data['name']?></option>
-                                        <?php } ?>
-
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <select name="work_time" class="form-control" id="wtype" style="color: #999999" required>
-                                        <option value="">Select Work type</option>
-                                        <option value="day">Day</option>
-                                        <option value="night">Night</option>
-                                        <option value="full">Full</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="number" name="salary" class="form-control" id="salary" required placeholder="Salary">
-                                </div>
 
                                 <div class="form-group" >
 
-                                    <textarea name="description" class="form-control" id="desc" style="width: 350px; height: 100px;color: #999999">Description</textarea>
+                                    <textarea name="description" class="form-control" id="desc" style="height: 100px;color: #999999">Description</textarea>
                                 </div>
+                                <div class="form-group">
+                                    <select name="status" class="form-control" id="dept" style="color: #999999" required>
+                                        <option value="">Select Status</option>
+                                        <option value="1">Edit</option>
+                                        <option value="2">Redesign</option>
+                                        <option value="3">New</option>
+
+                                    </select>
+                                </div>
+
+
+
+
                                 <!--
                                 <div class="checkbox">
                                     <label>
