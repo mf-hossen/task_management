@@ -2,3 +2,4 @@ vendor/
 log/*
 cache/*
 .idea/*
+/app/db.php
