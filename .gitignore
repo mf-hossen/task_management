@@ -3,3 +3,4 @@ log/*
 cache/*
 .idea/*
 /app/db.php
+cache/
