@@ -2,7 +2,7 @@ vendor/
 log/*
 cache/*
 .idea/*
-/app/db.php
+app/db.php
 cache/
-/app/settings.php
+app/settings.php
 .idea/workspace.xml
