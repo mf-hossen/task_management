@@ -33,11 +33,12 @@
         <!-- /.dropdown -->
     </ul>
     <!-- /.navbar-top-links   -->
+    {% if session.user.0.role== 'Admin' %}
     {% include 'side_nav.twig' %}
+    {% endif %}
 {% endblock %}
 
 
 {% block contant_wrapper %}
         <h1>Welcome to task management Sytem</h1>
-
 {% endblock %}
