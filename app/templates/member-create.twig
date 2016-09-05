@@ -42,7 +42,7 @@
        <div class="page-header">
            <h1>Create A new member</h1>
        </div>
-       <form class="form-horizontal">
+       <form class="form-horizontal" method="post" action="/member-create">
            <div class="form-group">
                <label for="" class="col-sm-2 control-label ">First Name</label>
                <div class="col-sm-3">
@@ -70,10 +70,10 @@
            <div class="form-group">
                <label for="" class="col-sm-2 control-label ">Role</label>
                <div class="col-sm-2">
-                   <select class="form-control">
-                       <option>Please Select One</option>
-                       <option>Admin</option>
-                       <option>Member</option>
+                   <select class="form-control" name="role">
+                       <option value="NULL">Please Select One</option>
+                       <option value="Admin">Admin</option>
+                       <option value="Member">Member</option>
                    </select>
                </div>
 

@@ -36,3 +36,25 @@ $app->get('/member-create', function (Request $request, Response $response){
 
     return $this->view->render($response,'member-create.twig');
 });
+
+$app->post('/member-create', function (Request $request, Response $response){
+
+    $data = $request->getParsedBody();
+    $mapper = new \App\UserMapper($this->db);
+    $lastID = $mapper->createUser($data);
+    $this->flash->addMessage('success', 'New Member has beed created!!');
+    return $response->withStatus(302)->withHeader('Location', '/member-list/'.$lastID.'');
+});
+
+$app->get('/member-list', function(Request $request,Response $response){
+
+    $mapper = new \App\UserMapper($this->db);
+    $data =$mapper->memberList();
+    return $this->view->render($response,'member-list.twig',['data'=>$data]);
+});
+
+
+$app->get('/member-list/{id}', function(Request $request,Response $response){
+    $id = $request->getAttribute('id');
+        echo 'success ' .$id;
+});
