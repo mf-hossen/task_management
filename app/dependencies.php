@@ -15,7 +15,8 @@ $container['view'] = function ($c) {
     // Add extensions
     $view->addExtension(new Slim\Views\TwigExtension($c->get('router'), $c->get('request')->getUri()));
     $view->addExtension(new Twig_Extension_Debug());
-
+    $ttt= $view->getEnvironment();
+    $ttt->addGlobal('session', $_SESSION);
     return $view;
 };
 

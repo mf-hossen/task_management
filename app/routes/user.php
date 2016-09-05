@@ -31,3 +31,8 @@ $app->get('/logout', function(Request $request,  Response $response){
     return $response->withStatus(302)->withHeader('Location', '/login');
 
 });
+
+$app->get('/member-create', function (Request $request, Response $response){
+
+    return $this->view->render($response,'member-create.twig');
+});

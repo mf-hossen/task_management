@@ -26,6 +26,4 @@ require __DIR__ . '/../app/routes.php';
 // Register routes
 require __DIR__ . '/../app/db.php';
 
-
-// Run!
 $app->run();

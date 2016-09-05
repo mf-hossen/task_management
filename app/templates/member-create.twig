@@ -1,0 +1,91 @@
+{% extends 'layout.twig' %}
+
+{% block nav %}
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Task managament System</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+
+
+
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li><a href="#"><i class="fa fa-user fa-fw"></i>{{ session.user.0.first_name }}</a>
+                </li>
+                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                </li>
+                <li class="divider"></li>
+                <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+            </ul>
+            <!-- /.dropdown-user -->
+        </li>
+        <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links   -->
+    {% include 'side_nav.twig' %}
+{% endblock %}
+
+{% block contant_wrapper %}
+   <div class="container">
+       <div class="page-header">
+           <h1>Create A new member</h1>
+       </div>
+       <form class="form-horizontal">
+           <div class="form-group">
+               <label for="" class="col-sm-2 control-label ">First Name</label>
+               <div class="col-sm-3">
+                   <input type="text" name="first_name" class="form-control" id="inputEmail3" placeholder="First Name" required>
+               </div>
+           </div>
+           <div class="form-group">
+               <label for="" class="col-sm-2 control-label ">Last Name</label>
+               <div class="col-sm-3">
+                   <input type="text" name="last_name" class="form-control" id="inputEmail3" placeholder="Last Name" required>
+               </div>
+           </div>
+           <div class="form-group">
+               <label for="" class="col-sm-2 control-label ">Username</label>
+               <div class="col-sm-2">
+                   <input type="text" name="username" class="form-control" id="inputEmail3" placeholder="User Name" required>
+               </div>
+           </div>
+           <div class="form-group">
+               <label for="" class="col-sm-2 control-label ">Password</label>
+               <div class="col-sm-2">
+                   <input type="password" name="pasword" class="form-control" id="inputEmail3" placeholder="Password" required>
+               </div>
+           </div>
+           <div class="form-group">
+               <label for="" class="col-sm-2 control-label ">Role</label>
+               <div class="col-sm-2">
+                   <select class="form-control">
+                       <option>Please Select One</option>
+                       <option>Admin</option>
+                       <option>Member</option>
+                   </select>
+               </div>
+
+           </div>
+           <div class="form-group">
+               <div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-success">Submit</button>
+               </div>
+           </div>
+
+
+       </form>
+   </div>
+
+{% endblock %}
