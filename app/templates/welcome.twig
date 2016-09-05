@@ -40,5 +40,11 @@
 
 
 {% block contant_wrapper %}
+    {% if msg is not empty %}
+        <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{ msg.badlink.0 }}</strong>
+        </div>
+    {% endif %}
         <h1>Welcome to task management Sytem</h1>
 {% endblock %}

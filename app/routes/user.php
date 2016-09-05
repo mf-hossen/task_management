@@ -33,8 +33,13 @@ $app->get('/logout', function(Request $request,  Response $response){
 });
 
 $app->get('/member-create', function (Request $request, Response $response){
+    if($_SESSION['user'][0]['role'] =='Admin'){
+        return $this->view->render($response,'member-create.twig');
+    }else{
+        $this->flash->addMessage('badlink', 'Warning!!! You are not authorized to this page');
+        return $response->withStatus(302)->withHeader('Location', '/');
+    }
 
-    return $this->view->render($response,'member-create.twig');
 })->add($mw);
 
 $app->post('/member-create', function (Request $request, Response $response){
@@ -47,10 +52,15 @@ $app->post('/member-create', function (Request $request, Response $response){
 })->add($mw);
 
 $app->get('/member-list', function(Request $request,Response $response){
+    if($_SESSION['user'][0]['role'] =='Admin'){
+        $mapper = new \App\UserMapper($this->db);
+        $data =$mapper->memberList();
+        return $this->view->render($response,'member-list.twig',['data'=>$data]);
+    }else{
+        $this->flash->addMessage('badlink', 'Warning!!! You are not authorized to this page');
+        return $response->withStatus(302)->withHeader('Location', '/');
+    }
 
-    $mapper = new \App\UserMapper($this->db);
-    $data =$mapper->memberList();
-    return $this->view->render($response,'member-list.twig',['data'=>$data]);
 })->add($mw);
 
 
