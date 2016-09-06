@@ -1,0 +1,23 @@
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        {% if session.user.0.role== 'Admin' %}
+            <h2 class="text-center">Admin Panel</h2>
+        {% endif %}
+        <ul class="nav" id="side-menu">
+            <li>
+                <a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Task<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="/task/list">Task List</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->
