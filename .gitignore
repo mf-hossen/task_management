@@ -3,4 +3,4 @@ log/*
 cache/*
 .idea/*
 .idea/workspace.xml
-/db_config.php
+db_config.php
