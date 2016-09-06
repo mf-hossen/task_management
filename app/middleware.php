@@ -10,7 +10,6 @@ $mw = function ($request, $response, $next) {
             return $response->withStatus(403)->withHeader('Location', '/login');
         }
     }
-
     return $next($request, $response);
 
 };
