@@ -1,0 +1,9 @@
+<?php
+/*
+Copy this file as db_config.php in root directory
+and config your databas
+*/
+
+define("USER","user");
+define("PASS","pass");
+define("DB", "db");

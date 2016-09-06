@@ -10,10 +10,14 @@ require __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
+require __DIR__ . '/../db_config.php';
+
+
 // Instantiate the app
 $settings = require __DIR__ . '/../app/settings.php';
 $app = new \Slim\App($settings);
 
+// Register routes
 // Set up dependencies
 require __DIR__ . '/../app/dependencies.php';
 
@@ -23,8 +27,6 @@ require __DIR__ . '/../app/middleware.php';
 // Register routes
 require __DIR__ . '/../app/routes.php';
 
-// Register routes
-require __DIR__ . '/../app/db.php';
 
 
 // Run!
