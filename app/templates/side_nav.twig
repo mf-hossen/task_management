@@ -1,7 +1,10 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
+        {% if session.user.0.role== 'Admin' %}
+        <h2 class="text-center">Admin Panel</h2>
+        {% endif %}
         <ul class="nav" id="side-menu">
-            <li class="sidebar-search">
+            {#<li class="sidebar-search">
                 <div class="input-group custom-search-form">
                     <input type="text" class="form-control" placeholder="Search...">
                     <span class="input-group-btn">
@@ -11,39 +14,18 @@
                             </span>
                 </div>
                 <!-- /input-group -->
-            </li>
+            </li>#}
             <li>
                 <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Menu<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-sitemap fa-fw"></i>Member<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="/member-create">Create Member</a>
                     </li>
                     <li>
                         <a href="/member-list">Member List</a>
-                    </li>
-                    <li>
-                        <a href="#">Second Level Item</a>
-                    </li>
-                    <li>
-                        <a href="#">Third Level <span class="fa arrow"></span></a>
-                        <ul class="nav nav-third-level">
-                            <li>
-                                <a href="#">Third Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level Item</a>
-                            </li>
-                            <li>
-                                <a href="#">Third Level Item</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-third-level -->
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->
