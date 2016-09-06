@@ -67,7 +67,11 @@
         {% for tasks in task %}
             <tr class="odd gradeX">
                 <td>{{ tasks.title }}</td>
-                <td>{{ tasks.description}}</td>
+                <td>
+                    {% autoescape %}
+                    {{ tasks.description |raw}}
+                    {% endautoescape %}
+                </td>
                 <td>
                     {{ tasks.status }}
                 </td>
