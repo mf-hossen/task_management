@@ -39,22 +39,42 @@
 
 <div id="wrapper">
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Task managament System</a>
+        </div>
+        <!-- /.navbar-header -->
 
-        {% block nav %}
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i>{{ session.user.0.first_name }}</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
 
-        {% endblock %}
-
-
+        {% if session.user.0.role== 'Admin' %}
+            {% include 'sidebar/admin.twig' %}
+        {% endif %}
     </nav>
 
     <div id="page-wrapper">
-        {% if msg is not empty %}
-            <div class="alert alert-danger">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>{{ msg.badlink.0 }}</strong>
-            </div>
-        {% endif %}
-
         {% block contant_wrapper %}
 
         {% endblock %}
@@ -80,6 +100,14 @@
 <!-- Custom Theme JavaScript -->
 <script src="{{ base_url }}/assest/dist/js/sb-admin-2.js"></script>
 
+
+
+
+
+<!-- include libraries(jQuery, bootstrap) -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <!-- include summernote css/js-->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
