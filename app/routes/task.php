@@ -19,7 +19,7 @@ $app->post('/task/insert', function (Request $request, Response $response) {
     $mapper = new \App\TaskMapper($this->db);
     $mapper->addTask($data);
     //var_dump($task);die();
-    return $response->withRedirect('/task/create');
+    return $response->withRedirect('/task/list');
 })->add($mw);
 
 $app->get('/task/list', function (Request $request, Response $response) {
