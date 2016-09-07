@@ -55,8 +55,8 @@ $app->get('/task/task_details/{id}', function(Request $request, Response $respon
     $id = $request->getAttribute('id');
     $mapper = new \App\TaskMapper($this->db);
     $details_data = $mapper->taskDetails($id);
-    //var_dump($details_data); die();
-    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data]);
+    $att = $mapper->getAttacched($id);
+    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'att'=>$att]);
     return $response;
 });
 

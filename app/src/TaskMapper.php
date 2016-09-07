@@ -101,4 +101,12 @@ class TaskMapper extends Mapper
         return $row;
     }
 
+    public function getAttacched($id)
+    {
+        $sql = "SELECT * FROM attached WHERE task_id='$id'";
+        $stmt = $this->db->query($sql);
+        $res = $stmt->fetch();
+        return $res;
+    }
+
 }
