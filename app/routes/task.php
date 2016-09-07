@@ -41,10 +41,12 @@ $app->get('/task/memlist', function (Request $request, Response $response) {
     return $response;
 })->add($mw);
 
-$app->get('/task/details', function (Request $request, Response $response) {
+
+$app->get('/task/task_details/{id}', function(Request $request, Response $response) {
+    $id = $request->getAttribute('id');
     $mapper = new \App\TaskMapper($this->db);
-    //$task=$mapper->taskDetails();
-    //var_dump($task); die();
-    $response = $this->view->render($response, "task_details.twig");
+    $details_data = $mapper->taskDetails($id);
+    //var_dump($details_data); die();
+    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data]);
     return $response;
-})->add($mw);
+});

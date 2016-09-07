@@ -1,42 +1,7 @@
 {% extends 'layout.twig' %}
 {% block title %} Task{% endblock %}
 
-{% block nav %}
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">Task managament System</a>
-    </div>
-    <!-- /.navbar-header -->
 
-    <ul class="nav navbar-top-links navbar-right">
-
-        <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-user">
-                <li><a href="#"><i class="fa fa-user fa-fw"></i>{{ session.user.0.first_name }}</a>
-                </li>
-                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                </li>
-                <li class="divider"></li>
-                <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                </li>
-            </ul>
-            <!-- /.dropdown-user -->
-        </li>
-        <!-- /.dropdown -->
-    </ul>
-    <!-- /.navbar-top-links   -->
-    {% if session.user.0.role== 'Admin' %}
-        {% include 'side_nav.twig' %}
-    {% endif %}
-{% endblock %}
 
 {% block contant_wrapper %}
     <div class="row">
@@ -73,11 +38,18 @@
                     {% endautoescape %}
                 </td>
                 <td>
-                    {{ tasks.status }}
+                    {% if  tasks.status==1 %}
+                        Edit
+                    {% elseif tasks.status==2 %}
+                        Redesign
+                    {% elseif tasks.status==3 %}
+                        New
+                    {% endif %}
+
                 </td>
 
                 <td style="text-align: right">
-                    <a href="/details/{{ tasks.id }}"><span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="View"></span></a>
+                    <a href="/task/task_details/{{ tasks.id }}"><span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="Details"></span></a>
                     <a href="/update/{{ tasks.id }}"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit" style="color: grey"></span></a>
                     <a href="/delete/{{ tasks.id }}"><span class="glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" style="color: red"></span></a>
                 </td>

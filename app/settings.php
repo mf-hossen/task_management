@@ -24,9 +24,9 @@ return [
         // pdo settings
         'db' => [
             'host' => 'localhost',
-            'user' => USER,
-            'pass' => PASS,
-            'dbname' => DB,
+            'user' => 'root',
+            'pass' => 'Preview@Dev!@#',
+            'dbname' => 'task',
         ],
     ],
 ];
