@@ -59,3 +59,11 @@ $app->get('/task/task_details/{id}', function(Request $request, Response $respon
     $response = $this->view->render($response, "task_details.twig",['details'=>$details_data]);
     return $response;
 });
+
+$app->get('/task/task_update/{id}', function(Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $mapper = new \App\TaskMapper($this->db);
+    $update_data = $mapper->getTaskId($id);
+    $response = $this->view->render($response, "task_update.twig",['update_data'=>$update_data]);
+    return $response;
+});
