@@ -94,3 +94,18 @@ $app->post('/member-edit', function(Request $request,Response $response){
         return $response->withStatus(302)->withHeader('Location', '/');
     }
 })->add($mw);
+
+$app->get('/member-delete/{id}', function(Request $request,Response $response){
+    if($_SESSION['user'][0]['role'] =='Admin') {
+        $id = $request->getAttribute('id');
+        $mapper = new \App\UserMapper($this->db);
+        $u = $mapper->memberDelete($id);
+        if($u==true){
+            $this->flash->addMessage('delete', ' Member has beed deleted!!');
+            return $response->withStatus(302)->withHeader('Location','/member-list');
+        }
+    }else{
+        $this->flash->addMessage('badlink', 'Warning!!! You are not authorized to this page');
+        return $response->withStatus(302)->withHeader('Location', '/');
+    }
+})->add($mw);

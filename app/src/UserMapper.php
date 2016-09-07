@@ -97,4 +97,12 @@
                 throw $e;
             }
         }
+
+
+        public  function memberDelete($id)
+        {
+            $sql ="DELETE FROM users WHERE id='$id' LIMIT 1";
+            $res = $this->db->query($sql);
+            return $res;
+        }
     }
