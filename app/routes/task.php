@@ -6,6 +6,8 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 
 $app->get('/task/create', function (Request $request, Response $response) {
+   //var_dump(\App\Utility::test());
+    //die();
     $mapper = new \App\TaskMapper($this->db);
     $mapper_dept = new \App\MemberMapper($this->db);
     $member=$mapper_dept->getMember();
@@ -36,5 +38,22 @@ $app->get('/task/list', function (Request $request, Response $response) {
     $task=$mapper->getTask();
     //var_dump($task); die();
     $response = $this->view->render($response, "tasklist.twig",['task'=>$task]);
+    return $response;
+})->add($mw);
+
+$app->get('/task/memlist', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    $mapper = new \App\TaskMapper($this->db);
+    $task=$mapper->memberTaskList($data);
+    //var_dump($task); die();
+    $response = $this->view->render($response, "tasklist.twig",['task'=>$task]);
+    return $response;
+})->add($mw);
+
+$app->get('/task/details', function (Request $request, Response $response) {
+    $mapper = new \App\TaskMapper($this->db);
+    //$task=$mapper->taskDetails();
+    //var_dump($task); die();
+    $response = $this->view->render($response, "task_details.twig");
     return $response;
 })->add($mw);
