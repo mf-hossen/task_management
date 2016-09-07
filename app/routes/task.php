@@ -15,10 +15,19 @@ $app->get('/task/create', function (Request $request, Response $response) {
 
 $app->post('/task/insert', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-    //var_dump($data);die();
+    $files = $request->getUploadedFiles();
+    $newfile = $files['attached'];
+    $uploadFileName = $newfile->getClientFilename();
+    if ($newfile->getError() === UPLOAD_ERR_OK) {
+        $uploadFileName = $newfile->getClientFilename();
+        //var_dump($uploadFileName);die();
+        $filePath = "attached/$uploadFileName";
+        $newfile->moveTo("attached/$uploadFileName");
+
+    }
     $mapper = new \App\TaskMapper($this->db);
-    $mapper->addTask($data);
-    //var_dump($task);die();
+    $lastId = $mapper->addTask($data);
+    $mapper->addttached($filePath,$lastId);
     return $response->withRedirect('/task/list');
 })->add($mw);
 
