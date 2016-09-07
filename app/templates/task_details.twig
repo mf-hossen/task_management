@@ -1,0 +1,84 @@
+{% extends 'layout.twig' %}
+{% block title %} Task Details{% endblock %}
+
+
+
+{% block contant_wrapper %}
+    <div class="row">
+        <div class="col-lg-12" style="margin: 20px">
+
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+    <div class="col-lg-12">
+
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <div class="container">
+            <div class="row">
+            <div class="col-lg-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>Task Details</h4>
+                    </div>
+                <table class="table table-responsive table-hover">
+
+                    <tr>
+                        <td><b>Title:</b></td>
+                        <td>{{ details.title }}</td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Description:</b>:</td>
+                        <td>{{ details.description |raw }}</td>
+                    </tr>
+
+                    <tr>
+                        <td><b>Status:</b></td>
+                        <td>
+                            {% if  details.status==1 %}
+                                Edit
+                            {% elseif details.status==2 %}
+                                Redesign
+                            {% elseif details.status==3 %}
+                                New
+                            {% endif %}
+                        </td>
+
+
+                    </tr>
+
+                    <tr>
+                        <td><b>UserName:</b></td>
+                        <td>
+                            {{details.username  }}
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td style="width:200px"><b>Member Name:</b></td>
+                        <td>
+                            {{details.membername  }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width:200px"><b>Created Date:</b></td>
+                        <td>
+                            {{details.created_at  }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="col-lg-4"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
