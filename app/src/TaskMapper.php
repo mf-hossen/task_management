@@ -32,7 +32,7 @@ class TaskMapper extends Mapper
     }
 
 
-    public function addttached($filePath,$id)
+    public function addAttached($filePath,$id)
     {
         try{
 
