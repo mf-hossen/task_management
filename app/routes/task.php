@@ -46,7 +46,7 @@ $app->get('/task/memlist', function (Request $request, Response $response) {
     $mapper = new \App\TaskMapper($this->db);
     $task=$mapper->memberTaskList($data);
     //var_dump($task); die();
-    $response = $this->view->render($response, "tasklist.twig",['task'=>$task]);
+    $response = $this->view->render($response, "member_tasklist.twig",['task'=>$task]);
     return $response;
 })->add($mw);
 
