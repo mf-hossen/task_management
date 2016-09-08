@@ -19,6 +19,7 @@ $app->post('/task/insert', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     $files = $request->getUploadedFiles();
     $newfile = $files['attached'];
+    //var_dump($newfile);die();
     $uploadFileName = $newfile->getClientFilename();
     $rnd =  rand(1,100000);
     if ($newfile->getError() === UPLOAD_ERR_OK) {
