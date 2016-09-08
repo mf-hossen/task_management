@@ -135,9 +135,11 @@ class TaskMapper extends Mapper
               users.role, 
               tasks.title, 
               tasks.description, 
-              tasks.status,
+              tasks.task_type,
               tasks.member_id,
+              tasks.client_id,
               tasks.created_at,
+              tasks.submission_date,
               member.username as membername
               FROM `tasks` 
               left join users on tasks.user_id = users.id 

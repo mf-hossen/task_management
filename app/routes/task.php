@@ -9,8 +9,8 @@ $app->get('/task/create', function (Request $request, Response $response) {
    //var_dump(\App\Utility::test());
     //die();
     $mapper = new \App\TaskMapper($this->db);
-    $mapper_dept = new \App\MemberMapper($this->db);
-    $member=$mapper_dept->getMember();
+    $mapper_member = new \App\MemberMapper($this->db);
+    $member=$mapper_member->getMember();
     //var_dump($member); die();
     return $this->view->render($response, 'task.twig',['mem'=>$member]);
 })->add($mw);
@@ -64,7 +64,9 @@ $app->get('/task/task_details/{id}', function(Request $request, Response $respon
 $app->get('/task/task_update/{id}', function(Request $request, Response $response) {
     $id = $request->getAttribute('id');
     $mapper = new \App\TaskMapper($this->db);
+    $mapper_member = new \App\MemberMapper($this->db);
+    $member=$mapper_member->getMember();
     $update_data = $mapper->getTaskId($id);
-    $response = $this->view->render($response, "task_update.twig",['update_data'=>$update_data]);
+    $response = $this->view->render($response, "task_update.twig",['update_data'=>$update_data,'member'=>$member]);
     return $response;
 });

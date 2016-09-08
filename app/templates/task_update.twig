@@ -16,8 +16,8 @@
                                 <div class="col-md-12">
                                     <div class="form-group ">
                                         <label for="title">Task Title</label>
-                                        <input type="text" name="title" class="form-control" id="title"
-                                               placeholder="Title" required>
+                                        <input type="text" name="title" value="{{ update_data.title }}" class="form-control" id="title"
+                                               placeholder="Title">
                                     </div>
                                 </div>
                             </div>
@@ -26,19 +26,28 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="member">Select Member</label>
-                                        <select class="form-control" name="member_id" id="member" required>
-                                            <option value="NULL">Choose member</option>
-                                            {% for members in mem %}
-                                                <option value="{{ members.id }}">{{ members.first_name }}</option>
+                                        <select class="form-control" name="member_id" id="member">
+                                            <option value="{{update_data.member_id}}">{{update_data.membername}}</option>
+                                            {% for members in member %}
+                                                <option value="{{ members.id }}">{{ members.username }}</option>
                                             {% endfor %}
+
                                         </select>
                                     </div>
 
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="status">Status</label>
-                                    <select class="form-control" name="status" id="status" required>
-                                        <option value="NULL">Choose status</option>
+                                    <label for="status">Task Type</label>
+                                    <select class="form-control" name="status" id="status">
+                                        <option value="{{ update_data.task_type }}">
+                                            {% if  update_data.task_type==1 %}
+                                                Edit
+                                            {% elseif update_data.task_type==2 %}
+                                                Redesign
+                                            {% elseif update_data.task_type==3 %}
+                                                New
+                                            {% endif %}
+                                        </option>
                                         <option value="1" >Edit</option>
                                         <option value="2">Redesign</option>
                                         <option value="3">New</option>
@@ -53,20 +62,19 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="client_id">Client ID</label>
-                                    <input type="text" name="client_id" class="form-control" id="client_id"
-                                           placeholder="Input Client ID" required>
+                                    <input type="text" name="client_id"  value="{{ update_data.client_id }}" class="form-control" id="client_id"
+                                           placeholder="Input Client ID">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="date">Submission Date</label>
-                                    <input type="date" name="date" class="form-control" id="date"
-                                           placeholder="Input Client ID" required>
+                                    <input type="date" name="date" value="" class="form-control" id="date">
                                 </div>
                             </div>
 
 
                             <div class="form-group">
                                 <label for="">Description</label>
-                                <textarea name="description" class="form-control" id="summernote"></textarea>
+                                <textarea name="description"  class="form-control" id="summernote">{{update_data.description}}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="attached">Attached</label>
