@@ -41,7 +41,21 @@
     <div class="container">
         <div class="page-header">
             <h1>Member List</h1>
+
         </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    {% if msg is not empty %}
+                        <div class="alert alert-success">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>{{ msg.success.0 }}</strong>
+                            <strong>{{ msg.delete.0 }}</strong>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
         <div class="row">
             <div class="col-lg-10">
                 <div class="panel panel-default">
