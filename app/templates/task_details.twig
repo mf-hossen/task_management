@@ -68,7 +68,13 @@
                     <tr>
                         <td style="width:200px"><b>Attachment</b></td>
                         <td>
-                            <a href="{{ base_url }}/{{att.attached_path  }}" class="btn btn-info">Click here</a>
+
+                            {% if att.attached_path is null %}
+                                <b style="color: red">There has no attachment</b>
+                             {% else  %}
+                                 <a href="{{ base_url }}/{{att.attached_path  }}" class="btn btn-info">Click here</a>
+                            {% endif %}
+
 
                         </td>
                     </tr>
