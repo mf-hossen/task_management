@@ -48,14 +48,15 @@ $app->post('/member-create', function (Request $request, Response $response){
     $mapper = new \App\UserMapper($this->db);
     $lastID = $mapper->createUser($data);
     $this->flash->addMessage('success', 'New Member has beed created!!');
-    return $response->withStatus(302)->withHeader('Location', '/member-list/'.$lastID.'');
+    return $response->withStatus(302)->withHeader('Location', '/member-list');
 })->add($mw);
 
 $app->get('/member-list', function(Request $request,Response $response){
     if($_SESSION['user'][0]['role'] =='Admin'){
+        $msg = $this->flash->getMessages();
         $mapper = new \App\UserMapper($this->db);
         $data =$mapper->memberList();
-        return $this->view->render($response,'member-list.twig',['data'=>$data]);
+        return $this->view->render($response,'member-list.twig',['data'=>$data,'msg'=>$msg]);
     }else{
         $this->flash->addMessage('badlink', 'Warning!!! You are not authorized to this page');
         return $response->withStatus(302)->withHeader('Location', '/');
