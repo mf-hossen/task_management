@@ -25,8 +25,8 @@ class TaskMapper extends Mapper
             :submission_date,
             :created_at)");
 
-            $stmt->bindParam(':title', $data['title']);
-            $stmt->bindParam(':description', $data['description']);
+            $stmt->bindParam(':title', ucfirst($data['title']));
+            $stmt->bindParam(':description', ucfirst($data['description']));
             $stmt->bindParam(':status', $data['status']);
             $stmt->bindParam(':user_id',$data['user_id']);
             $stmt->bindParam(':member_id',$data['member_id']);
@@ -52,6 +52,7 @@ class TaskMapper extends Mapper
               tasks.task_type,
               tasks.member_id,
               tasks.created_at,
+              tasks.client_id,
               member.username as membername
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
@@ -93,6 +94,7 @@ class TaskMapper extends Mapper
               tasks.description, 
               tasks.task_type,
               tasks.member_id,
+              tasks.client_id,
               tasks.created_at,
               member.username as membername
               FROM `tasks` 
@@ -156,6 +158,14 @@ class TaskMapper extends Mapper
         $stmt = $this->db->query($sql);
         $res = $stmt->fetch();
         return $res;
+    }
+
+    public function taskDelete($id)
+    {
+        //var_dump($id);
+        $sql = "DELETE FROM tasks where id='$id'";
+        $stmt = $this->db->query($sql);
+        return $stmt;
     }
 
 }

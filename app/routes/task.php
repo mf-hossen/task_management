@@ -31,14 +31,16 @@ $app->post('/task/insert', function (Request $request, Response $response) {
     $mapper = new \App\TaskMapper($this->db);
     $lastId = $mapper->addTask($data);
     $mapper->addAttached($filePath,$lastId);
-    return $response->withRedirect('/task/list');
+    $this->flash->addMessage('create_message', 'Task is assigned!!!');
+    return $response->withRedirect('/task/task_details/'.$lastId);
 })->add($mw);
 
 $app->get('/task/list', function (Request $request, Response $response) {
     $mapper = new \App\TaskMapper($this->db);
     $task=$mapper->getTask();
     //var_dump($task); die();
-    $response = $this->view->render($response, "tasklist.twig",['task'=>$task]);
+    $delete_message = $this->flash->getMessages();
+    $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'del_msg'=>$delete_message]);
     return $response;
 })->add($mw);
 
@@ -57,7 +59,8 @@ $app->get('/task/task_details/{id}', function(Request $request, Response $respon
     $mapper = new \App\TaskMapper($this->db);
     $details_data = $mapper->taskDetails($id);
     $att = $mapper->getAttacched($id);
-    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'att'=>$att]);
+    $create_message = $this->flash->getMessages();
+    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'att'=>$att,'cre_message'=>$create_message]);
     return $response;
 })->add($mw);
 
@@ -69,4 +72,12 @@ $app->get('/task/task_update/{id}', function(Request $request, Response $respons
     $update_data = $mapper->getTaskId($id);
     $response = $this->view->render($response, "task_update.twig",['update_data'=>$update_data,'member'=>$member]);
     return $response;
+})->add($mw);
+
+$app->get('/task/task_delete/{id}', function(Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $mapper = new \App\TaskMapper($this->db);
+    $mapper->taskDelete($id);
+    $this->flash->addMessage('delete_message', 'Task is Deleted!!!');
+    return $response->withRedirect('/task/list');
 })->add($mw);
