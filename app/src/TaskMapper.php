@@ -3,9 +3,12 @@ namespace App;
 
 class TaskMapper extends Mapper
 {
+
+
+
     public function addTask($data)
     {
-        //var_dump($data); die();
+
         try {
             $date=$data['submission_date'];
             $stmt = $this->db->prepare("INSERT INTO tasks (
@@ -40,6 +43,8 @@ class TaskMapper extends Mapper
 
         }
     }
+
+
 
     public function getTask() {
         $sql = "SELECT 

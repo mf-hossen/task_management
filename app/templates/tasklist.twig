@@ -29,12 +29,13 @@
     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
         <thead>
         <tr>
+            <th>Client ID</th>
             <th>Title</th>
-            <th>Assign From</th>
+            <th>Created By</th>
             <th>Assign To</th>
             <th>Task Type</th>
             <th>Assign Date</th>
-            <th>Client ID</th>
+
 
             <th style="text-align: right">Action</th>
         </tr>
@@ -42,6 +43,7 @@
         <tbody>
         {% for tasks in task %}
             <tr class="odd gradeX">
+                <td>{{ tasks.client_id }}</td>
                 <td>{{ tasks.title }}</td>
                 <td>{{ tasks.username }}</td>
                 <td>{{ tasks.membername }}</td>
@@ -56,8 +58,8 @@
                     {% endif %}
 
                 </td>
-                <td>{{ tasks.created_at }}</td>
-                <td>{{ tasks.client_id }}</td>
+                <td>{{ tasks.created_at|date('Y-m-d')}}</td>
+
 
 
                 <td style="text-align: right">

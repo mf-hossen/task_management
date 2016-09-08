@@ -65,7 +65,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="member">Select Member</label>
+                                        <label for="member">Assign To</label>
                                         <select class="form-control" name="member_id" id="member" required>
                                             <option value="NULL">Choose member</option>
                                             {% for members in mem %}
@@ -76,9 +76,9 @@
 
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="status">Status</label>
+                                    <label for="status">Task Type</label>
                                     <select class="form-control" name="status" id="status" required>
-                                        <option value="NULL">Choose status</option>
+                                        <option value="NULL">Choose Type</option>
                                         <option value="1" >Edit</option>
                                         <option value="2">Redesign</option>
                                         <option value="3">New</option>

@@ -70,6 +70,8 @@ $app->get('/task/task_update/{id}', function(Request $request, Response $respons
     $mapper_member = new \App\MemberMapper($this->db);
     $member=$mapper_member->getMember();
     $update_data = $mapper->getTaskId($id);
+    //$client_id=$mapper->getClientId();
+    //var_dump($client_id); die();
     $response = $this->view->render($response, "task_update.twig",['update_data'=>$update_data,'member'=>$member]);
     return $response;
 })->add($mw);
