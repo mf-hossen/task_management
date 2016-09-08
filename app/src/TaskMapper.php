@@ -8,7 +8,23 @@ class TaskMapper extends Mapper
         //var_dump($data); die();
         try {
             $date=$data['submission_date'];
-            $stmt = $this->db->prepare("INSERT INTO tasks (title,description,status,user_id,member_id,client_id,submission_date,created_at)VALUES (:title,:description,:status,:user_id,:member_id,:client_id,:submission_date,:created_at)");
+            $stmt = $this->db->prepare("INSERT INTO tasks (
+            title,description,
+            task_type,
+            user_id,
+            member_id,
+            client_id,
+            submission_date,
+            created_at)VALUES (
+            :title,
+            :description,
+            :status,
+            :user_id,
+            :member_id,
+            :client_id,
+            :submission_date,
+            :created_at)");
+
             $stmt->bindParam(':title', $data['title']);
             $stmt->bindParam(':description', $data['description']);
             $stmt->bindParam(':status', $data['status']);
@@ -33,7 +49,7 @@ class TaskMapper extends Mapper
               tasks.title, 
               tasks.description,
               tasks.id as task_id,
-              tasks.status,
+              tasks.task_type,
               tasks.member_id,
               tasks.created_at,
               member.username as membername
@@ -46,7 +62,21 @@ class TaskMapper extends Mapper
 
     public function memberTaskList() {
         $member_id=$_SESSION['user'][0]['id'];
-        $sql = "SELECT * from tasks where member_id='$member_id'";
+        $sql = "SELECT 
+              users.id as user_id, 
+              users.username, 
+              users.role, 
+              tasks.title, 
+              tasks.description,
+              tasks.id as task_id,
+              tasks.task_type,
+              tasks.member_id,
+              tasks.created_at,
+              member.username as membername
+              FROM `tasks` 
+              left join users on tasks.user_id = users.id 
+              left join users as member on tasks.member_id =member.id
+              where tasks.member_id='$member_id'";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
@@ -61,7 +91,7 @@ class TaskMapper extends Mapper
               users.role, 
               tasks.title, 
               tasks.description, 
-              tasks.status,
+              tasks.task_type,
               tasks.member_id,
               tasks.created_at,
               member.username as membername
@@ -81,7 +111,11 @@ class TaskMapper extends Mapper
     {
         try{
 
-            $stmt = $this->db->prepare("INSERT INTO attached (task_id,attached_path)VALUES(:task_id,:attached_path)");
+            $stmt = $this->db->prepare("INSERT INTO attached (
+            task_id,
+            attached_path)VALUES(
+            :task_id,
+            :attached_path)");
             $stmt->bindParam(':task_id',$id);
             $stmt->bindParam(':attached_path',$filePath);
             $stmt->execute();

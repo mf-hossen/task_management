@@ -36,13 +36,13 @@
                     </tr>
 
                     <tr>
-                        <td><b>Status:</b></td>
+                        <td><b>Task Type:</b></td>
                         <td>
-                            {% if  details.status==1 %}
+                            {% if  details.task_type==1 %}
                                 Edit
-                            {% elseif details.status==2 %}
+                            {% elseif details.task_type==2 %}
                                 Redesign
-                            {% elseif details.status==3 %}
+                            {% elseif details.task_type==3 %}
                                 New
                             {% endif %}
                         </td>
@@ -66,9 +66,9 @@
                     </tr>
 
                     <tr>
-                        <td style="width:200px"><b></b></td>
+                        <td style="width:200px"><b>Attachment</b></td>
                         <td>
-                            <a href="{{ base_url }}/{{att.attached_path  }}" class="btn btn-info">Attachment</a>
+                            <a href="{{ base_url }}/{{att.attached_path  }}" class="btn btn-info">Click here</a>
 
                         </td>
                     </tr>
