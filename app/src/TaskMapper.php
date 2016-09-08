@@ -52,6 +52,7 @@ class TaskMapper extends Mapper
               tasks.task_type,
               tasks.member_id,
               tasks.created_at,
+              tasks.client_id,
               member.username as membername
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
@@ -93,6 +94,7 @@ class TaskMapper extends Mapper
               tasks.description, 
               tasks.task_type,
               tasks.member_id,
+              tasks.client_id,
               tasks.created_at,
               member.username as membername
               FROM `tasks` 

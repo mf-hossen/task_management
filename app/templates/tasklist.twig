@@ -33,6 +33,9 @@
             <th>Assign From</th>
             <th>Assign To</th>
             <th>Task Type</th>
+            <th>Assign Date</th>
+            <th>Client ID</th>
+
             <th style="text-align: right">Action</th>
         </tr>
         </thead>
@@ -53,6 +56,9 @@
                     {% endif %}
 
                 </td>
+                <td>{{ tasks.created_at }}</td>
+                <td>{{ tasks.client_id }}</td>
+
 
                 <td style="text-align: right">
                     <a href="/task/task_details/{{ tasks.task_id }}"><span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="Details"></span></a>
