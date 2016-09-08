@@ -62,7 +62,7 @@ $app->get('/task/task_details/{id}', function(Request $request, Response $respon
     $create_message = $this->flash->getMessages();
     $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'att'=>$att,'cre_message'=>$create_message]);
     return $response;
-});
+})->add($mw);
 
 $app->get('/task/task_update/{id}', function(Request $request, Response $response) {
     $id = $request->getAttribute('id');
@@ -72,7 +72,7 @@ $app->get('/task/task_update/{id}', function(Request $request, Response $respons
     $update_data = $mapper->getTaskId($id);
     $response = $this->view->render($response, "task_update.twig",['update_data'=>$update_data,'member'=>$member]);
     return $response;
-});
+})->add($mw);
 
 $app->get('/task/task_delete/{id}', function(Request $request, Response $response) {
     $id = $request->getAttribute('id');
@@ -80,4 +80,4 @@ $app->get('/task/task_delete/{id}', function(Request $request, Response $respons
     $mapper->taskDelete($id);
     $this->flash->addMessage('delete_message', 'Task is Deleted!!!');
     return $response->withRedirect('/task/list');
-});
+})->add($mw);
