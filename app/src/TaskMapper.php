@@ -26,7 +26,20 @@ class TaskMapper extends Mapper
     }
 
     public function getTask() {
-        $sql = "SELECT * from tasks";
+        $sql = "SELECT 
+              users.id as user_id, 
+              users.username, 
+              users.role, 
+              tasks.title, 
+              tasks.description,
+              tasks.id as task_id,
+              tasks.status,
+              tasks.member_id,
+              tasks.created_at,
+              member.username as membername
+              FROM `tasks` 
+              left join users on tasks.user_id = users.id 
+              left join users as member on tasks.member_id =member.id";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
