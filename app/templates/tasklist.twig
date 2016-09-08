@@ -6,7 +6,14 @@
 {% block contant_wrapper %}
     <div class="row">
         <div class="col-lg-12" style="margin: 20px">
-
+            {% if del_msg is not null and del_msg is not empty %}
+                {% if(del_msg['delete_message']) %}
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Delete!</strong> {{  del_msg['delete_message'][0] }}
+                    </div>
+                {% endif %}
+            {% endif %}
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -50,7 +57,7 @@
                 <td style="text-align: right">
                     <a href="/task/task_details/{{ tasks.task_id }}"><span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="Details"></span></a>
                     <a href="/task/task_update/{{ tasks.task_id }}"><span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit" style="color: grey"></span></a>
-                    <a href="/delete/{{ tasks.task_id }}"><span class="glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" style="color: red"></span></a>
+                    <a href="/task/task_delete/{{ tasks.task_id }}"><span class="glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" style="color: red"></span></a>
                 </td>
             </tr>
         {% endfor %}
