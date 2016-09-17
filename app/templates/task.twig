@@ -2,82 +2,86 @@
 {% block title %} Create Task{% endblock %}
 {% block contant_wrapper %}
     <div class="row">
-        <div class="col-md-12 top-buffer">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Create Task</h3>
-                </div>
-                <div class="panel-body">
-                    <form class="" role="form" action="/task/insert" method="post" enctype="multipart/form-data">
-                        <fieldset>
+        <div class="col-md-12">
+            <h4 class="pull-left text-uppercase">Create New Task</h4>
+            <div class="pull-right btn-toolbar">
+                <a href="/task/list" class="btn btn-info btn-group  text-uppercase">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Task List
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <form class="" role="form" action="/task/insert" method="post" enctype="multipart/form-data">
+                <fieldset>
 
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="form-group ">
-                                        <label for="title">Task Title</label>
-                                        <input type="text" name="title" class="form-control" id="title"
-                                               placeholder="Title" required>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="">Description</label>
-                                        <textarea name="description" class="form-control" id="summernote"></textarea>
-                                    </div>
-{#
-                                    <div class="form-group">
-                                        <label for="attached">Attached</label>
-                                        <input type="file" name="attached" class="form-control" id="attached" multiple>
-                                    </div>
-#}
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group ">
+                                <label for="title">Task Title</label>
+                                <input type="text" name="title" class="form-control" id="title"
+                                       placeholder="Title" required>
+                            </div>
 
 
-                                    <input class="" placeholder="" name="user_id" value="{{ session.user.0.id }}"
-                                           type="hidden">
+                            <div class="form-group">
+                                <label for="">Description</label>
+                                <textarea name="description" class="form-control" id="summernote"></textarea>
+                            </div>
+                            {#
+                                                                <div class="form-group">
+                                                                    <label for="attached">Attached</label>
+                                                                    <input type="file" name="attached" class="form-control" id="attached" multiple>
+                                                                </div>
+                            #}
 
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="member">Assign To</label>
-                                        <select class="form-control" name="member_id" id="member" required>
-                                            <option value="">Choose member</option>
-                                            {% for members in mem %}
-                                                <option value="{{ members.id }}">{{ members.first_name }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label for="task_type">Task Type</label>
-                                        <select class="form-control" name="task_type" id="task_type" required>
-                                            <option value="">Choose Type</option>
-                                            <option value="1">Edit</option>
-                                            <option value="2">Redesign</option>
-                                            <option value="3">New</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="client_id">Client ID</label>
-                                        <input type="number" name="client_id" class="form-control" id="client_id"
-                                               placeholder="Input Client ID" required>
-                                    </div>
-{#
-                                    <div class="form-group">
-                                        <label for="date">Submission Date</label>
-                                        <input type="date" name="date" class="form-control" id="date"
-                                               placeholder="Input Client ID" required>
-                                    </div>
-#}
-                                </div>
+                            <input class="" placeholder="" name="user_id" value="{{ session.user.0.id }}"
+                                   type="hidden">
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="member">Assign To</label>
+                                <select class="form-control" name="member_id" id="member" required>
+                                    <option value="">Choose member</option>
+                                    {% for members in mem %}
+                                        <option value="{{ members.id }}">{{ members.first_name }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <label for="task_type">Task Type</label>
+                                <select class="form-control" name="task_type" id="task_type" required>
+                                    <option value="">Choose Type</option>
+                                    <option value="1">Edit</option>
+                                    <option value="2">Redesign</option>
+                                    <option value="3">New</option>
+                                </select>
                             </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
+                            <div class="form-group">
+                                <label for="client_id">Client ID</label>
+                                <input type="number" name="client_id" class="form-control" id="client_id"
+                                       placeholder="Input Client ID" required>
+                            </div>
+                            {#
+                                                                <div class="form-group">
+                                                                    <label for="date">Submission Date</label>
+                                                                    <input type="date" name="date" class="form-control" id="date"
+                                                                           placeholder="Input Client ID" required>
+                                                                </div>
+                            #}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
 {% endblock %}
