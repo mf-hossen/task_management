@@ -6,7 +6,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Task managament System</a>
+        <a class="navbar-brand" href="/">Task Manager
+            {% if session.user.0.role== 'Admin' %}
+                <small class="text-primary">(Admin)</small>
+            {% elseif session.user.0.role== 'Member' %}
+                <small class="text-primary">(Member)</small>
+
+            {% endif %}
+        </a>
     </div>
     <!-- /.navbar-header -->
 
