@@ -4,3 +4,12 @@
         <strong>{{ msg.badlink.0 }}</strong>
     </div>
 {% endif %}
+{% if cre_message is not null and cre_message is not empty %}
+    {% if(cre_message['create_message']) %}
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>Assign! </strong> {{ cre_message['create_message'][0] }}
+        </div>
+    {% endif %}
+{% endif %}
+
