@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Task Management System</title>
+    <title>{% block title %}{% endblock %} -Task Management</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ base_url }}/assest/custom.css" rel="stylesheet">
@@ -35,6 +35,14 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    {% block jsTop %}
+
+    {% endblock %}
+
+    {% block cssTop %}
+
+    {% endblock %}
+
 </head>
 <body>
 <div id="wrapper">
@@ -42,6 +50,8 @@
     {% include 'nav.twig' %}
 
     <div id="page-wrapper">
+        <br>
+
         {% block contant_wrapper %}
 
         {% endblock %}
@@ -84,6 +94,14 @@
         focus: true                  // set focus to editable area after initializing summernote
     });
 </script>
+
+{% block jsBottom %}
+
+{% endblock %}
+
+{% block cssBottom %}
+
+{% endblock %}
 
 </body>
 

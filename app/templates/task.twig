@@ -1,5 +1,5 @@
 {% extends 'layout.twig' %}
-{% block title %} Task{% endblock %}
+{% block title %} Create Task{% endblock %}
 {% block contant_wrapper %}
     <div class="row">
         <div class="col-md-12 top-buffer">
@@ -24,10 +24,12 @@
                                         <label for="">Description</label>
                                         <textarea name="description" class="form-control" id="summernote"></textarea>
                                     </div>
+{#
                                     <div class="form-group">
                                         <label for="attached">Attached</label>
                                         <input type="file" name="attached" class="form-control" id="attached" multiple>
                                     </div>
+#}
 
 
                                     <input class="" placeholder="" name="user_id" value="{{ session.user.0.id }}"
@@ -69,7 +71,6 @@
                                 </div>
                             </div>
 
-
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
@@ -77,9 +78,6 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
-
-
 {% endblock %}
