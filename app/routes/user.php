@@ -34,7 +34,8 @@ $app->get('/logout', function(Request $request,  Response $response){
 
 $app->get('/member-create', function (Request $request, Response $response){
     if($_SESSION['user'][0]['role'] =='Admin'){
-        return $this->view->render($response,'member-create.twig');
+        $msg = $this->flash->getMessages();
+        return $this->view->render($response,'member-create.twig',['msg'=>$msg]);
     }else{
         $this->flash->addMessage('badlink', 'Warning!!! You are not authorized to this page');
         return $response->withStatus(302)->withHeader('Location', '/');
@@ -45,10 +46,16 @@ $app->get('/member-create', function (Request $request, Response $response){
 $app->post('/member-create', function (Request $request, Response $response){
 
     $data = $request->getParsedBody();
-    $mapper = new \App\UserMapper($this->db);
-    $lastID = $mapper->createUser($data);
-    $this->flash->addMessage('success', 'New Member has beed created!!');
-    return $response->withStatus(302)->withHeader('Location', '/member-list');
+    if ($data['password']==$data['confirm_password']){
+        $mapper = new \App\UserMapper($this->db);
+        $lastID = $mapper->createUser($data);
+        $this->flash->addMessage('success', 'New Member has beed created!!');
+        return $response->withStatus(302)->withHeader('Location', '/member-list');
+    }else{
+        $this->flash->addMessage('failed', 'Password don\'t match');
+        return $response->withStatus(302)->withHeader('Location', '/member-create');
+    }
+
 })->add($mw);
 
 $app->get('/member-list', function(Request $request,Response $response){
