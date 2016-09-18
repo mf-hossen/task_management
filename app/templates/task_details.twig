@@ -48,6 +48,10 @@
                     <h5 class="text-primary">Description:</h5>
                     {{ details.description |raw }}
                 </div>
+
+                {% if attached is empty  %}
+
+                {% else %}
                 <div class="section">
                     <h5 class="text-primary">Attachment:</h5>
                     <ul class="list-group">
@@ -55,16 +59,14 @@
                             <li class="list-group-item">
                                 <b>{{ loop.index }}.</b>
                                 {% set fileName = attachment.attached_path |split('/') %}
-
                                 {{ fileName[1] }}
-
                                 {#{{ dump(attachment.attached_path |split('/')) }}#}
                                 <a href="/{{ attachment.attached_path }}" class="btn btn-link pull-right">Download</a>
                             </li>
                         {% endfor %}
-
                     </ul>
                 </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-lg-4">
