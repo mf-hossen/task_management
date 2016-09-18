@@ -51,11 +51,17 @@ $app->get('/task/list[/{type}]', function (Request $request, Response $response)
 })->add($mw);
 
 
-$app->get('/task/members_task_list', function (Request $request, Response $response) {
-    $data = $request->getParsedBody();
+$app->get('/task/members_task_list[/{type}]', function (Request $request, Response $response) {
+    $dateType = $request->getAttribute('type');
     $mapper = new \App\TaskMapper($this->db);
-    $task=$mapper->memberAllTask($data);
-    //var_dump($task); die();
+    if($dateType == 'today'){
+        $typeTitle = 'TODAY';
+        $task=$mapper->memberTodayTask();
+    }else{
+        $typeTitle = 'All';
+        $task=$mapper->memberAllTask();
+        //var_dump($task); die();
+    }
     $response = $this->view->render($response, "member_tasklist.twig",['task'=>$task]);
     return $response;
 })->add($mw);
