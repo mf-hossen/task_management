@@ -40,10 +40,10 @@ $app->get('/task/today_list', function (Request $request, Response $response) {
     return $response;
 })->add($mw);
 
-$app->get('/task/memlist', function (Request $request, Response $response) {
+$app->get('/task/members_task_list', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     $mapper = new \App\TaskMapper($this->db);
-    $task=$mapper->memberTaskList($data);
+    $task=$mapper->memberAllTask($data);
     //var_dump($task); die();
     $response = $this->view->render($response, "member_tasklist.twig",['task'=>$task]);
     return $response;
