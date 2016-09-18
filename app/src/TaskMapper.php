@@ -67,8 +67,8 @@ class TaskMapper extends Mapper
     }
 
 
-    public function getTodayTask($date) {
-        $date=date('Y-m-d h:i:s');
+    public function getTodayTask() {
+
         $sql = "SELECT 
               users.id as user_id, 
               users.username, 
@@ -85,16 +85,17 @@ class TaskMapper extends Mapper
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id where tasks.created_at BETWEEN '$date' and '$date'";
+              left join users as member on tasks.member_id =member.id where date(tasks.created_at)=curdate()";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
 
-    public function memberTaskList() {
+    public function memberAllTask() {
         $member_id=$_SESSION['user'][0]['id'];
         $sql = "SELECT 
               users.id as user_id, 
-              users.username, 
+              users.username,
+              concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
               tasks.title, 
               tasks.description,
@@ -102,7 +103,31 @@ class TaskMapper extends Mapper
               tasks.task_type,
               tasks.member_id,
               tasks.created_at,
-              member.username as membername
+              member.username as membername,
+              concat(member.first_name , ' ', member.last_name ) as members_full_name
+              FROM `tasks` 
+              left join users on tasks.user_id = users.id 
+              left join users as member on tasks.member_id =member.id
+              where tasks.member_id='$member_id'";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll();
+    }
+
+    public function memberTodayTask() {
+        $member_id=$_SESSION['user'][0]['id'];
+        $sql = "SELECT 
+              users.id as user_id, 
+              users.username,
+              concat(users.first_name , ' ', users.last_name ) as users_full_name,
+              users.role, 
+              tasks.title, 
+              tasks.description,
+              tasks.id as task_id,
+              tasks.task_type,
+              tasks.member_id,
+              tasks.created_at,
+              member.username as membername,
+              concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
               left join users as member on tasks.member_id =member.id
@@ -118,7 +143,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
               users.id as user_id, 
               users.username,
-               concat(users.first_name , ' ', users.last_name ) as users_full_name,
+              concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
               tasks.title,
               tasks.id as task_id,               
