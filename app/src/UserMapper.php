@@ -18,7 +18,6 @@
             $last_name = $data['last_name'];
             $username = $data['username'];
             $password = sha1($data['password']);
-            $confirm_password = sha1($data['confirm_password']);
             $role      = $data['role'];
 
 
