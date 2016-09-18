@@ -61,7 +61,8 @@ $app->get('/task/members_task_list[/{type}]', function (Request $request, Respon
         $task=$mapper->memberAllTask();
         //var_dump($task); die();
     }
-    $response = $this->view->render($response, "member_tasklist.twig",['task'=>$task]);
+    $status_message = $this->flash->getMessages();
+    $response = $this->view->render($response, "member_tasklist.twig",['task'=>$task, 'status_message'=>$status_message]);
     return $response;
 })->add($mw);
 
