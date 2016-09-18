@@ -56,8 +56,9 @@ $app->get('/task/task_details/{id}', function(Request $request, Response $respon
     $details_data = $mapper->taskDetails($id);
     //var_dump($details_data); die();
     $att = $mapper->getAttacched($id);
+    //var_dump($att); die();
     $create_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'att'=>$att,'cre_message'=>$create_message]);
+    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'attached'=>$att,'cre_message'=>$create_message]);
     return $response;
 })->add($mw);
 
