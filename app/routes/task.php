@@ -32,22 +32,22 @@ $app->post('/task/insert', function (Request $request, Response $response) {
     return $response->withRedirect('/task/attached/'.$lastId);
 })->add($mw);
 
-$app->get('/task/list', function (Request $request, Response $response) {
+$app->get('/task/list[/{type}]', function (Request $request, Response $response) {
+    //$dateType = $request->get('date_type');
+    $dateType = $request->getAttribute('type');
+
     $mapper = new \App\TaskMapper($this->db);
-    $task=$mapper->getTask();
-    //var_dump($task); die();
+    if($dateType == 'today'){
+        $task=$mapper->getTodayTask();
+    }else{
+
+        $task=$mapper->getTask();
+    }
     $delete_message = $this->flash->getMessages();
     $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'del_msg'=>$delete_message]);
     return $response;
 })->add($mw);
 
-$app->get('/task/today_list', function (Request $request, Response $response) {
-    $mapper = new \App\TaskMapper($this->db);
-    $task=$mapper->getTodayTask();
-    //var_dump($task); die();
-    $response = $this->view->render($response, "today_list.twig",['task'=>$task]);
-    return $response;
-})->add($mw);
 
 $app->get('/task/members_task_list', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
@@ -65,8 +65,9 @@ $app->get('/task/task_details/{id}', function(Request $request, Response $respon
     $details_data = $mapper->taskDetails($id);
     //var_dump($details_data); die();
     $att = $mapper->getAttacched($id);
+    //var_dump($att); die();
     $create_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'att'=>$att,'cre_message'=>$create_message]);
+    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'attached'=>$att,'cre_message'=>$create_message]);
     return $response;
 })->add($mw);
 

@@ -48,6 +48,23 @@
                     <h5 class="text-primary">Description:</h5>
                     {{ details.description |raw }}
                 </div>
+                <div class="section">
+                    <h5 class="text-primary">Attachment:</h5>
+                    <ul class="list-group">
+                        {% for attachment in attached %}
+                            <li class="list-group-item">
+                                <b>{{ loop.index }}.</b>
+                                {% set fileName = attachment.attached_path |split('/') %}
+
+                                {{ fileName[1] }}
+
+                                {#{{ dump(attachment.attached_path |split('/')) }}#}
+                                <a href="/{{ attachment.attached_path }}" class="btn btn-link pull-right">Download</a>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="col-lg-4">
@@ -84,21 +101,6 @@
                 </tr>
 
                 <tr>
-                    <td style="width:200px"><b>Attachment</b></td>
-                    <td>
-
-                        {% if att.attached_path is null %}
-                            <b style="color: red">There has no attachment</b>
-                        {% else %}
-                            <a href="{{ base_url }}/{{ att.attached_path }}" class="btn btn-info">Click
-                                here</a>
-                        {% endif %}
-
-
-                    </td>
-                </tr>
-
-                <tr>
                     <td style="width:200px"><b>Client ID:</b></td>
                     <td>
                         {{ details.client_id }}
@@ -114,9 +116,6 @@
             </table>
 
         </div>
-    </div>
-    <div>
-        
     </div>
 
 
