@@ -71,7 +71,7 @@
                 <tr>
                     <td><b>Assign From:</b></td>
                     <td>
-                        {{ details.username }}
+                        {{ details.users_full_name }}
                     </td>
                 </tr>
 
@@ -79,7 +79,7 @@
                 <tr>
                     <td style="width:200px"><b>Assign To:</b></td>
                     <td>
-                        {{ details.membername }}
+                        {{ details.members_full_name }}
                     </td>
                 </tr>
 
@@ -108,7 +108,7 @@
                 <tr>
                     <td style="width:200px"><b>Created Date:</b></td>
                     <td>
-                        {{ details.created_at|date('Y-m-d') }}
+                        {{ details.created_at|date('d M, Y') }}
                     </td>
                 </tr>
             </table>
