@@ -40,15 +40,14 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="task-hero">
-                <h4>Title</h4>
-                <p>
-                    {{ details.title }}
-                </p>
-
-                <h4>Description</h4>
-                <p>
+                <div class="section">
+                    <h5 class="text-primary">Title:</h5>
+                    <p>{{ details.title }}</p>
+                </div>
+                <div class="section">
+                    <h5 class="text-primary">Description:</h5>
                     {{ details.description |raw }}
-                </p>
+                </div>
             </div>
         </div>
         <div class="col-lg-4">
