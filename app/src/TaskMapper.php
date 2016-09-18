@@ -63,6 +63,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
               users.id as user_id, 
               users.username, 
+              concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
               tasks.title, 
               tasks.description,
@@ -71,7 +72,9 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
-              member.username as membername
+              member.username as membername,
+              concat(member.first_name , ' ', member.last_name ) as members_full_name
+
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
               left join users as member on tasks.member_id =member.id";

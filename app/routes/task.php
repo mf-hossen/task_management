@@ -38,13 +38,15 @@ $app->get('/task/list[/{type}]', function (Request $request, Response $response)
 
     $mapper = new \App\TaskMapper($this->db);
     if($dateType == 'today'){
+        $typeTitle = 'TODAY';
         $task=$mapper->getTodayTask();
     }else{
-
+        $typeTitle = 'All';
         $task=$mapper->getTask();
+        //var_dump($task); die();
     }
     $delete_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'message'=>$delete_message]);
+    $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'message'=>$delete_message , 'typeTitle' => $typeTitle]);
     return $response;
 })->add($mw);
 
