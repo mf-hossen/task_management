@@ -46,12 +46,16 @@
                             {% endif %}
                         </td>
                         <td>
-                            {% if  tasks.task_type==1 %}
-                                <span class="label label-success"> Edit </span>
-                            {% elseif tasks.task_type==2 %}
-                                <span class="label label-primary"> Redesign </span>
-                            {% elseif tasks.task_type==3 %}
-                                <span class="label label-info">New </span>
+                            {% if  tasks.status==1 %}
+                                <span class="text-success text-uppercase"> Complete </span>
+                            {% elseif tasks.status==2 %}
+                                <span class="text-danger text-uppercase"> Incomplete </span>
+                            {% elseif tasks.status==3 %}
+                                <span class="text-warning text-uppercase">Pending </span>
+                            {% elseif tasks.status==4 %}
+                                <span class="text-primary text-uppercase">Done </span>
+                            {% elseif tasks.status==5 %}
+                                <span class="text-default text-uppercase">Invalid </span>
                             {% endif %}
 
                         </td>
