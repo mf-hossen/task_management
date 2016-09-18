@@ -12,6 +12,19 @@
             return $res;
         }
 
+        public function checkUserName($data)
+        {
+            $username  = $data['username'];
+            $sql = "SELECT username FROM users WHERE username='$username'";
+            $stmt = $this->db->query($sql);
+            $res= $stmt->fetch();
+            if (!empty($res)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
         public function createUser($data)
         {
             $first_name = $data['first_name'];

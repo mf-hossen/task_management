@@ -46,6 +46,12 @@ $app->get('/member-create', function (Request $request, Response $response){
 $app->post('/member-create', function (Request $request, Response $response){
 
     $data = $request->getParsedBody();
+    $map = new \App\UserMapper($this->db);
+    $check_user = $map->checkUserName($data);
+    if ($check_user==true){
+        $this->flash->addMessage('failed', 'Username Already exists');
+        return $response->withStatus(302)->withHeader('Location', '/member-create');
+    }
     if ($data['password']==$data['confirm_password']){
         $mapper = new \App\UserMapper($this->db);
         $lastID = $mapper->createUser($data);
