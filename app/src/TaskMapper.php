@@ -68,6 +68,7 @@ class TaskMapper extends Mapper
               tasks.title, 
               tasks.description,
               tasks.id as task_id,
+              tasks.status,
               tasks.task_type,
               tasks.member_id,
               tasks.created_at,
@@ -92,6 +93,7 @@ class TaskMapper extends Mapper
               users.role, 
               tasks.title, 
               tasks.description,
+              tasks.status,
               tasks.id as task_id,
               tasks.task_type,
               tasks.member_id,
@@ -117,7 +119,9 @@ class TaskMapper extends Mapper
               tasks.description,
               tasks.id as task_id,
               tasks.task_type,
+              tasks.status,
               tasks.member_id,
+              tasks.client_id,
               tasks.created_at,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -139,15 +143,17 @@ class TaskMapper extends Mapper
               tasks.title, 
               tasks.description,
               tasks.id as task_id,
+              tasks.status,
               tasks.task_type,
               tasks.member_id,
+              tasks.client_id,
               tasks.created_at,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id
-              where tasks.member_id='$member_id'";
+              left join users as member on tasks.member_id =member.id where date(tasks.created_at)=curdate()
+              AND tasks.member_id='$member_id'";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
@@ -240,6 +246,32 @@ class TaskMapper extends Mapper
         $sql = "DELETE FROM tasks where id='$id'";
         $stmt = $this->db->query($sql);
         return $stmt;
+    }
+
+    public function updateMemberStatus($data)
+    {
+       // var_dump($data); die();
+        $taskID = array_values($data['task_id']);
+        $ids = join("','", $taskID);
+
+/*        var_dump($data['task_id']);
+        var_dump($data['status']);*/
+        var_dump($ids);
+        //die();
+        try{
+
+            $stmt = $this->db->prepare("UPDATE  tasks SET status = :status where id in ('10','11' )");
+            $stmt->bindParam(':status',$data['status']);
+            //$stmt->bindParam(':ids',$ids);
+            $stmt->execute();
+           // var_dump($stmt->debugDumpParams()); die();
+
+            return true;
+
+        }catch (Exception $e){
+            throw $e;
+        }
+
     }
 
 }
