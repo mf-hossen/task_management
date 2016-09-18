@@ -28,7 +28,7 @@ $app->post('/task/insert', function (Request $request, Response $response) {
 
     $mapper = new \App\TaskMapper($this->db);
     $lastId = $mapper->addTask($data);
-    $this->flash->addMessage('create_message', 'Task is assigned!!!');
+    $this->flash->addMessage('success', 'Task is assigned!!!');
     return $response->withRedirect('/task/attached/'.$lastId);
 })->add($mw);
 
@@ -44,7 +44,7 @@ $app->get('/task/list[/{type}]', function (Request $request, Response $response)
         $task=$mapper->getTask();
     }
     $delete_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'del_msg'=>$delete_message]);
+    $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'message'=>$delete_message]);
     return $response;
 })->add($mw);
 
@@ -67,7 +67,7 @@ $app->get('/task/task_details/{id}', function(Request $request, Response $respon
     $att = $mapper->getAttacched($id);
     //var_dump($att); die();
     $create_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'attached'=>$att,'cre_message'=>$create_message]);
+    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'attached'=>$att,'message'=>$create_message]);
     return $response;
 })->add($mw);
 
@@ -87,7 +87,7 @@ $app->get('/task/task_delete/{id}', function(Request $request, Response $respons
     $id = $request->getAttribute('id');
     $mapper = new \App\TaskMapper($this->db);
     $mapper->taskDelete($id);
-    $this->flash->addMessage('delete_message', 'Task is Deleted!!!');
+    $this->flash->addMessage('error', 'Task is Deleted!!!');
     return $response->withRedirect('/task/list');
 })->add($mw);
 
