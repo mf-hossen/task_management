@@ -32,6 +32,14 @@ $app->get('/task/list', function (Request $request, Response $response) {
     return $response;
 })->add($mw);
 
+$app->get('/task/today_list', function (Request $request, Response $response) {
+    $mapper = new \App\TaskMapper($this->db);
+    $task=$mapper->getTodayTask();
+    //var_dump($task); die();
+    $response = $this->view->render($response, "today_list.twig",['task'=>$task]);
+    return $response;
+})->add($mw);
+
 $app->get('/task/memlist', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     $mapper = new \App\TaskMapper($this->db);

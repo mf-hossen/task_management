@@ -66,6 +66,28 @@ class TaskMapper extends Mapper
         return $stmt->fetchAll();
     }
 
+
+    public function getTodayTask($date) {
+        $date=date('Y-m-d h:i:s');
+        $sql = "SELECT 
+              users.id as user_id, 
+              users.username, 
+              users.role, 
+              tasks.title, 
+              tasks.description,
+              tasks.id as task_id,
+              tasks.task_type,
+              tasks.member_id,
+              tasks.created_at,
+              tasks.client_id,
+              member.username as membername
+              FROM `tasks` 
+              left join users on tasks.user_id = users.id 
+              left join users as member on tasks.member_id =member.id where tasks.created_at BETWEEN '$date' and '$date'";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll();
+    }
+
     public function memberTaskList() {
         $member_id=$_SESSION['user'][0]['id'];
         $sql = "SELECT 
