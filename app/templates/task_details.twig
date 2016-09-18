@@ -25,7 +25,7 @@
     </div>
     <hr>
 
-    <br>
+
     {#<div class="row">
         <div class="col-md-12">
             <div class="pull-right btn-toolbar">
@@ -38,94 +38,86 @@
     </div>#}
     <!-- /.row -->
     <div class="row">
-    <div class="col-lg-12">
+        <div class="col-lg-8">
+            <div class="task-hero">
+                <h4>Title</h4>
+                <p>
+                    {{ details.title }}
+                </p>
 
-    <!-- /.panel-heading -->
-    <div class="panel-body">
-        <div class="container">
-            <div class="row">
-            <div class="col-lg-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4>Task Details</h4>
-                    </div>
-                <table class="table table-responsive table-hover">
-
-                    <tr>
-                        <td><b>Title:</b></td>
-                        <td>{{ details.title }}</td>
-                    </tr>
-
-                    <tr>
-                        <td><b>Description</b>:</td>
-                        <td>{{ details.description |raw }}</td>
-                    </tr>
-
-                    <tr>
-                        <td><b>Task Type:</b></td>
-                        <td>
-                            {% if  details.task_type==1 %}
-                                Edit
-                            {% elseif details.task_type==2 %}
-                                Redesign
-                            {% elseif details.task_type==3 %}
-                                New
-                            {% endif %}
-                        </td>
-
-
-                    </tr>
-
-                    <tr>
-                        <td><b>Assign From:</b></td>
-                        <td>
-                            {{details.username  }}
-                        </td>
-                    </tr>
-
-
-                    <tr>
-                        <td style="width:200px"><b>Assign To:</b></td>
-                        <td>
-                            {{details.membername  }}
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td style="width:200px"><b>Attachment</b></td>
-                        <td>
-
-                            {% if att.attached_path is null %}
-                                <b style="color: red">There has no attachment</b>
-                             {% else  %}
-                                 <a href="{{ base_url }}/{{att.attached_path  }}" class="btn btn-info">Click here</a>
-                            {% endif %}
-
-
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td style="width:200px"><b>Client ID:</b></td>
-                        <td>
-                            {{details.client_id  }}
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td style="width:200px"><b>Created Date:</b></td>
-                        <td>
-                            {{details.created_at}}
-                        </td>
-                    </tr>
-                </table>
-            </div>
-
-            <div class="col-lg-4"></div>
+                <h4>Description</h4>
+                <p>
+                    {{ details.description |raw }}
+                </p>
             </div>
         </div>
+        <div class="col-lg-4">
+            <table class="table table-responsive table-hover">
 
+                <tr>
+                    <td><b>Task Type:</b></td>
+                    <td>
+                        {% if  details.task_type==1 %}
+                            Edit
+                        {% elseif details.task_type==2 %}
+                            Redesign
+                        {% elseif details.task_type==3 %}
+                            New
+                        {% endif %}
+                    </td>
+
+
+                </tr>
+
+                <tr>
+                    <td><b>Assign From:</b></td>
+                    <td>
+                        {{ details.username }}
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td style="width:200px"><b>Assign To:</b></td>
+                    <td>
+                        {{ details.membername }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:200px"><b>Attachment</b></td>
+                    <td>
+
+                        {% if att.attached_path is null %}
+                            <b style="color: red">There has no attachment</b>
+                        {% else %}
+                            <a href="{{ base_url }}/{{ att.attached_path }}" class="btn btn-info">Click
+                                here</a>
+                        {% endif %}
+
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:200px"><b>Client ID:</b></td>
+                    <td>
+                        {{ details.client_id }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:200px"><b>Created Date:</b></td>
+                    <td>
+                        {{ details.created_at }}
+                    </td>
+                </tr>
+            </table>
+
+        </div>
     </div>
+
+
 
 
 {% endblock %}
