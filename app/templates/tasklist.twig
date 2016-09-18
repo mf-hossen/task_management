@@ -20,7 +20,6 @@
                 <thead>
                 <tr>
                     <th>Client ID</th>
-                    <th>Title</th>
                     <th>Created By</th>
                     <th>Assign To</th>
                     <th>Task Type</th>
@@ -34,7 +33,6 @@
                 {% for tasks in task %}
                     <tr class="odd gradeX">
                         <td>{{ tasks.client_id }}</td>
-                        <td class="col-md-2">{{ tasks.title }}</td>
                         <td>{{ tasks.users_full_name }}</td>
                         <td>{{ tasks.members_full_name }}</td>
 
