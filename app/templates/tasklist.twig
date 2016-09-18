@@ -23,6 +23,7 @@
                     <th>Created By</th>
                     <th>Assign To</th>
                     <th>Task Type</th>
+                    <th>Status</th>
                     <th>Assign Date</th>
 
 
@@ -35,14 +36,22 @@
                         <td>{{ tasks.client_id }}</td>
                         <td>{{ tasks.users_full_name }}</td>
                         <td>{{ tasks.members_full_name }}</td>
-
                         <td>
                             {% if  tasks.task_type==1 %}
-                                Edit
+                                <span class="label label-success"> Edit </span>
                             {% elseif tasks.task_type==2 %}
-                                Redesign
+                                <span class="label label-primary"> Redesign </span>
                             {% elseif tasks.task_type==3 %}
-                                New
+                                <span class="label label-info">New </span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if  tasks.task_type==1 %}
+                                <span class="label label-success"> Edit </span>
+                            {% elseif tasks.task_type==2 %}
+                                <span class="label label-primary"> Redesign </span>
+                            {% elseif tasks.task_type==3 %}
+                                <span class="label label-info">New </span>
                             {% endif %}
 
                         </td>
