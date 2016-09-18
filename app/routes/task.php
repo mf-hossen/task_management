@@ -79,6 +79,31 @@ $app->get('/task/task_details/{id}', function(Request $request, Response $respon
     return $response;
 })->add($mw);
 
+$app->get('/attach-zip/{id}', function(Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $mapper = new \App\TaskMapper($this->db);
+    $att = $mapper->getAttacched($id);
+
+
+    //............
+//var_dump($att);die();
+    $files = $att;
+    $rnd = rand(0,10000);
+    $zipname = $rnd.'-attach.zip';
+    $zip = new ZipArchive;
+    $zip->open($zipname, ZipArchive::CREATE);
+    foreach ($files as $file) {
+        $zip->addFile($file['attached_path']);
+    }
+    $zip->close();
+    header('Content-Type: application/zip');
+    header('Content-disposition: attachment; filename='.$zipname);
+    //header('Content-Length: ' . filesize($zipname));
+    readfile($zipname);
+
+})->add($mw);
+
+
 $app->get('/task/task_update/{id}', function(Request $request, Response $response) {
     $id = $request->getAttribute('id');
     $mapper = new \App\TaskMapper($this->db);

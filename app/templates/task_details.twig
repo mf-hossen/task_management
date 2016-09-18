@@ -26,16 +26,7 @@
     <hr>
 
 
-    {#<div class="row">
-        <div class="col-md-12">
-            <div class="pull-right btn-toolbar">
-                <a href="/task/attached/{{ details.task_id }}" class="btn btn-info btn-group  text-uppercase">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add more files
-                </a>
-            </div>
 
-        </div>
-    </div>#}
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-8">
@@ -53,8 +44,14 @@
 
                 {% else %}
                 <div class="section">
+                    <div class="pull-right btn-toolbar">
+                        <a href="/attach-zip/{{ details.task_id }}" class="btn btn-info btn-group  text-uppercase">
+                            <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download as zip
+                        </a>
+                    </div><br>
                     <h5 class="text-primary">Attachment:</h5>
                     <ul class="list-group">
+
                         {% for attachment in attached %}
                             <li class="list-group-item">
                                 <b>{{ loop.index }}.</b>
@@ -67,6 +64,16 @@
                     </ul>
                 </div>
                 {% endif %}
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right btn-toolbar">
+                        <a href="/task/attached/{{ details.task_id }}" class="btn btn-link btn-group  text-uppercase">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add more files
+                        </a>
+                    </div>
+
+                </div>
             </div>
         </div>
         <div class="col-lg-4">
