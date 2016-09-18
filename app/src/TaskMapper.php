@@ -142,13 +142,14 @@ class TaskMapper extends Mapper
               tasks.id as task_id,
               tasks.task_type,
               tasks.member_id,
+              tasks.client_id,
               tasks.created_at,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id
-              where tasks.member_id='$member_id'";
+              left join users as member on tasks.member_id =member.id where date(tasks.created_at)=curdate()
+              AND tasks.member_id='$member_id'";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
