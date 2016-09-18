@@ -1,8 +1,5 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
-        {% if session.user.0.role== 'Admin' %}
-            <h2 class="text-center">Admin Panel</h2>
-        {% endif %}
         <ul class="nav" id="side-menu">
             {#<li class="sidebar-search">
                 <div class="input-group custom-search-form">
@@ -36,8 +33,13 @@
                     <li>
                         <a href="/task/create">Create Task</a>
                     </li>
+
                     <li>
-                        <a href="/task/list">Task List</a>
+                        <a href="/task/today_list">Today's Task</a>
+                    </li>
+
+                    <li>
+                        <a href="/task/list">All Task</a>
                     </li>
                 </ul>
                 <!-- /.nav-second-level -->

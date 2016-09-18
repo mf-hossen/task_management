@@ -9,7 +9,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Task Management System</title>
+    <title>{% block title %}{% endblock %} -Task Management</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ base_url }}/assest/custom.css" rel="stylesheet">
 
     <!-- Bootstrap Core CSS -->
     <link href="{{ base_url }}/assest/jsplugin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -32,6 +35,14 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    {% block jsTop %}
+
+    {% endblock %}
+
+    {% block cssTop %}
+
+    {% endblock %}
+
 </head>
 <body>
 <div id="wrapper">
@@ -39,6 +50,9 @@
     {% include 'nav.twig' %}
 
     <div id="page-wrapper">
+        <br>
+        {% include 'flash.twig' %}
+
         {% block contant_wrapper %}
 
         {% endblock %}
@@ -75,12 +89,21 @@
     });
 
     $('#summernote').summernote({
-        height: 200,                 // set editor height
+        height: 300,                 // set editor height
         minHeight: null,             // set minimum height of editor
         maxHeight: null,             // set maximum height of editor
-        focus: true                  // set focus to editable area after initializing summernote
+        focus: true,                  // set focus to editable area after initializing summernote
+
     });
 </script>
+
+{% block jsBottom %}
+
+{% endblock %}
+
+{% block cssBottom %}
+
+{% endblock %}
 
 </body>
 
