@@ -5,6 +5,19 @@ class TaskMapper extends Mapper
 {
 
 
+    public function  checkClientId($data){
+
+        $client_id  = $data['client_id'];
+        $sql = "SELECT client_id FROM tasks WHERE client_id='$client_id'";
+        $stmt = $this->db->query($sql);
+        $res= $stmt->fetch();
+        if (!empty($res)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
     public function addTask($data)
     {

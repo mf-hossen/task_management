@@ -12,11 +12,20 @@ $app->get('/task/create', function (Request $request, Response $response) {
     $mapper_member = new \App\MemberMapper($this->db);
     $member=$mapper_member->getMember();
     //var_dump($member); die();
-    return $this->view->render($response, 'task.twig',['mem'=>$member]);
+    $msg = $this->flash->getMessages();
+    return $this->view->render($response, 'task.twig',['mem'=>$member,'message'=>$msg]);
 })->add($mw);
 
 $app->post('/task/insert', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
+    $map = new \App\TaskMapper($this->db);
+    $check_id = $map->checkClientId($data);
+
+    if($check_id==true){
+        $this->flash->addMessage('error', 'Client ID Already exists');
+        return $response->withStatus(302)->withHeader('Location', '/task/create');
+    }
+
     $mapper = new \App\TaskMapper($this->db);
     $lastId = $mapper->addTask($data);
     $this->flash->addMessage('create_message', 'Task is assigned!!!');
