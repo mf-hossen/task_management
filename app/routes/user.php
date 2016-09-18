@@ -52,15 +52,25 @@ $app->post('/member-create', function (Request $request, Response $response){
         $this->flash->addMessage('error', 'Username Already exists');
         return $response->withStatus(302)->withHeader('Location', '/member-create');
     }
-    if ($data['password']==$data['confirm_password']){
-        $mapper = new \App\UserMapper($this->db);
-        $lastID = $mapper->createUser($data);
-        $this->flash->addMessage('success', 'New Member has beed created!!');
-        return $response->withStatus(302)->withHeader('Location', '/member-list');
+
+    if(strlen($data['password']) >= 6){
+
+        if ($data['password']==$data['confirm_password']){
+            $mapper = new \App\UserMapper($this->db);
+            $lastID = $mapper->createUser($data);
+            $this->flash->addMessage('success', 'New Member has beed created!!');
+            return $response->withStatus(302)->withHeader('Location', '/member-list');
+        }else{
+            $this->flash->addMessage('error', 'Password don\'t match');
+            return $response->withStatus(302)->withHeader('Location', '/member-create');
+        }
     }else{
-        $this->flash->addMessage('error', 'Password don\'t match');
+        $this->flash->addMessage('error', 'Password should be minimume six character');
         return $response->withStatus(302)->withHeader('Location', '/member-create');
     }
+
+
+
 
 })->add($mw);
 
