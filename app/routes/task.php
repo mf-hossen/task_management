@@ -20,7 +20,6 @@ $app->post('/task/insert', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     $map = new \App\TaskMapper($this->db);
     $check_id = $map->checkClientId($data);
-
     if($check_id==true){
         $this->flash->addMessage('error', 'Client ID Already exists');
         return $response->withStatus(302)->withHeader('Location', '/task/create');
@@ -107,6 +106,7 @@ $app->get('/task/attached/{id}', function(Request $request, Response $response) 
     return $response;
 })->add($mw);
 
+
 $app->post('/upload/{id}', function(Request $request, Response $response) {
     $id = $request->getAttribute('id');
     $files = $request->getUploadedFiles();
@@ -118,7 +118,16 @@ $app->post('/upload/{id}', function(Request $request, Response $response) {
         $newfile->moveTo($filePath);
         $mapper = new \App\TaskMapper($this->db);
         $mapper->addAttached($filePath,$id);
-
     }
 
+})->add($mw);
+
+
+$app->post('/task/members_status', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    //var_dump($data); die();
+    $mapper = new \App\TaskMapper($this->db);
+    $sql=$mapper->updateMemberStatus($data);
+    $this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
+    return $response->withRedirect('/task/members_task_list/today');
 })->add($mw);
