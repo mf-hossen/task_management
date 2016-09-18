@@ -17,22 +17,10 @@ $app->get('/task/create', function (Request $request, Response $response) {
 
 $app->post('/task/insert', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-    $files = $request->getUploadedFiles();
-    $newfile = $files['attached'];
-    //var_dump($newfile);die();
-    $uploadFileName = $newfile->getClientFilename();
-    $rnd =  rand(1,100000);
-    if ($newfile->getError() === UPLOAD_ERR_OK) {
-        $uploadFileName = $newfile->getClientFilename();
-        $filePath = "attached/$rnd.$uploadFileName";
-        $newfile->moveTo($filePath);
-
-    }
     $mapper = new \App\TaskMapper($this->db);
     $lastId = $mapper->addTask($data);
-    $mapper->addAttached($filePath,$lastId);
     $this->flash->addMessage('create_message', 'Task is assigned!!!');
-    return $response->withRedirect('/task/task_details/'.$lastId);
+    return $response->withRedirect('/task/attached/'.$lastId);
 })->add($mw);
 
 $app->get('/task/list', function (Request $request, Response $response) {
@@ -82,4 +70,28 @@ $app->get('/task/task_delete/{id}', function(Request $request, Response $respons
     $mapper->taskDelete($id);
     $this->flash->addMessage('delete_message', 'Task is Deleted!!!');
     return $response->withRedirect('/task/list');
+})->add($mw);
+
+$app->get('/task/attached/{id}', function(Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $mapper = new \App\TaskMapper($this->db);
+    $details_data = $mapper->taskDetails($id);
+    $response = $this->view->render($response, "attach.twig",['details'=>$details_data]);
+    return $response;
+})->add($mw);
+
+$app->post('/upload/{id}', function(Request $request, Response $response) {
+    $id = $request->getAttribute('id');
+    $files = $request->getUploadedFiles();
+    $newfile = $files['file'];
+    $rnd =  rand(1,100000);
+    if ($newfile->getError() === UPLOAD_ERR_OK) {
+        $uploadFileName = $newfile->getClientFilename();
+        $filePath = "attached/$rnd.$uploadFileName";
+        $newfile->moveTo($filePath);
+        $mapper = new \App\TaskMapper($this->db);
+        $mapper->addAttached($filePath,$id);
+
+    }
+
 })->add($mw);

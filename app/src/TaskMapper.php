@@ -8,7 +8,7 @@ class TaskMapper extends Mapper
 
     public function addTask($data)
     {
-
+        //var_dump($data); die();
         try {
             $date=$data['submission_date'];
             $stmt = $this->db->prepare("INSERT INTO tasks (
@@ -21,7 +21,7 @@ class TaskMapper extends Mapper
             created_at)VALUES (
             :title,
             :description,
-            :status,
+            :task_type,
             :user_id,
             :member_id,
             :client_id,
@@ -30,11 +30,11 @@ class TaskMapper extends Mapper
 
             $stmt->bindParam(':title', ucfirst($data['title']));
             $stmt->bindParam(':description', ucfirst($data['description']));
-            $stmt->bindParam(':status', $data['status']);
+            $stmt->bindParam(':task_type', $data['task_type']);
             $stmt->bindParam(':user_id',$data['user_id']);
             $stmt->bindParam(':member_id',$data['member_id']);
             $stmt->bindParam(':client_id',$data['client_id']);
-            $stmt->bindParam(':submission_date',$data['submission_date']);
+            $stmt->bindParam(':submission_date',date('Y-m-d'));
             $stmt->bindParam(':created_at',date('Y-m-d h:s:i'));
             $stmt->execute();
             return $this->db->lastInsertId();
@@ -95,7 +95,8 @@ class TaskMapper extends Mapper
               users.id as user_id, 
               users.username, 
               users.role, 
-              tasks.title, 
+              tasks.title,
+              tasks.id as task_id,               
               tasks.description, 
               tasks.task_type,
               tasks.member_id,
