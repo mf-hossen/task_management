@@ -71,11 +71,10 @@ $app->get('/task/task_details/{id}', function(Request $request, Response $respon
     $id = $request->getAttribute('id');
     $mapper = new \App\TaskMapper($this->db);
     $details_data = $mapper->taskDetails($id);
-    //var_dump($details_data); die();
     $att = $mapper->getAttacched($id);
-    //var_dump($att); die();
     $create_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'attached'=>$att,'message'=>$create_message]);
+    $all_comments = $mapper->getAllComments($id);
+    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'attached'=>$att,'message'=>$create_message,'all_comments'=>$all_comments]);
     return $response;
 })->add($mw);
 
@@ -108,8 +107,6 @@ $app->get('/task/task_update/{id}', function(Request $request, Response $respons
     $mapper_member = new \App\MemberMapper($this->db);
     $member=$mapper_member->getMember();
     $update_data = $mapper->getTaskId($id);
-    //$client_id=$mapper->getClientId();
-    //var_dump($client_id); die();
     $response = $this->view->render($response, "task_update.twig",['update_data'=>$update_data,'member'=>$member]);
     return $response;
 })->add($mw);
@@ -161,4 +158,5 @@ $app->post('/comment', function (Request $request, Response $response){
     $data = $request->getParsedBody();
     $mapper = new \App\TaskMapper($this->db);
     $mapper->InsertComment($data);
-});
+    return $response->withRedirect('/task/task_details/'.$data['task_id']);
+})->add($mw);

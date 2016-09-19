@@ -77,9 +77,17 @@
             </div>
 
             <h4 class="text-primary"><u>Comments:</u></h4>
-           {# {{ dump(session.user.0.id) }}#}
+            {#{{ dump(session.user.0) }}#}
+            {#{{ dump(all_comments) }}#}
+            <dl>
+                {% for commt in all_comments %}
+                <dt>Posted By:   {{ commt.username }}</dt>
+                <dd>{{ commt.comments }}</dd>
+                 {% endfor %}
+            </dl>
             <form method="post" action="/comment">
                 <input type="hidden" value="{{ session.user.0.id }}" name="user_id">
+                <input type="hidden" value="{{ session.user.0.username }}" name="username">
                 <input type="hidden" value="{{ details.task_id }}" name="task_id">
                 <div class="form-group">
                     <textarea class="form-control" placeholder="Write your comment" name="comments"></textarea>
@@ -91,7 +99,6 @@
         </div>
         <div class="col-lg-4">
             <table class="table table-responsive table-hover">
-
                 <tr>
                     <td><b>Task Type:</b></td>
                     <td>
