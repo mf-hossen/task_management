@@ -46,7 +46,7 @@
                     {% for tasks in task %}
                         <tr class="odd gradeX">
                             <td>
-                                {% if  tasks.status==1 %}
+                                {% if  tasks.status==1 or tasks.status==4 %}
                                 {% else %}
                                     <input type="checkbox" name="task_id[]" value="{{ tasks.task_id }}" >
                                 {% endif %}
