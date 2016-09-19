@@ -173,6 +173,7 @@ class TaskMapper extends Mapper
               tasks.task_type,
               tasks.member_id,
               tasks.client_id,
+              tasks.status,
               tasks.created_at,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
