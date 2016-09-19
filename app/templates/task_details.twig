@@ -117,6 +117,19 @@
                 </tr>
 
                 <tr>
+                    <td style="width:200px"><b>Task Status:</b></td>
+                    <td>
+                        {% if  details.status==3 %}
+                            Pending
+                        {% elseif details.status==4 %}
+                            Done
+                        {% elseif details.status==5 %}
+                            Invalid
+                        {% endif %}
+                    </td>
+                </tr>
+
+                <tr>
                     <td style="width:200px"><b>Created Date:</b></td>
                     <td>
                         {{ details.created_at|date('d M, Y') }}
