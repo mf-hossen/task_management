@@ -10,6 +10,9 @@
 
     </div>
     <hr>
+    {%  if task is empty %}
+        There has no task
+    {% else %}
     <form action="/task/members_status" method="post">
         <div class="row">
             <div class="col-md-4">
@@ -94,5 +97,5 @@
             </div>
         </div>
     </form>
-
+    {% endif %}
 {% endblock %}
