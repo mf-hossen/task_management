@@ -9,6 +9,7 @@
         <div class="col-md-12">
             <h4 class="pull-left text-uppercase">Task Details</h4>
             <div class="pull-right btn-toolbar">
+                {% if session.user.0.role=='Admin' %}
                 <a href="/task/create" class="btn btn-info btn-group  text-uppercase">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
                 </a>
@@ -20,24 +21,54 @@
                 <a href="/task/list" class="btn btn-info btn-group  text-uppercase">
                     <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Task
                 </a>
+
+                {% elseif session.user.0.role=='Member' %}
+                    <form action="/task/taskm_status" method="post">
+                        <div class="col-lg-8">
+                            {%  if details.status==1%}
+                                Completed
+                            {%  else %}
+                            <select name="status" id="inputID" class="form-control" required>
+                                <option value=""> -- Select One --</option>
+                                <option value="3">Pending</option>
+                                <option value="4">Done</option>
+                                <option value="5">Invalid</option>
+                            </select>
+                        </div>
+                            <div class="col-lg-4">
+                                <input type="hidden" name="task_id" value="{{ details.task_id }}">
+                                <input type="submit" class="btn btn-success">
+                            </div>
+                        {% endif %}
+                    </form>
+                {% endif %}
             </div>
         </div>
     </div>
+    <br>
+    {% if details.status==4 %}
+    <form action="/task/taska_status" method="post">
+    <div class="row">
+        <div class="col-md-4">
+            <select name="status" id="inputID" class="form-control" required>
+                <option value=""> -- Select One --</option>
+                <option value="1">Complete</option>
+                <option value="2">Incomplete</option>
+            </select>
+        </div>
+        <div class="col-md-1">
+            <input type="hidden" name="task_id" value="{{ details.task_id }}">
+            <input type="submit" class="btn btn-success">
+        </div>
+    </div>
+    {% endif %}
+    </form>
     <hr>
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-8">
             <div class="task-hero">
                 <div class="section">
-                    {% if  details.status==4 %}
-                    <form action="/task/admin_status" method="post">
-                        <select name="status" id="inputID" class="form-control" required>
-                            <option value=""> -- Select One --</option>
-                            <option value="1">Complete</option>
-                            <option value="2">Incomplete</option>
-                        </select>
-                    </form>
-                    {% endif %}
                     <h5 class="text-primary">Title:</h5>
                     <p>{{ details.title }}</p>
                 </div>
