@@ -28,7 +28,7 @@ $app->post('/task/insert', function (Request $request, Response $response) {
     $mapper = new \App\TaskMapper($this->db);
     $lastId = $mapper->addTask($data);
     $this->flash->addMessage('success', 'Task is assigned!!!');
-    return $response->withRedirect('/task/attached/'.$lastId);
+    return $response->withRedirect('/task/attached/' . $lastId);
 })->add($mw);
 
 $app->get('/task/list[/{type}]', function (Request $request, Response $response) {
@@ -36,10 +36,10 @@ $app->get('/task/list[/{type}]', function (Request $request, Response $response)
     $dateType = $request->getAttribute('type');
 
     $mapper = new \App\TaskMapper($this->db);
-    if($dateType == 'today'){
+    if ($dateType == 'today') {
         $typeTitle = 'TODAY';
-        $task=$mapper->getTodayTask();
-    }else{
+        $task = $mapper->getTodayTask();
+    } else {
         $typeTitle = 'All';
         $task=$mapper->getTask();
         //var_dump($task); die();
