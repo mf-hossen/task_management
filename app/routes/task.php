@@ -10,7 +10,7 @@ $app->get('/task/create', function (Request $request, Response $response) {
     //die();
     $mapper = new \App\TaskMapper($this->db);
     $mapper_member = new \App\MemberMapper($this->db);
-    $member=$mapper_member->getMember();
+    $member=$mapper_member->getUser();
     //var_dump($member); die();
     $msg = $this->flash->getMessages();
     return $this->view->render($response, 'task.twig',['mem'=>$member,'message'=>$msg]);
