@@ -125,9 +125,9 @@
                 {#<dt>Posted By:   </dt>#}
                 <dd>{{ commt.comments }}  -
                     {% if session.user.0.username == commt.username %}
-                        <i style="color: green">{{ commt.username }}</i>
+                        <i style="color: green"><u>{{ commt.username }}</u></i>
                         {% else %}
-                    <i style="color: #FFA500">{{ commt.username }}</i>
+                    <i style="color: #FFA500"><u>{{ commt.username }}</u></i>
                             {% endif %}
                         </dd><hr>
                  {% endfor %}
