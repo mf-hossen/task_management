@@ -55,6 +55,7 @@ $app->get('/task/members_task_list[/{type}]', function (Request $request, Respon
     $mapper = new \App\TaskMapper($this->db);
     if($dateType == 'today'){
         $typeTitle = 'TODAY';
+
         $task=$mapper->memberTodayTask();
     }else{
         $typeTitle = 'All';
@@ -62,7 +63,7 @@ $app->get('/task/members_task_list[/{type}]', function (Request $request, Respon
         //var_dump($task); die();
     }
     $status_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "member_tasklist.twig",['task'=>$task, 'status_message'=>$status_message]);
+    $response = $this->view->render($response, "member_tasklist.twig",['task'=>$task, 'message'=>$status_message]);
     return $response;
 })->add($mw);
 
@@ -146,21 +147,53 @@ $app->post('/upload/{id}', function(Request $request, Response $response) {
 
 $app->post('/task/members_status', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-    //var_dump($data); die();
-    $mapper = new \App\TaskMapper($this->db);
-    $sql=$mapper->updateMemberStatus($data);
-    $this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
-    return $response->withRedirect('/task/members_task_list/today');
+   // var_dump($data); die();
+    if (isset($data['task_id'][0])){
+        $mapper = new \App\TaskMapper($this->db);
+        $sql=$mapper->updateMemberStatus($data);
+        $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
+        return $response->withRedirect('/task/members_task_list/today');
+    }else{
+        $this->flash->addMessage('error', 'Please check in task!!!');
+        return $response->withRedirect('/task/members_task_list/today');
+    }
+
 })->add($mw);
 
 
 $app->post('/task/admin_status', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
+   // var_dump($data['task_id'][0]);die();
+    if (isset($data['task_id'][0])){
+        $mapper = new \App\TaskMapper($this->db);
+        $mapper->updateAdminStatus($data);
+        $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
+        return $response->withRedirect('/task/list');
+    }else{
+        $this->flash->addMessage('error', 'Please check in task!!!');
+        return $response->withRedirect('/task/list/today');
+    }
+
+})->add($mw);
+
+    $app->post('/task/taska_status', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
     //var_dump($data); die();
     $mapper = new \App\TaskMapper($this->db);
-    $sql=$mapper->updateAdminStatus($data);
+    $sql=$mapper->updateTaskStatus($data);
+    //var_dump($sql); die();
     $this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
-    return $response->withRedirect('/task/list');
+    return $response->withRedirect('/task/list/today');
+})->add($mw);
+
+$app->post('/task/taskm_status', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    //var_dump($data); die();
+    $mapper = new \App\TaskMapper($this->db);
+    $sql=$mapper->updateMemTaskStatus($data);
+    //var_dump($sql); die();
+    $this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
+    return $response->withRedirect('/task/members_task_list/today');
 })->add($mw);
 
 $app->post('/comment', function (Request $request, Response $response){
