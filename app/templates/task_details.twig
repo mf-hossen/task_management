@@ -89,8 +89,8 @@
             {#{{ dump(all_comments) }}#}
             <dl>
                 {% for commt in all_comments %}
-                <dt>Posted By:   <i style="color: #FFA500">{{ commt.username }}</i></dt>
-                <dd>{{ commt.comments }}</dd>
+                {#<dt>Posted By:   </dt>#}
+                <dd>{{ commt.comments }}    <i style="color: #FFA500">{{ commt.username }}</i></dd><hr>
                  {% endfor %}
             </dl>
             <form method="post" action="/comment">
