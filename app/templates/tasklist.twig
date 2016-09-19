@@ -14,6 +14,9 @@
     </div>
     <hr>
 
+    {%  if task is empty %}
+        There has no task
+      {% else %}
     <form action="/task/admin_status" method="post">
     <div class="row">
         <div class="col-md-4">
@@ -104,4 +107,5 @@
             </table>
         </div>
     </div>
+    {% endif %}
 {% endblock %}
