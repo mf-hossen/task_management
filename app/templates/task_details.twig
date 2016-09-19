@@ -46,6 +46,7 @@
         </div>
     </div>
     <br>
+    {% if session.user.0.role=='Admin' %}
     {% if details.status==4 %}
     <form action="/task/taska_status" method="post">
     <div class="row">
@@ -63,6 +64,7 @@
     </div>
     {% endif %}
     </form>
+        {% endif %}
     <hr>
     <!-- /.row -->
     <div class="row">
