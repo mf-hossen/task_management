@@ -275,4 +275,31 @@ class TaskMapper extends Mapper
 
     }
 
+
+    public function updateAdminStatus($data)
+    {
+        // var_dump($data); die();
+        $taskID = array_values($data['task_id']);
+        $ids = join(',', $taskID);
+
+        /*        var_dump($data['task_id']);
+                var_dump($data['status']);*/
+        //var_dump($ids);
+        //die();
+        try{
+
+            $stmt = $this->db->prepare("UPDATE  tasks SET status = :status where id in ($ids)");
+            $stmt->bindParam(':status',$data['status']);
+            //$stmt->bindParam(':ids',$ids);
+            $stmt->execute();
+            // var_dump($stmt->debugDumpParams()); die();
+
+            return true;
+
+        }catch (Exception $e){
+            throw $e;
+        }
+
+    }
+
 }
