@@ -155,3 +155,10 @@ $app->post('/task/members_status', function (Request $request, Response $respons
     $this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
     return $response->withRedirect('/task/members_task_list/today');
 })->add($mw);
+
+$app->post('/comment', function (Request $request, Response $response){
+
+    $data = $request->getParsedBody();
+    $mapper = new \App\TaskMapper($this->db);
+    $mapper->InsertComment($data);
+});
