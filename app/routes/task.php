@@ -71,11 +71,10 @@ $app->get('/task/task_details/{id}', function(Request $request, Response $respon
     $id = $request->getAttribute('id');
     $mapper = new \App\TaskMapper($this->db);
     $details_data = $mapper->taskDetails($id);
-    //var_dump($details_data); die();
     $att = $mapper->getAttacched($id);
-    //var_dump($att); die();
     $create_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'attached'=>$att,'message'=>$create_message]);
+    $all_comments = $mapper->getAllComments($id);
+    $response = $this->view->render($response, "task_details.twig",['details'=>$details_data,'attached'=>$att,'message'=>$create_message,'all_comments'=>$all_comments]);
     return $response;
 })->add($mw);
 
@@ -155,3 +154,10 @@ $app->post('/task/members_status', function (Request $request, Response $respons
     $this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
     return $response->withRedirect('/task/members_task_list/today');
 })->add($mw);
+
+$app->post('/comment', function (Request $request, Response $response){
+
+    $data = $request->getParsedBody();
+    $mapper = new \App\TaskMapper($this->db);
+    $mapper->InsertComment($data);
+});
