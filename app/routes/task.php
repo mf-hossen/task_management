@@ -28,7 +28,7 @@ $app->post('/task/insert', function (Request $request, Response $response) {
     $mapper = new \App\TaskMapper($this->db);
     $lastId = $mapper->addTask($data);
     $this->flash->addMessage('success', 'Task is assigned!!!');
-    return $response->withRedirect('/task/attached/'.$lastId);
+    return $response->withRedirect('/task/attached/' . $lastId);
 })->add($mw);
 
 $app->get('/task/list[/{type}]', function (Request $request, Response $response) {
@@ -36,10 +36,10 @@ $app->get('/task/list[/{type}]', function (Request $request, Response $response)
     $dateType = $request->getAttribute('type');
 
     $mapper = new \App\TaskMapper($this->db);
-    if($dateType == 'today'){
+    if ($dateType == 'today') {
         $typeTitle = 'TODAY';
-        $task=$mapper->getTodayTask();
-    }else{
+        $task = $mapper->getTodayTask();
+    } else {
         $typeTitle = 'All';
         $task=$mapper->getTask();
         //var_dump($task); die();
@@ -153,10 +153,20 @@ $app->post('/task/members_status', function (Request $request, Response $respons
     return $response->withRedirect('/task/members_task_list/today');
 })->add($mw);
 
-$app->post('/comment', function (Request $request, Response $response){
 
+$app->post('/task/admin_status', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    //var_dump($data); die();
+    $mapper = new \App\TaskMapper($this->db);
+    $sql=$mapper->updateAdminStatus($data);
+    $this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
+    return $response->withRedirect('/task/list');
+})->add($mw);
+
+$app->post('/comment', function (Request $request, Response $response){
     $data = $request->getParsedBody();
     $mapper = new \App\TaskMapper($this->db);
     $mapper->InsertComment($data);
     return $response->withRedirect('/task/task_details/'.$data['task_id']);
 })->add($mw);
+

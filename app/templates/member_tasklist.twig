@@ -46,7 +46,11 @@
                     {% for tasks in task %}
                         <tr class="odd gradeX">
                             <td>
-                                <input type="checkbox" name="task_id[]" value="{{ tasks.task_id }}">
+                                {% if  tasks.status==1 %}
+                                {% else %}
+                                    <input type="checkbox" name="task_id[]" value="{{ tasks.task_id }}" >
+                                {% endif %}
+
                             </td>
                             <td>{{ tasks.client_id }}</td>
                             <td>{{ tasks.users_full_name }}</td>
