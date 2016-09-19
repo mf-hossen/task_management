@@ -24,12 +24,20 @@
         </div>
     </div>
     <hr>
-
     <!-- /.row -->
     <div class="row">
         <div class="col-lg-8">
             <div class="task-hero">
                 <div class="section">
+                    {% if  details.status==4 %}
+                    <form action="/task/admin_status" method="post">
+                        <select name="status" id="inputID" class="form-control" required>
+                            <option value=""> -- Select One --</option>
+                            <option value="1">Complete</option>
+                            <option value="2">Incomplete</option>
+                        </select>
+                    </form>
+                    {% endif %}
                     <h5 class="text-primary">Title:</h5>
                     <p>{{ details.title }}</p>
                 </div>

@@ -107,8 +107,6 @@ $app->get('/task/task_update/{id}', function(Request $request, Response $respons
     $mapper_member = new \App\MemberMapper($this->db);
     $member=$mapper_member->getMember();
     $update_data = $mapper->getTaskId($id);
-    //$client_id=$mapper->getClientId();
-    //var_dump($client_id); die();
     $response = $this->view->render($response, "task_update.twig",['update_data'=>$update_data,'member'=>$member]);
     return $response;
 })->add($mw);
@@ -155,9 +153,20 @@ $app->post('/task/members_status', function (Request $request, Response $respons
     return $response->withRedirect('/task/members_task_list/today');
 })->add($mw);
 
-$app->post('/comment', function (Request $request, Response $response){
 
+$app->post('/task/admin_status', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    //var_dump($data); die();
+    $mapper = new \App\TaskMapper($this->db);
+    $sql=$mapper->updateAdminStatus($data);
+    $this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
+    return $response->withRedirect('/task/list');
+})->add($mw);
+
+$app->post('/comment', function (Request $request, Response $response){
     $data = $request->getParsedBody();
     $mapper = new \App\TaskMapper($this->db);
     $mapper->InsertComment($data);
-});
+    return $response->withRedirect('/task/task_details/'.$data['task_id']);
+})->add($mw);
+
