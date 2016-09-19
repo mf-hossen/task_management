@@ -85,12 +85,18 @@
             </div>
 
             <h4 class="text-primary"><u>Comments:</u></h4>
-            {#{{ dump(session.user.0) }}#}
+          {#  {{ dump(session.user.0) }}#}
             {#{{ dump(all_comments) }}#}
             <dl>
                 {% for commt in all_comments %}
                 {#<dt>Posted By:   </dt>#}
-                <dd>{{ commt.comments }}    <i style="color: #FFA500">{{ commt.username }}</i></dd><hr>
+                <dd>{{ commt.comments }}  -
+                    {% if session.user.0.username == commt.username %}
+                        <i style="color: green">{{ commt.username }}</i>
+                        {% else %}
+                    <i style="color: #FFA500">{{ commt.username }}</i>
+                            {% endif %}
+                        </dd><hr>
                  {% endfor %}
             </dl>
             <form method="post" action="/comment">
