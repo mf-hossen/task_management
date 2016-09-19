@@ -84,7 +84,6 @@ $app->get('/attach-zip/{id}', function(Request $request, Response $response) {
     $mapper = new \App\TaskMapper($this->db);
     $att = $mapper->getAttacched($id);
 
-
     //............
 //var_dump($att);die();
     $files = $att;
