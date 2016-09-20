@@ -445,9 +445,10 @@ class TaskMapper extends Mapper
         try{
             //var_dump($taskID); die();
 
-            $sql = "UPDATE tasks SET status = :status WHERE  id ='$taskID'";
+            $sql = "UPDATE  tasks SET status = :status , site_url = :site_url  WHERE  id ='$taskID'";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':status',$data['status']);
+            $stmt->bindParam(':site_url',$data['site_url']);
             //$stmt->bindParam(':ids',$ids);
             $stmt->execute();
             // var_dump($stmt->debugDumpParams()); die();

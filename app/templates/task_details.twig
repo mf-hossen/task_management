@@ -24,7 +24,7 @@
 
                 {% elseif session.user.0.role=='Member' %}
                     <form action="/task/taskm_status" method="post">
-                        <div class="col-lg-8">
+                        <div class="col-lg-5">
                             {%  if details.status==1%}
                                 Completed
                             {%  else %}
@@ -35,13 +35,21 @@
                                 <option value="5">Invalid</option>
                             </select>
                         </div>
-                            <div class="col-lg-4">
-                                <input type="hidden" name="task_id" value="{{ details.task_id }}">
-                                <input type="submit" class="btn btn-success">
-                            </div>
+
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="site_url" placeholder="Site URL" required>
+                        </div>
+
+                        <div class="col-md-2">
+                            <input type="hidden" name="task_id" value="{{ details.task_id }}">
+                            <input type="submit" class="btn btn-success">
+                        </div>
+
+
                         {% endif %}
                     </form>
                 {% endif %}
+
             </div>
         </div>
     </div>
