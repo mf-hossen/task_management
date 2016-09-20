@@ -50,6 +50,7 @@
                     <th>Assign To</th>
                     <th>Task Type</th>
                     <th>Status</th>
+                    <th>Site URL</th>
                     <th>Assign Date</th>
 
 
@@ -84,7 +85,7 @@
                             {% elseif tasks.status==2 %}
                                 <span class="text-danger text-uppercase" style="color: #e82f21;font-weight:600"> Incomplete </span>
                             {% elseif tasks.status==3 %}
-                                <span class="text-warning text-uppercase" style="color: #e82f21;font-weight:600">Pending </span>
+                                <span class="text-warning text-uppercase" style="color: #FFA07A;font-weight:600">Pending </span>
                             {% elseif tasks.status==4 %}
                                 <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Done </span>
                             {% elseif tasks.status==5 %}
@@ -92,6 +93,8 @@
                             {% endif %}
 
                         </td>
+
+                        <td>{{ tasks.site_url |raw}}</td>
                         <td>{{ tasks.created_at|date('d M, Y') }}</td>
 
 

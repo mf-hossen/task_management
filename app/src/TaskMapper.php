@@ -118,6 +118,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -146,6 +147,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -171,6 +173,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -248,6 +251,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -276,6 +280,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -301,6 +306,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -328,6 +334,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.status,
+              tasks.site_url,
               tasks.created_at,
               tasks.priority,
               member.username as membername,
@@ -377,6 +384,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.site_url,
               tasks.priority,
               tasks.submission_date,
               member.username as membername
@@ -540,9 +548,10 @@ class TaskMapper extends Mapper
         try{
             //var_dump($taskID); die();
 
-            $sql = "UPDATE tasks SET status = :status WHERE  id ='$taskID'";
+            $sql = "UPDATE  tasks SET status = :status , site_url = :site_url  WHERE  id ='$taskID'";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':status',$data['status']);
+            $stmt->bindParam(':site_url',$data['site_url']);
             //$stmt->bindParam(':ids',$ids);
             $stmt->execute();
             // var_dump($stmt->debugDumpParams()); die();
