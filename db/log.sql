@@ -15,3 +15,5 @@ ALTER TABLE `tasks` CHANGE `status` `task_type` TINYINT(4) NOT NULL COMMENT '1=e
 ALTER TABLE `tasks` CHANGE `status` `status` TINYINT(4) NOT NULL DEFAULT '3' COMMENT '1=Complete, 2=Incomplete, 3=Pending; 4=Done; 5=Invalid';
 -- Shanta 19 9 2016
 ALTER TABLE `tasks` ADD `priority` TINYINT NOT NULL COMMENT '1=high,2=medium,3=low' AFTER `created_at`;
+--Emon 20 9 2016
+ALTER TABLE `tasks` ADD `site_url` VARCHAR(255) NULL AFTER `priority`;
