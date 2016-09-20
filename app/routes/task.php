@@ -29,8 +29,8 @@ $app->post('/task/insert', function (Request $request, Response $response) {
 $app->get('/task/list[/{type}]', function (Request $request, Response $response) {
     //$dateType = $request->get('date_type');
     $queryParams = $request->getQueryParams();
-    var_dump($queryParams);
-    die();
+    //var_dump($queryParams);
+    //die();
     $dateType = $request->getAttribute('type');
 
     $mapper_member = new \App\MemberMapper($this->db);
@@ -51,6 +51,7 @@ $app->get('/task/list[/{type}]', function (Request $request, Response $response)
         $typeTitle = 'PENDING';
         $task=$mapper->getPendingTask();
     }
+
     $delete_message = $this->flash->getMessages();
     $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'message'=>$delete_message , 'typeTitle' => $typeTitle , 'mem'=>$member,]);
     return $response;
