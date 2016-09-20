@@ -25,7 +25,7 @@ class TaskMapper extends Mapper
         try {
             $date=$data['submission_date'];
             $stmt = $this->db->prepare("INSERT INTO tasks (
-            title,description,
+            description,
             task_type,
             user_id,
             member_id,
@@ -33,7 +33,6 @@ class TaskMapper extends Mapper
             submission_date,
             created_at,
             priority)VALUES (
-            :title,
             :description,
             :task_type,
             :user_id,
@@ -43,7 +42,6 @@ class TaskMapper extends Mapper
             :created_at,
             :priority)");
 
-            $stmt->bindParam(':title', ucfirst($data['title']));
             $stmt->bindParam(':description', ucfirst($data['description']));
             $stmt->bindParam(':task_type', $data['task_type']);
             $stmt->bindParam(':user_id',$data['user_id']);
@@ -68,7 +66,6 @@ class TaskMapper extends Mapper
               users.username, 
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
-              tasks.title, 
               tasks.description,
               tasks.id as task_id,
               tasks.status,
@@ -94,7 +91,6 @@ class TaskMapper extends Mapper
               users.username, 
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
-              tasks.title, 
               tasks.description,
               tasks.id as task_id,
               tasks.status,
@@ -120,7 +116,6 @@ class TaskMapper extends Mapper
               users.username, 
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
-              tasks.title, 
               tasks.description,
               tasks.id as task_id,
               tasks.status,
@@ -155,7 +150,6 @@ class TaskMapper extends Mapper
               users.username, 
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
-              tasks.title, 
               tasks.description,
               tasks.status,
               tasks.id as task_id,
@@ -179,8 +173,7 @@ class TaskMapper extends Mapper
               users.id as user_id, 
               users.username,
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
-              users.role, 
-              tasks.title, 
+              users.role,  
               tasks.description,
               tasks.id as task_id,
               tasks.task_type,
@@ -206,7 +199,6 @@ class TaskMapper extends Mapper
               users.username,
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
-              tasks.title, 
               tasks.description,
               tasks.id as task_id,
               tasks.status,
@@ -234,7 +226,7 @@ class TaskMapper extends Mapper
               users.username,
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
-              tasks.title,
+              
               tasks.id as task_id,               
               tasks.description, 
               tasks.task_type,
@@ -284,7 +276,7 @@ class TaskMapper extends Mapper
               users.id as user_id, 
               users.username, 
               users.role, 
-              tasks.title, 
+               
               tasks.description, 
               tasks.task_type,
               tasks.member_id,
