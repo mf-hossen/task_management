@@ -25,23 +25,23 @@ class TaskMapper extends Mapper
         try {
             $date=$data['submission_date'];
             $stmt = $this->db->prepare("INSERT INTO tasks (
-            title,description,
+            description,
             task_type,
             user_id,
             member_id,
             client_id,
             submission_date,
-            created_at)VALUES (
-            :title,
+            created_at,
+            priority)VALUES (
             :description,
             :task_type,
             :user_id,
             :member_id,
             :client_id,
             :submission_date,
-            :created_at)");
+            :created_at,
+            :priority)");
 
-            $stmt->bindParam(':title', ucfirst($data['title']));
             $stmt->bindParam(':description', ucfirst($data['description']));
             $stmt->bindParam(':task_type', $data['task_type']);
             $stmt->bindParam(':user_id',$data['user_id']);
@@ -49,6 +49,7 @@ class TaskMapper extends Mapper
             $stmt->bindParam(':client_id',$data['client_id']);
             $stmt->bindParam(':submission_date',date('Y-m-d'));
             $stmt->bindParam(':created_at',date('Y-m-d h:s:i'));
+            $stmt->bindParam(':priority',$data['priority']);
             $stmt->execute();
             return $this->db->lastInsertId();
         } catch (Exception $e) {
@@ -65,7 +66,6 @@ class TaskMapper extends Mapper
               users.username, 
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
-              tasks.title, 
               tasks.description,
               tasks.id as task_id,
               tasks.status,
@@ -73,14 +73,73 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
 
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id";
+              left join users as member on tasks.member_id =member.id order by task_id DESC ";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
+    }
+
+
+    public function getCompleteTask() {
+        $sql = "SELECT 
+              users.id as user_id, 
+              users.username, 
+              concat(users.first_name , ' ', users.last_name ) as users_full_name,
+              users.role, 
+              tasks.description,
+              tasks.id as task_id,
+              tasks.status,
+              tasks.task_type,
+              tasks.member_id,
+              tasks.created_at,
+              tasks.client_id,
+              tasks.priority,
+              member.username as membername,
+              concat(member.first_name , ' ', member.last_name ) as members_full_name
+
+              FROM `tasks` 
+              left join users on tasks.user_id = users.id 
+              left join users as member on tasks.member_id =member.id where tasks.status=1 order by task_id DESC ";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll();
+    }
+
+
+    public function getPendingTask() {
+        $sql = "SELECT 
+              users.id as user_id, 
+              users.username, 
+              concat(users.first_name , ' ', users.last_name ) as users_full_name,
+              users.role, 
+              tasks.description,
+              tasks.id as task_id,
+              tasks.status,
+              tasks.task_type,
+              tasks.member_id,
+              tasks.created_at,
+              tasks.client_id,
+              tasks.priority,
+              member.username as membername,
+              concat(member.first_name , ' ', member.last_name ) as members_full_name
+
+              FROM `tasks` 
+              left join users on tasks.user_id = users.id 
+              left join users as member on tasks.member_id =member.id where tasks.status=3 order by task_id DESC ";
+        $stmt = $this->db->query($sql);
+        return $stmt->fetchAll();
+    }
+
+    public function getCountComplete()
+    {
+       $sql="SELECT COUNT(*) from tasks where status=1";
+        $stmt = $this->db->query($sql);
+        return $stmt;
+
     }
 
 
@@ -91,7 +150,6 @@ class TaskMapper extends Mapper
               users.username, 
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
-              tasks.title, 
               tasks.description,
               tasks.status,
               tasks.id as task_id,
@@ -99,11 +157,12 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id where date(tasks.created_at)=curdate()";
+              left join users as member on tasks.member_id =member.id where date(tasks.created_at)=curdate() order by task_id DESC ";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
@@ -114,8 +173,7 @@ class TaskMapper extends Mapper
               users.id as user_id, 
               users.username,
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
-              users.role, 
-              tasks.title, 
+              users.role,  
               tasks.description,
               tasks.id as task_id,
               tasks.task_type,
@@ -123,12 +181,13 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
               left join users as member on tasks.member_id =member.id
-              where tasks.member_id='$member_id'";
+              where tasks.member_id='$member_id' order by task_id DESC ";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
@@ -140,7 +199,6 @@ class TaskMapper extends Mapper
               users.username,
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
-              tasks.title, 
               tasks.description,
               tasks.id as task_id,
               tasks.status,
@@ -148,12 +206,13 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
               left join users as member on tasks.member_id =member.id where date(tasks.created_at)=curdate()
-              AND tasks.member_id='$member_id'";
+              AND tasks.member_id='$member_id' order by task_id DESC ";
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
@@ -167,7 +226,7 @@ class TaskMapper extends Mapper
               users.username,
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
               users.role, 
-              tasks.title,
+              
               tasks.id as task_id,               
               tasks.description, 
               tasks.task_type,
@@ -175,6 +234,7 @@ class TaskMapper extends Mapper
               tasks.client_id,
               tasks.status,
               tasks.created_at,
+              tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
 
@@ -216,12 +276,13 @@ class TaskMapper extends Mapper
               users.id as user_id, 
               users.username, 
               users.role, 
-              tasks.title, 
+               
               tasks.description, 
               tasks.task_type,
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.priority,
               tasks.submission_date,
               member.username as membername
               FROM `tasks` 

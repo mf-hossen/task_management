@@ -10,5 +10,12 @@ class MemberMapper extends Mapper
         $row = $stmt->fetchAll();
         return $row;
     }
+    public function getUser()
+    {
+        $sql = "SELECT * FROM users";
+        $stmt = $this->db->query($sql);
+        $row = $stmt->fetchAll();
+        return $row;
+    }
 }
 ?>

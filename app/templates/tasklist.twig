@@ -6,19 +6,45 @@
         <div class="col-md-12">
             <h4 class="pull-left text-uppercase">{{ typeTitle }} Task List</h4>
             <div class="pull-right btn-toolbar">
-                <a href="/task/create" class="btn btn-info btn-group  text-uppercase">
+                <a href="/task/create" class="btn btn-success btn-group  text-uppercase">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
                 </a>
+
+                <!-- Button trigger modal -->
+                <a href="" data-toggle="modal" data-target="#myModal" class="btn btn-info btn-group  text-uppercase">
+                    <span type="button" class="glyphicon glyphicon-search"></span> Search
+                </a>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span aria-hidden="true" class="close" data-dismiss="modal" aria-label="Close">&times;</span>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
     <hr>
 
+
+    {%  if task is empty %}
+        There has no task
+      {% else %}
     <form action="/task/admin_status" method="post">
     <div class="row">
         <div class="col-md-4">
             <select name="status" id="inputID" class="form-control" required>
-                <option value=""> -- Select One --</option>
+                <option value=""> -- Select Status --</option>
                 <option value="1">Complete</option>
                 <option value="2">Incomplete</option>
             </select>
@@ -104,4 +130,5 @@
             </table>
         </div>
     </div>
+    {% endif %}
 {% endblock %}

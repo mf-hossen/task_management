@@ -29,7 +29,7 @@
                                 Completed
                             {%  else %}
                             <select name="status" id="inputID" class="form-control" required>
-                                <option value=""> -- Select One --</option>
+                                <option value=""> -- Select Status --</option>
                                 <option value="3">Pending</option>
                                 <option value="4">Done</option>
                                 <option value="5">Invalid</option>
@@ -52,7 +52,7 @@
     <div class="row">
         <div class="col-md-4">
             <select name="status" id="inputID" class="form-control" required>
-                <option value=""> -- Select One --</option>
+                <option value=""> -- Select Status --</option>
                 <option value="1">Complete</option>
                 <option value="2">Incomplete</option>
             </select>
@@ -71,8 +71,7 @@
         <div class="col-lg-8">
             <div class="task-hero">
                 <div class="section">
-                    <h5 class="text-primary">Title:</h5>
-                    <p>{{ details.title }}</p>
+
                 </div>
                 <div class="section">
                     <h5 class="text-primary">Description:</h5>
@@ -140,7 +139,7 @@
                     <textarea class="form-control" placeholder="Write your comment" name="comments"></textarea>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Post</button>
+                    <button type="submit" class="btn btn-success">Comments</button>
                 </div>
             </form>
         </div>
@@ -187,16 +186,29 @@
                     <td style="width:200px"><b>Task Status:</b></td>
                     <td>
                         {% if  details.status==1 %}
-                            Complete
+                            <span class="text-success text-uppercase"> Complete </span>
                         {% elseif details.status==2 %}
-                            Incomplete
-                        {% elseif  details.status==3 %}
-                            Pending
+                            <span class="text-danger text-uppercase"> Incomplete </span>
+                        {% elseif details.status==3 %}
+                            <span class="text-warning text-uppercase">Pending </span>
                         {% elseif details.status==4 %}
-                            Done
+                            <span class="text-primary text-uppercase">Done </span>
                         {% elseif details.status==5 %}
-                            Invalid
+                            <span class="text-default text-uppercase">Invalid </span>
                         {% endif %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:200px"><b>Task Priority:</b></td>
+                    <td>
+                {% if  details.priority==1 %}
+                    <span class="text-success text-uppercase"> High </span>
+                {% elseif details.priority==2 %}
+                    <span class="text-danger text-uppercase"> Medium </span>
+                {% elseif details.priority==3 %}
+                    <span class="text-warning text-uppercase">Low </span>
+                {% endif %}
                     </td>
                 </tr>
 
