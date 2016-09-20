@@ -29,7 +29,8 @@ $app->post('/task/insert', function (Request $request, Response $response) {
 $app->get('/task/list[/{type}]', function (Request $request, Response $response) {
     //$dateType = $request->get('date_type');
     $queryParams = $request->getQueryParams();
-
+    var_dump($queryParams);
+    die();
     $dateType = $request->getAttribute('type');
 
     $mapper_member = new \App\MemberMapper($this->db);
@@ -139,6 +140,16 @@ $app->get('/task/task_update/{id}', function(Request $request, Response $respons
     $response = $this->view->render($response, "task_update.twig",['update_data'=>$update_data,'member'=>$member]);
     return $response;
 })->add($mw);
+
+$app->post('/task/update', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    //var_dump($data); die();
+    $mapper = new \App\TaskMapper($this->db);
+    $sql=$mapper->editTask($data);
+    //$this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
+    //$this->flash->addMessage('update_message', 'Successfuly updated !!!');
+    return $response->withRedirect('/task/task_details'.$sql);
+});
 
 $app->get('/task/task_delete/{id}', function(Request $request, Response $response) {
     $id = $request->getAttribute('id');
