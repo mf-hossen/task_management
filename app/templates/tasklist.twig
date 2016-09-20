@@ -26,7 +26,7 @@
     <form action="/task/admin_status" method="post">
     <div class="row">
         <div class="col-md-4">
-            <select name="status" id="inputID" class="form-control" required>
+            <select name="status" id="inputID" class="form-control">
                 <option value=""> -- Select Status --</option>
                 <option value="1">Complete</option>
                 <option value="2">Incomplete</option>
@@ -153,8 +153,14 @@
                                   </div>
                                   <div class="col-md-6">
                                       <div class="form-group">
-                                          <label for="">Status</label>
-                                          <input type="text" class="form-control" name="status" id="" placeholder="Input...">
+                                          <label for="">Priority</label>
+                                          <select class="form-control" name="priority">
+                                              <option value="">Choose Prirority</option>
+                                              <option value="1">High</option>
+                                              <option value="2">Medium</option>
+                                              <option value="2">Low</option>
+                                          </select>
+
                                       </div>
 
                                   </div>
@@ -163,7 +169,7 @@
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label for="">Status</label>
-                                          <select class="form-control" name="task_status" id="task_type" required>
+                                          <select class="form-control" name="task_status" id="task_type">
                                               <option value="">Choose Status</option>
                                               <option value="1">Complete</option>
                                               <option value="2">Incomplete</option>
@@ -178,7 +184,7 @@
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label for="">Type</label>
-                                          <select class="form-control" name="task_type" id="task_type" required>
+                                          <select class="form-control" name="task_type" id="task_type">
                                               <option value="">Choose Type</option>
                                               <option value="1">Edit</option>
                                               <option value="2">Redesign</option>
