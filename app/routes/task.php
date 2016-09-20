@@ -123,7 +123,7 @@ $app->get('/attach-zip/{id}', function(Request $request, Response $response) {
     $zip->close();
     header('Content-Type: application/zip');
     header('Content-disposition: attachment; filename='.$zipname);
-    //header('Content-Length: ' . filesize($zipname));
+    header('Content-Length: ' . filesize($zipname));
     readfile($zipname);
 })->add($mw);
 
