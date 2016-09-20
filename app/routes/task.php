@@ -147,9 +147,10 @@ $app->post('/task/update', function (Request $request, Response $response) {
     //var_dump($data); die();
     $mapper = new \App\TaskMapper($this->db);
     $sql=$mapper->editTask($data);
+    //var_dump($sql); die();
     //$this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
     //$this->flash->addMessage('update_message', 'Successfuly updated !!!');
-    return $response->withRedirect('/task/task_details'.$sql);
+    return $response->withRedirect('/task/list/all');
 });
 
 $app->get('/task/task_delete/{id}', function(Request $request, Response $response) {
@@ -157,7 +158,7 @@ $app->get('/task/task_delete/{id}', function(Request $request, Response $respons
     $mapper = new \App\TaskMapper($this->db);
     $mapper->taskDelete($id);
     $this->flash->addMessage('error', 'Task is Deleted!!!');
-    return $response->withRedirect('/task/list');
+    return $response->withRedirect('/task/list/all');
 })->add($mw);
 
 $app->get('/task/attached/{id}', function(Request $request, Response $response) {
