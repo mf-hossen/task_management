@@ -29,7 +29,7 @@
                                 Completed
                             {%  else %}
                             <select name="status" id="inputID" class="form-control" required>
-                                <option value=""> -- Select One --</option>
+                                <option value=""> -- Select Status --</option>
                                 <option value="3">Pending</option>
                                 <option value="4">Done</option>
                                 <option value="5">Invalid</option>
@@ -52,7 +52,7 @@
     <div class="row">
         <div class="col-md-4">
             <select name="status" id="inputID" class="form-control" required>
-                <option value=""> -- Select One --</option>
+                <option value=""> -- Select Status --</option>
                 <option value="1">Complete</option>
                 <option value="2">Incomplete</option>
             </select>
@@ -197,6 +197,19 @@
                         {% elseif details.status==5 %}
                             Invalid
                         {% endif %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="width:200px"><b>Task Priority:</b></td>
+                    <td>
+                {% if  details.priority==1 %}
+                    <span class="text-success text-uppercase"> High </span>
+                {% elseif details.priority==2 %}
+                    <span class="text-danger text-uppercase"> Medium </span>
+                {% elseif details.priority==3 %}
+                    <span class="text-warning text-uppercase">Low </span>
+                {% endif %}
                     </td>
                 </tr>
 

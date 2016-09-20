@@ -31,7 +31,8 @@ class TaskMapper extends Mapper
             member_id,
             client_id,
             submission_date,
-            created_at)VALUES (
+            created_at,
+            priority)VALUES (
             :title,
             :description,
             :task_type,
@@ -39,7 +40,8 @@ class TaskMapper extends Mapper
             :member_id,
             :client_id,
             :submission_date,
-            :created_at)");
+            :created_at,
+            :priority)");
 
             $stmt->bindParam(':title', ucfirst($data['title']));
             $stmt->bindParam(':description', ucfirst($data['description']));
@@ -49,6 +51,7 @@ class TaskMapper extends Mapper
             $stmt->bindParam(':client_id',$data['client_id']);
             $stmt->bindParam(':submission_date',date('Y-m-d'));
             $stmt->bindParam(':created_at',date('Y-m-d h:s:i'));
+            $stmt->bindParam(':priority',$data['priority']);
             $stmt->execute();
             return $this->db->lastInsertId();
         } catch (Exception $e) {
@@ -73,6 +76,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
 
@@ -99,6 +103,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
@@ -123,6 +128,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
@@ -148,6 +154,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
@@ -175,6 +182,7 @@ class TaskMapper extends Mapper
               tasks.client_id,
               tasks.status,
               tasks.created_at,
+              tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
 
@@ -222,6 +230,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.priority,
               tasks.submission_date,
               member.username as membername
               FROM `tasks` 
