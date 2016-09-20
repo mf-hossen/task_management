@@ -18,13 +18,7 @@ $app->get('/task/create', function (Request $request, Response $response) {
 
 $app->post('/task/insert', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-    $map = new \App\TaskMapper($this->db);
-    $check_id = $map->checkClientId($data);
-    if($check_id==true){
-        $this->flash->addMessage('error', 'Client ID Already exists');
-        return $response->withStatus(302)->withHeader('Location', '/task/create');
-    }
-
+    //$map = new \App\TaskMapper($this->db);
     $mapper = new \App\TaskMapper($this->db);
     $lastId = $mapper->addTask($data);
     $this->flash->addMessage('success', 'Task is assigned!!!');
