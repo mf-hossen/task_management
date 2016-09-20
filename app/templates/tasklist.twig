@@ -50,6 +50,7 @@
                     <th>Assign To</th>
                     <th>Task Type</th>
                     <th>Status</th>
+                    <th>Task URL</th>
                     <th>Assign Date</th>
 
 
@@ -92,6 +93,8 @@
                             {% endif %}
 
                         </td>
+
+                        <td>{{ tasks.site_url |raw}}</td>
                         <td>{{ tasks.created_at|date('d M, Y') }}</td>
 
 

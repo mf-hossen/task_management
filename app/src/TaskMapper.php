@@ -73,6 +73,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -98,6 +99,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -123,6 +125,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -157,6 +160,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -181,6 +185,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -206,6 +211,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -233,6 +239,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.status,
+              tasks.site_url,
               tasks.created_at,
               tasks.priority,
               member.username as membername,
@@ -282,6 +289,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.site_url,
               tasks.priority,
               tasks.submission_date,
               member.username as membername
