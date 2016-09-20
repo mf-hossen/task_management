@@ -39,14 +39,43 @@ $app->get('/task/list[/{type}]', function (Request $request, Response $response)
     if ($dateType == 'today') {
         $typeTitle = 'TODAY';
         $task = $mapper->getTodayTask();
-    } else {
-        $typeTitle = 'All';
+    } elseif($dateType == 'all') {
+        $typeTitle = 'ALL';
         $task=$mapper->getTask();
         //var_dump($task); die();
+    }elseif($dateType == 'complete'){
+        $typeTitle = 'COMPLETE';
+        $task=$mapper->getCompleteTask();
+    }elseif($dateType == 'pending'){
+        $typeTitle = 'PENDING';
+        $task=$mapper->getPendingTask();
     }
     $delete_message = $this->flash->getMessages();
     $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'message'=>$delete_message , 'typeTitle' => $typeTitle]);
     return $response;
+})->add($mw);
+
+$app->get('getCountComplete[/{type}]', function (Request $request, Response $response) {
+    $dateType = $request->getAttribute('type');
+
+    $mapper = new \App\TaskMapper($this->db);
+    if ($dateType == 'todaytask') {
+        $typeTitle = 'TODAYTASK';
+        $task = $mapper->getCountToday();
+    } elseif($dateType == 'alltask') {
+        $typeTitle = 'ALLTASK';
+        $task=$mapper->getCountTask();
+        //var_dump($task); die();
+    }elseif($dateType == 'completetasK'){
+        $typeTitle = 'COMPLETETASK';
+        $task=$mapper->getCountComplete();
+    }elseif($dateType == 'pendingtask'){
+        $typeTitle = 'PENDINGTASK';
+        $task=$mapper->getCountPending();
+    }
+    //$delete_message = $this->flash->getMessages();
+    //$response = $this->view->render($response, "tasklist.twig",['task'=>$task,'message'=>$delete_message , 'typeTitle' => $typeTitle]);
+    //return $response;
 })->add($mw);
 
 
@@ -66,7 +95,6 @@ $app->get('/task/members_task_list[/{type}]', function (Request $request, Respon
     $response = $this->view->render($response, "member_tasklist.twig",['task'=>$task, 'message'=>$status_message]);
     return $response;
 })->add($mw);
-
 
 $app->get('/task/task_details/{id}', function(Request $request, Response $response) {
     $id = $request->getAttribute('id');
