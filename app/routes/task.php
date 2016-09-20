@@ -39,10 +39,10 @@ $app->get('/task/list[/{type}]', function (Request $request, Response $response)
     $mapper = new \App\TaskMapper($this->db);
     if ($dateType == 'today') {
         $typeTitle = 'TODAY';
-        $task = $mapper->getTodayTask();
+        $task = $mapper->getTodayTask($queryParams);
     } elseif($dateType == 'all') {
         $typeTitle = 'ALL';
-        $task=$mapper->getTask();
+        $task=$mapper->getTask($queryParams);
         //var_dump($task); die();
     }elseif($dateType == 'complete'){
         $typeTitle = 'COMPLETE';
