@@ -28,6 +28,8 @@ $app->post('/task/insert', function (Request $request, Response $response) {
 
 $app->get('/task/list[/{type}]', function (Request $request, Response $response) {
     //$dateType = $request->get('date_type');
+    $queryParams = $request->getQueryParams();
+
     $dateType = $request->getAttribute('type');
 
     $mapper_member = new \App\MemberMapper($this->db);
