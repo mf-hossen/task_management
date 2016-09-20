@@ -312,7 +312,7 @@ class TaskMapper extends Mapper
 
     public function updateMemberStatus($data)
     {
-       // var_dump($data); die();
+        //var_dump($data); die();
         $taskID = array_values($data['task_id']);
         $ids = join(',', $taskID);
 
@@ -322,8 +322,9 @@ class TaskMapper extends Mapper
         //die();
         try{
 
-            $stmt = $this->db->prepare("UPDATE  tasks SET status = :status where id in ($ids)");
+            $stmt = $this->db->prepare("UPDATE  tasks SET status = :status , site_url = :site_url where id in ($ids)");
             $stmt->bindParam(':status',$data['status']);
+            $stmt->bindParam(':site_url',$data['site_url']);
             //$stmt->bindParam(':ids',$ids);
             $stmt->execute();
            // var_dump($stmt->debugDumpParams()); die();
