@@ -14,7 +14,7 @@
     <hr>
     <div class="row">
         <div class="col-md-12">
-            <form class="" role="form" action="" method="post" enctype="multipart/form-data">
+            <form class="" role="form" action="/task/update" method="post" enctype="multipart/form-data">
                 <fieldset>
 
                     <div class="row">
@@ -22,18 +22,20 @@
                             <div class="form-group">
                                 <label for="client_id">Client ID</label>
                                 <input type="number" name="client_id" class="form-control" id="client_id"
-                                       placeholder="Input Client ID" required>
+                                       value="{{ update_data.client_id }}" required>
                             </div>
                             <!--<<div class="form-group ">
                                 <label for="title">Task Title</label>
                                 <input type="text" name="title" class="form-control" id="title"
                                        placeholder="Title" required>
                             </div>-->
+                            <input class="" placeholder="" name="task_id" value="{{ update_data.task_id }}" type="text">
 
+                            <input class="" placeholder="" name="user_id" value="{{ session.user.0.id }}" type="hidden">
 
                             <div class="form-group">
                                 <label for="">Description</label>
-                                <textarea name="description" class="form-control" id="summernote"></textarea>
+                                <textarea name="description" class="form-control" id="summernote">{{ update_data.description }}</textarea>
                             </div>
                             {#
                                                                 <div class="form-group">
@@ -50,28 +52,47 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="member">Assign To</label>
-                                <select class="form-control" name="member_id" id="member" required>
-                                    <option value="">Choose member</option>
-                                    {% for members in mem %}
-                                        <option value="{{ members.id }}">{{ members.first_name }}</option>
+                                <select class="form-control" name="member_id" id="member">
+                                    <option value="{{update_data.member_id}}">{{update_data.membername}}</option>
+                                    {% for members in member %}
+                                        <option value="{{ members.id }}">{{ members.username }}</option>
                                     {% endfor %}
+
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="task_type">Task Type</label>
                                 <select class="form-control" name="task_type" id="task_type" required>
-                                    <option value="">Choose Type</option>
-                                    <option value="1">Edit</option>
+                                    <option value="{{ update_data.task_type }}">
+                                        {% if  update_data.task_type==1 %}
+                                            Edit
+                                        {% elseif update_data.task_type==2 %}
+                                            Redesign
+                                        {% elseif update_data.task_type==3 %}
+                                            New
+                                        {% endif %}
+                                    </option>
+                                    <option value="1" >Edit</option>
                                     <option value="2">Redesign</option>
                                     <option value="3">New</option>
+
                                 </select>
                             </div>
 
                             <div class="form-group">
+
                                 <label for="task_type">Priority</label>
                                 <select class="form-control" name="priority" id="priority" required>
-                                    <option value="">Choose Level</option>
+                                    <option value="{{ update_data.priority }}">
+                                        {% if  update_data.priority==1 %}
+                                            High
+                                        {% elseif update_data.priority==2 %}
+                                            Medium
+                                        {% elseif update_data.priority==3 %}
+                                            Low
+                                        {% endif %}
+                                    </option>
                                     <option value="1">High</option>
                                     <option value="2">Medium</option>
                                     <option value="3">Low</option>

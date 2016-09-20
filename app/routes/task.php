@@ -134,6 +134,16 @@ $app->get('/task/task_update/{id}', function(Request $request, Response $respons
     return $response;
 })->add($mw);
 
+$app->post('/task/update', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    //var_dump($data); die();
+    $mapper = new \App\TaskMapper($this->db);
+    $sql=$mapper->editTask($data);
+    //$this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
+    //$this->flash->addMessage('update_message', 'Successfuly updated !!!');
+    return $response->withRedirect('/task/task_details'.$sql);
+});
+
 $app->get('/task/task_delete/{id}', function(Request $request, Response $response) {
     $id = $request->getAttribute('id');
     $mapper = new \App\TaskMapper($this->db);

@@ -276,7 +276,7 @@ class TaskMapper extends Mapper
               users.id as user_id, 
               users.username, 
               users.role, 
-               
+              tasks.id as task_id,
               tasks.description, 
               tasks.task_type,
               tasks.member_id,
@@ -456,5 +456,28 @@ class TaskMapper extends Mapper
         }catch (Exception $e){
             throw $e;
         }
+    }
+
+    public function editTask($data)
+    {
+        $taskID = $data['task_id'];
+        //var_dump($taskID);die();
+        try {
+
+            //$id = $data['id'];
+            //var_dump($id); die();
+            $stmt = $this->db->prepare("update tasks set client_id=:client_id,description=:description,task_type=:task_type, member_id=:member_id, priority=:priority where id='$taskID'");
+            $stmt->bindParam(':client_id', $data['client_id']);
+            $stmt->bindParam(':description', $data['description']);
+            $stmt->bindParam(':task_type', $data['task_type']);
+            $stmt->bindParam(':member_id', $data['member_id']);
+            $stmt->bindParam(':priority', $data['priority']);
+            $stmt->execute();
+            return true;
+        } catch (Exception $e) {
+            throw $e;
+
+        }
+
     }
 }
