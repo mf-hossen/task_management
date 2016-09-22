@@ -94,10 +94,8 @@
 
                         </td>
 
-                        <td>{{ tasks.site_url |raw}}</td>
+                        <td><a target="_blank" href="http://{{ tasks.site_url}}">{{ tasks.site_url}}</a></td>
                         <td>{{ tasks.created_at|date('d M, Y') }}</td>
-
-
                         <td style="text-align: right">
                             <a href="/task/task_details/{{ tasks.task_id }}"><span class="glyphicon glyphicon-eye-open"
                                                                                    data-toggle="tooltip"
