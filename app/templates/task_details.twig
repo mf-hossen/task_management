@@ -161,11 +161,13 @@
                     <td><b>Task Type:</b></td>
                     <td>
                         {% if  details.task_type==1 %}
-                            Edit
+                            <span class="text-success text-uppercase" style="color:#46af48;font-weight:600">Edit </span>
                         {% elseif details.task_type==2 %}
-                            Redesign
+                            <span class="text-danger text-uppercase" style="color: #ff9800 ;font-weight:600"> Redesign </span>
                         {% elseif details.task_type==3 %}
-                            New
+                            <span class="text-warning text-uppercase" style="color: #ff9800 ;font-weight:600">New </span>
+                        {% elseif details.task_type==4 %}
+                            <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Live </span>
                         {% endif %}
                     </td>
 

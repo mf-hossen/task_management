@@ -12,7 +12,7 @@
     <hr>
     {%  if task is empty %}
         There has no task
-        <span class="btn-default">hhhh</span>
+
     {% else %}
         <form action="/task/members_status" method="post">
             <div class="row" id="assignForm">
@@ -64,11 +64,13 @@
                                 <td>{{ tasks.users_full_name }}</td>
                                 <td>
                                     {% if  tasks.task_type==1 %}
-                                        <span class="label label-success"> Edit </span>
+                                        <span class="label label-warning"> Edit </span>
                                     {% elseif tasks.task_type==2 %}
                                         <span class="label label-primary"> Redesign </span>
                                     {% elseif tasks.task_type==3 %}
                                         <span class="label label-info">New </span>
+                                    {% elseif tasks.task_type==4 %}
+                                        <span class="label label-success">Live </span>
                                     {% endif %}
                                 </td>
                                 <td>

@@ -3,7 +3,7 @@
 {% block contant_wrapper %}
     <div class="row">
         <div class="col-md-12">
-            <h4 class="pull-left text-uppercase">Update your profile</h4>
+            <h4 class="pull-left text-uppercase">Change your Username or Password</h4>
 
         </div>
     </div>
@@ -21,11 +21,16 @@
                     </div>
                     <div class="form-group">
                         <b>Password</b>
-                        <input class="form-control"   name="password" type="password" required style="margin-top: 10px" required>
+                        <input class="form-control"   name="password" type="password" placeholder="Input New Password" required style="margin-top: 10px" required>
+                    </div>
+
+                    <div class="form-group">
+                        <b>Conform Password</b>
+                        <input class="form-control"   name="confirm_password" type="password" placeholder="Conform Password" required style="margin-top: 10px" required>
                     </div>
 
                     <!-- Change this to a button or input when using this as a form -->
-                    <button type="submit" class="btn btn-lg btn-success">Update</button>
+                    <button type="submit" class="btn btn-success">Update</button>
                 </fieldset>
             </form>
         </div>

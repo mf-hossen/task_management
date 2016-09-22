@@ -221,7 +221,7 @@ $app->post('/task/admin_status', function (Request $request, Response $response)
         $mapper = new \App\TaskMapper($this->db);
         $id=$mapper->updateAdminStatus($data);
         $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
-        return $response->withRedirect('/task/task_details');
+        return $response->withRedirect('/task/list/all');
     }else{
         $this->flash->addMessage('error', 'Please check in task!!!');
         return $response->withRedirect('/task/list/today');
@@ -269,11 +269,25 @@ $app->post('/task/profile_update', function (Request $request, Response $respons
     $data = $request->getParsedBody();
     //var_dump($data); die();
     //var_dump($data); die();
-    $mapper = new \App\TaskMapper($this->db);
-    $sql=$mapper->profileUpdate($data);
+    //$mapper = new \App\TaskMapper($this->db);
+    //$mapper->profileUpdate($data);
+    if(strlen($data['password']) >= 6){
+        if ($data['password']==$data['confirm_password']){
+            $mapper = new \App\UserMapper($this->db);
+            //$mapper->profileUpdate($data);
+            $this->flash->addMessage('success', 'Password has been changed!!');
+            return $response->withStatus(302)->withHeader('Location', '/task/profile');
+        }else{
+            $this->flash->addMessage('error', 'Password don\'t match');
+            return $response->withStatus(302)->withHeader('Location', '/task/profile');
+        }
+    }else{
+        $this->flash->addMessage('error', 'Password should be minimume six character');
+        return $response->withStatus(302)->withHeader('Location', '/task/profile');
+    }
     //var_dump($sql); die();
-    $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
+    //$this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
     //$this->flash->addMessage('update_message', 'Successfuly updated !!!');
-    return $response->withRedirect('/task/profile');
+    //return $response->withRedirect('/task/profile');
 });
 

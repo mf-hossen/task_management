@@ -21,7 +21,11 @@
 
 
     {%  if task is empty %}
-        There has no task
+        <div class="row">
+        <div class="col-md-4" style="font-size: 20px; color: red">There has no task</div>
+        <div class="col-md-4"><a href="/task/list/all"><span class="btn btn-success text-uppercase">Back To List</span></a></div>
+
+
       {% else %}
     <form action="/task/admin_status" method="post">
     <div class="row">
@@ -67,16 +71,18 @@
 
                         </td>
                     </form>
-                        <td>{{ tasks.client_id }}</td>
+                        <td><a href="/task/task_details/{{ tasks.task_id }}">{{ tasks.client_id }}</a></td>
                         <td>{{ tasks.users_full_name }}</td>
                         <td>{{ tasks.members_full_name }}</td>
                         <td>
                             {% if  tasks.task_type==1 %}
-                                <span class="label label-success"> Edit </span>
+                                <span class="label label-warning"> Edit </span>
                             {% elseif tasks.task_type==2 %}
                                 <span class="label label-primary"> Redesign </span>
                             {% elseif tasks.task_type==3 %}
                                 <span class="label label-info">New </span>
+                            {% elseif tasks.task_type==4 %}
+                                <span class="label label-success">Live </span>
                             {% endif %}
                         </td>
                         <td>
@@ -158,8 +164,7 @@
                                           <select class="form-control" name="priority">
                                               <option value="">Choose Prirority</option>
                                               <option value="1">High</option>
-                                              <option value="2">Medium</option>
-                                              <option value="2">Low</option>
+                                              <option value="2">Regular</option>
                                           </select>
 
                                       </div>

@@ -640,7 +640,7 @@ class TaskMapper extends Mapper
     public function profileUpdate($data)
     {
         $user_id=$data['user_id'];
-        $password=$data['username'];
+        //$password=$data['username'];
         //var_dump($user_id); die();
         //var_dump($password); die();
         try{
