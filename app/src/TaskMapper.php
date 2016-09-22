@@ -60,29 +60,8 @@ class TaskMapper extends Mapper
 
 
 
-    public function getTask($data = false) {
-        if(!empty($data)){
-
-            $client_id = $data['client_id'];
-            $member_id = $data['member_id'];
-            $created_at = $data['created_at'];
-            $priority = $data['priority'];
-            $task_status = $data['task_status'];
-            $task_type = $data['task_type'];
-
-            $whereArr = array();
-            if($client_id != "") array_push($whereArr , "client_id = {$client_id}");
-            if($member_id != "") array_push( $whereArr , "member_id = {$member_id}");
-            if($created_at != "")  array_push($whereArr , "date(created_at) = {$created_at}");
-            if($priority != "")  array_push($whereArr ,"priority = {$priority}");
-            if($task_status != "") array_push($whereArr , "status = {$task_status}");
-            if($task_type != "")  array_push($whereArr , "task_type = {$task_type}");
-
-            //var_dump($whereArr); die();
-            $whereStr = implode(" AND ", $whereArr);
-
-            //var_dump($whereStr); die();
-            $sql = "SELECT 
+    public function getTask() {
+        $sql = "SELECT 
               users.id as user_id, 
               users.username, 
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
@@ -94,31 +73,6 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
-              tasks.priority,
-              member.username as membername,
-              concat(member.first_name , ' ', member.last_name ) as members_full_name
-
-              FROM `tasks` 
-              left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id 
-              WHERE {$whereStr}
-              order by task_id DESC ";
-
-        }else{
-
-            $sql = "SELECT 
-              users.id as user_id, 
-              users.username, 
-              concat(users.first_name , ' ', users.last_name ) as users_full_name,
-              users.role, 
-              tasks.description,
-              tasks.id as task_id,
-              tasks.status,
-              tasks.task_type,
-              tasks.member_id,
-              tasks.created_at,
-              tasks.client_id,
-              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -126,9 +80,6 @@ class TaskMapper extends Mapper
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
               left join users as member on tasks.member_id =member.id order by task_id DESC ";
-
-        }
-
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
@@ -147,7 +98,6 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
-              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -173,7 +123,6 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
-              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -187,38 +136,16 @@ class TaskMapper extends Mapper
 
     public function getCountComplete()
     {
-        $sql="SELECT COUNT(*) from tasks where status=1";
+       $sql="SELECT COUNT(*) from tasks where status=1";
         $stmt = $this->db->query($sql);
         return $stmt;
 
     }
 
 
-    public function getTodayTask($data = false) {
+    public function getTodayTask() {
 
-        if(!empty($data)){
-
-            $client_id = $data['client_id'];
-            $member_id = $data['member_id'];
-            $created_at = $data['created_at'];
-            $priority = $data['priority'];
-            $task_status = $data['task_status'];
-            $task_type = $data['task_type'];
-
-            $whereArr = array();
-            if($client_id != "") array_push($whereArr , "client_id = {$client_id}");
-            if($member_id != "") array_push( $whereArr , "member_id = {$member_id}");
-            if($created_at != "")  array_push($whereArr , "date(created_at) = {$created_at}");
-            if($priority != "")  array_push($whereArr ,"priority = {$priority}");
-            if($task_status != "") array_push($whereArr , "status = {$task_status}");
-            if($task_type != "")  array_push($whereArr , "task_type = {$task_type}");
-            array_push($whereArr , "date(tasks.created_at)=curdate()");
-
-            //var_dump($whereArr); die();
-            $whereStr = implode(" AND ", $whereArr);
-
-            //var_dump($whereStr); die();
-            $sql = "SELECT 
+        $sql = "SELECT 
               users.id as user_id, 
               users.username, 
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
@@ -230,38 +157,12 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.created_at,
               tasks.client_id,
-              tasks.priority,
-              member.username as membername,
-              concat(member.first_name , ' ', member.last_name ) as members_full_name
-              FROM `tasks` 
-              left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id  WHERE {$whereStr} order by task_id DESC ";
-
-        }else{
-
-            $sql = "SELECT 
-              users.id as user_id, 
-              users.username, 
-              concat(users.first_name , ' ', users.last_name ) as users_full_name,
-              users.role, 
-              tasks.description,
-              tasks.status,
-              tasks.id as task_id,
-              tasks.task_type,
-              tasks.member_id,
-              tasks.created_at,
-              tasks.client_id,
-              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
               left join users as member on tasks.member_id =member.id where date(tasks.created_at)=curdate() order by task_id DESC ";
-
-        }
-
-
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
@@ -280,7 +181,6 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
-              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -306,7 +206,6 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
-              tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
@@ -334,7 +233,6 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.status,
-              tasks.site_url,
               tasks.created_at,
               tasks.priority,
               member.username as membername,
@@ -378,13 +276,12 @@ class TaskMapper extends Mapper
               users.id as user_id, 
               users.username, 
               users.role, 
-              tasks.id as task_id,
+               
               tasks.description, 
               tasks.task_type,
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
-              tasks.site_url,
               tasks.priority,
               tasks.submission_date,
               member.username as membername
@@ -415,22 +312,21 @@ class TaskMapper extends Mapper
 
     public function updateMemberStatus($data)
     {
-        //var_dump($data); die();
+       // var_dump($data); die();
         $taskID = array_values($data['task_id']);
         $ids = join(',', $taskID);
 
-        /*        var_dump($data['task_id']);
-                var_dump($data['status']);*/
+/*        var_dump($data['task_id']);
+        var_dump($data['status']);*/
         //var_dump($ids);
         //die();
         try{
 
-            $stmt = $this->db->prepare("UPDATE  tasks SET status = :status , site_url = :site_url where id in ($ids)");
+            $stmt = $this->db->prepare("UPDATE  tasks SET status = :status where id in ($ids)");
             $stmt->bindParam(':status',$data['status']);
-            $stmt->bindParam(':site_url',$data['site_url']);
             //$stmt->bindParam(':ids',$ids);
             $stmt->execute();
-            // var_dump($stmt->debugDumpParams()); die();
+           // var_dump($stmt->debugDumpParams()); die();
 
             return true;
 
@@ -548,10 +444,9 @@ class TaskMapper extends Mapper
         try{
             //var_dump($taskID); die();
 
-            $sql = "UPDATE  tasks SET status = :status , site_url = :site_url  WHERE  id ='$taskID'";
+            $sql = "UPDATE tasks SET status = :status WHERE  id ='$taskID'";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':status',$data['status']);
-            $stmt->bindParam(':site_url',$data['site_url']);
             //$stmt->bindParam(':ids',$ids);
             $stmt->execute();
             // var_dump($stmt->debugDumpParams()); die();
@@ -563,78 +458,17 @@ class TaskMapper extends Mapper
         }
     }
 
-    public function editTask($data)
+
+    public function addttached($filePath,$id)
     {
-        $taskID = $data['task_id'];
-        //var_dump($taskID);die();
-        try {
-
-            //$id = $data['id'];
-            //var_dump($id); die();
-            $stmt = $this->db->prepare("update tasks set client_id=:client_id,description=:description,task_type=:task_type, member_id=:member_id, priority=:priority where id='$taskID'");
-            $stmt->bindParam(':client_id', $data['client_id']);
-            $stmt->bindParam(':description', $data['description']);
-            $stmt->bindParam(':task_type', $data['task_type']);
-            $stmt->bindParam(':member_id', $data['member_id']);
-            $stmt->bindParam(':priority', $data['priority']);
-            $stmt->execute();
-            $details = $this->taskDetails($taskID);
-            return $details['task_id'];
-
-        } catch (Exception $e) {
-            throw $e;
-
-        }
-
-    }
-
-
-    public function getSearchTask() {
-        $sql = "SELECT 
-              users.id as user_id, 
-              users.username, 
-              concat(users.first_name , ' ', users.last_name ) as users_full_name,
-              users.role, 
-              tasks.description,
-              tasks.id as task_id,
-              tasks.status,
-              tasks.task_type,
-              tasks.member_id,
-              tasks.created_at,
-              tasks.client_id,
-              tasks.priority,
-              member.username as membername,
-              concat(member.first_name , ' ', member.last_name ) as members_full_name
-
-              FROM `tasks` 
-              left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id where order by task_id DESC ";
-        $stmt = $this->db->query($sql);
-        return $stmt->fetchAll();
-    }
-
-    public function profileUpdate($data)
-    {
-        $user_id=$data['user_id'];
-        $password=$data['username'];
-        //var_dump($user_id); die();
-        //var_dump($password); die();
         try{
-
-            $stmt = $this->db->prepare("UPDATE  users SET username = :username, password=:password where id in ($user_id)");
-            $stmt->bindParam(':username',$data['username']);
-            $stmt->bindParam(':password',sha1($data['password']));
+            $stmt = $this->db->prepare("INSERT INTO attached (task_id,attached_path)VALUES(:task_id,:attached_path)");
+            $stmt->bindParam(':task_id',$id);
+            $stmt->bindParam(':attached_path',$filePath);
             $stmt->execute();
-            // var_dump($stmt->debugDumpParams()); die();
-
             return true;
-
         }catch (Exception $e){
             throw $e;
         }
-
     }
-
-
-
 }
