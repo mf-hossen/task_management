@@ -224,7 +224,9 @@
                 {% if  details.priority==1 %}
                     <span class="text-success text-uppercase"> High </span>
                 {% elseif details.priority==2 %}
-                    <span class="text-danger text-uppercase"> Regular </span>
+                    <span class="text-danger text-uppercase"> Medium </span>
+                {% elseif details.priority==3 %}
+                    <span class="text-warning text-uppercase">Low </span>
                 {% endif %}
                     </td>
                 </tr>
