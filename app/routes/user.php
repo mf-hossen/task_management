@@ -17,8 +17,9 @@ $app->post('/login', function (Request $request, Response $response) {
     $mapper = new \App\UserMapper($this->db);
     $chkData = $mapper->checkUser($data);
     $_SESSION['user']= $chkData;
-    //var_dump($_SESSION);die();
+    //var_dump($_SESSION['user'][0]['first_name']);die();
     if(!empty($chkData)){
+        \App\Utility::postToSlack($_SESSION['user'][0]['first_name'] ." ". $_SESSION['user'][0]['last_name']." has entered into Task Manager System");
         return $response->withStatus(302)->withHeader('Location', '/');
     }else{
         $this->flash->addMessage('error', 'Username Or Password Invalid!!');
