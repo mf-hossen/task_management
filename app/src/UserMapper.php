@@ -32,6 +32,7 @@
             $username = $data['username'];
             $password = sha1($data['password']);
             $role      = $data['role'];
+            $salck_username      = $data['salck_username'];
 
 
             try{
@@ -40,13 +41,15 @@
                   last_name,
                   username,
                   password,
-                  role
+                  role,
+                  slack_username
                 )VALUES (
                   :first_name,
                   :last_name,
                   :username,
                   :password,
-                  :role
+                  :role,
+                  :salck_username
                 )
                 ");
 
@@ -55,6 +58,7 @@
                 $stmt->bindParam(':username', $username);
                 $stmt->bindParam(':password', $password);
                 $stmt->bindParam(':role', $role);
+                $stmt->bindParam(':salck_username', $salck_username);
                 $stmt->execute();
                 return $this->db->lastInsertId();
             }catch (Exception $e){
@@ -90,6 +94,7 @@
             $last_name = $data['last_name'];
             $username = $data['username'];
             $role = $data['role'];
+            $slack_username = $data['slack_username'];
 
             try{
 
@@ -97,11 +102,13 @@
                   first_name = :first_name,
                   last_name = :last_name,
                   username = :username,
+                  slack_username = :slack_username,
                   role = :role WHERE id = :id
                 ");
                 $stmt->bindParam(':first_name',$first_name);
                 $stmt->bindParam(':last_name',$last_name);
                 $stmt->bindParam(':username',$username);
+                $stmt->bindParam(':slack_username',$slack_username);
                 $stmt->bindParam(':role',$role);
                 $stmt->bindParam(':id',$id);
                 $stmt->execute();

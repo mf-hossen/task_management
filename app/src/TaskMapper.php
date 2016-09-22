@@ -64,7 +64,7 @@ class TaskMapper extends Mapper
         if(!empty($data)){
             $client_id = $data['client_id'];
             $member_id = $data['member_id'];
-            $created_at = $data['created_date'];
+            $created_at =$data['created_date'];
            // var_dump($created_at);die();
             $priority = $data['priority'];
             $task_status = $data['task_status'];
@@ -78,7 +78,7 @@ class TaskMapper extends Mapper
             if($task_status != "") array_push($whereArr , "status = {$task_status}");
             if($task_type != "")  array_push($whereArr , "task_type = {$task_type}");
 
-           // var_dump($whereArr); die();
+           //var_dump($whereArr); die();
             $whereStr = implode(" AND ", $whereArr);
 
             //var_dump($whereStr); die();
@@ -93,7 +93,7 @@ class TaskMapper extends Mapper
               tasks.status,
               tasks.task_type,
               tasks.member_id,
-              tasks.created_at ,
+              tasks.created_at,
               tasks.client_id,
               tasks.priority,
               member.username as membername,

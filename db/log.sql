@@ -22,3 +22,5 @@ ALTER TABLE `tasks` CHANGE `priority` `priority` TINYINT(4) NOT NULL COMMENT '1=
 ALTER TABLE `tasks` CHANGE `task_type` `task_type` TINYINT(4) NOT NULL DEFAULT '3' COMMENT '1 = Edit; 2 = Redesign; 3 = New, 4=live';
 ALTER TABLE `tasks` ADD `slack_username` VARCHAR(200) NOT NULL AFTER `site_url`;
 
+
+ALTER TABLE `users` ADD `slack_username` VARCHAR(200) NOT NULL AFTER `role`;
