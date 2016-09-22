@@ -207,9 +207,9 @@
                         {% if  details.status==1 %}
                             <span class="text-success text-uppercase" style="color:#46af48;font-weight:600">Complete </span>
                         {% elseif details.status==2 %}
-                            <span class="text-danger text-uppercase" style="color: #e82f21;font-weight:600"> Incomplete </span>
+                            <span class="text-danger text-uppercase" style="color: #ff9800 ;font-weight:600"> Incomplete </span>
                         {% elseif details.status==3 %}
-                            <span class="text-warning text-uppercase" style="color: #e82f21;font-weight:600">Pending </span>
+                            <span class="text-warning text-uppercase" style="color: #ff9800 ;font-weight:600">Pending </span>
                         {% elseif details.status==4 %}
                             <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Done </span>
                         {% elseif details.status==5 %}
@@ -224,9 +224,7 @@
                 {% if  details.priority==1 %}
                     <span class="text-success text-uppercase"> High </span>
                 {% elseif details.priority==2 %}
-                    <span class="text-danger text-uppercase"> Medium </span>
-                {% elseif details.priority==3 %}
-                    <span class="text-warning text-uppercase">Low </span>
+                    <span class="text-danger text-uppercase"> Regular </span>
                 {% endif %}
                     </td>
                 </tr>
