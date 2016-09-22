@@ -457,4 +457,18 @@ class TaskMapper extends Mapper
             throw $e;
         }
     }
+
+
+    public function addttached($filePath,$id)
+    {
+        try{
+            $stmt = $this->db->prepare("INSERT INTO attached (task_id,attached_path)VALUES(:task_id,:attached_path)");
+            $stmt->bindParam(':task_id',$id);
+            $stmt->bindParam(':attached_path',$filePath);
+            $stmt->execute();
+            return true;
+        }catch (Exception $e){
+            throw $e;
+        }
+    }
 }
