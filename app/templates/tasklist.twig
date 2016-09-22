@@ -50,7 +50,7 @@
                     <th>Assign To</th>
                     <th>Task Type</th>
                     <th>Status</th>
-                    <th>Site URL</th>
+                    {#<th>Site URL</th>#}
                     <th>Assign Date</th>
 
 
@@ -94,7 +94,7 @@
 
                         </td>
 
-                        <td><a target="_blank" href="http://{{ tasks.site_url}}">{{ tasks.site_url}}</a></td>
+                       {# <td><a target="_blank" href="{{ tasks.site_url}}">{{ tasks.site_url}}</a></td>#}
                         <td>{{ tasks.created_at|date('d M, Y') }}</td>
                         <td style="text-align: right">
                             <a href="/task/task_details/{{ tasks.task_id }}"><span class="glyphicon glyphicon-eye-open"
