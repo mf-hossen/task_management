@@ -275,13 +275,12 @@ $app->get('/task/profile', function (Request $request, Response $response) {
 $app->post('/task/profile_update', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     //var_dump($data); die();
-    //var_dump($data); die();
-    //$mapper = new \App\TaskMapper($this->db);
-    //$mapper->profileUpdate($data);
+    $data = $request->getParsedBody();
+    $map = new \App\TaskMapper($this->db);
     if(strlen($data['password']) >= 6){
         if ($data['password']==$data['confirm_password']){
-            $mapper = new \App\UserMapper($this->db);
-            //$mapper->profileUpdate($data);
+            $mapper = new \App\taskMapper($this->db);
+            $mapper->profileUpdate($data);
             $this->flash->addMessage('success', 'Password has been changed!!');
             return $response->withStatus(302)->withHeader('Location', '/task/profile');
         }else{
