@@ -19,3 +19,4 @@ ALTER TABLE `tasks` ADD `priority` TINYINT NOT NULL COMMENT '1=high,2=medium,3=l
 ALTER TABLE `tasks` ADD `site_url` VARCHAR(255) NULL AFTER `priority`;
 --Shanta 22 09 2016
 ALTER TABLE `tasks` CHANGE `priority` `priority` TINYINT(4) NOT NULL COMMENT '1=high,2=regular';
+ALTER TABLE `users` ADD `slack_username` VARCHAR(200) NOT NULL AFTER `role`;
