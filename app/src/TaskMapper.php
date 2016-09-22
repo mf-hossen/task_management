@@ -19,7 +19,7 @@ class TaskMapper extends Mapper
     }
 
 
-    public function addTask($data)
+    public function addTask($data,$userID)
     {
         //var_dump($data); die();
         try {
@@ -45,7 +45,7 @@ class TaskMapper extends Mapper
             $stmt->bindParam(':description', ucfirst($data['description']));
             $stmt->bindParam(':task_type', $data['task_type']);
             $stmt->bindParam(':user_id',$data['user_id']);
-            $stmt->bindParam(':member_id',$data['member_id']);
+            $stmt->bindParam(':member_id',$userID);
             $stmt->bindParam(':client_id',$data['client_id']);
             $stmt->bindParam(':submission_date',date('Y-m-d'));
             $stmt->bindParam(':created_at',date('Y-m-d h:s:i'));

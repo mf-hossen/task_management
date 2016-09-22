@@ -28,9 +28,16 @@ $app->post('/task/insert', function (Request $request, Response $response) {
         $filePath = "attached/$uploadFileName";
         $newfile->moveTo("attached/$uploadFileName");
     }*/
-    $mapper = new \App\TaskMapper($this->db);
+    $user = explode('_', $data['member_id']);
+    $userID = (int) $user[0];
+    $slack_user = $user[1];
 
-    $lastId = $mapper->addTask($data);
+    $mapper = new \App\TaskMapper($this->db);
+    $lastId = $mapper->addTask($data,$userID);
+
+    $firstParam = 'You have  a new task  TaskId-';
+
+    \App\Utility::postToSlack($firstParam,$slack_user);
     //$mapper->addttached($filePath,$lastId);
     $this->flash->addMessage('success', 'Task is assigned!!!');
     //return $response->withRedirect('/task/attached/' . $lastId);

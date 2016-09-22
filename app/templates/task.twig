@@ -47,6 +47,9 @@
                                    type="hidden">
 
 
+
+                            <input type="hidden" name="f_name" value="{{ mem.0.first_name }}">
+
                             {#<div class="form-group col-md-6\">
                                  <label for="attached">Attached</label>
                                  <input type="file" name="attached" class="form-control" id="attached" >
@@ -58,8 +61,9 @@
                                 <label for="member">Assign To</label>
                                 <select class="form-control" name="member_id" id="member" required>
                                     <option value="">Choose member</option>
+
                                     {% for members in mem %}
-                                        <option value="{{ members.id }}">{{ members.first_name }}</option>
+                                        <option value="{{ members.id }}_{{ members.slack_username }}">{{ members.first_name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
