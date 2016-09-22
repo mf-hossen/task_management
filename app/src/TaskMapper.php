@@ -62,7 +62,6 @@ class TaskMapper extends Mapper
 
     public function getTask($data = false) {
         if(!empty($data)){
-
             $client_id = $data['client_id'];
             $member_id = $data['member_id'];
             $created_at = $data['created_at'];
@@ -78,11 +77,12 @@ class TaskMapper extends Mapper
             if($task_status != "") array_push($whereArr , "status = {$task_status}");
             if($task_type != "")  array_push($whereArr , "task_type = {$task_type}");
 
-            //var_dump($whereArr); die();
+           // var_dump($whereArr); die();
             $whereStr = implode(" AND ", $whereArr);
 
             //var_dump($whereStr); die();
-            $sql = "SELECT 
+            if (!empty($whereArr)){
+                $sql = "SELECT 
               users.id as user_id, 
               users.username, 
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
@@ -103,9 +103,32 @@ class TaskMapper extends Mapper
               left join users as member on tasks.member_id =member.id 
               WHERE {$whereStr}
               order by task_id DESC ";
+            }else{
+                $sql = "SELECT 
+              users.id as user_id, 
+              users.username, 
+              concat(users.first_name , ' ', users.last_name ) as users_full_name,
+              users.role, 
+              tasks.description,
+              tasks.id as task_id,
+              tasks.status,
+              tasks.task_type,
+              tasks.member_id,
+              tasks.created_at,
+              tasks.client_id,
+              tasks.site_url,
+              tasks.priority,
+              member.username as membername,
+              concat(member.first_name , ' ', member.last_name ) as members_full_name
+
+              FROM `tasks` 
+              left join users on tasks.user_id = users.id 
+              left join users as member on tasks.member_id =member.id order by task_id DESC ";
+
+            }
+
 
         }else{
-
             $sql = "SELECT 
               users.id as user_id, 
               users.username, 
