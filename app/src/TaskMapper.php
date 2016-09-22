@@ -64,7 +64,8 @@ class TaskMapper extends Mapper
         if(!empty($data)){
             $client_id = $data['client_id'];
             $member_id = $data['member_id'];
-            $created_at = $data['created_at'];
+            $created_at = $data['created_date'];
+           // var_dump($created_at);die();
             $priority = $data['priority'];
             $task_status = $data['task_status'];
             $task_type = $data['task_type'];
@@ -72,7 +73,7 @@ class TaskMapper extends Mapper
             $whereArr = array();
             if($client_id != "") array_push($whereArr , "client_id = {$client_id}");
             if($member_id != "") array_push( $whereArr , "member_id = {$member_id}");
-            if($created_at != "")  array_push($whereArr , "date(created_at) = {$created_at}");
+            if($created_at != "")  array_push($whereArr , "date(tasks.created_at) = {$created_at}");
             if($priority != "")  array_push($whereArr ,"priority = {$priority}");
             if($task_status != "") array_push($whereArr , "status = {$task_status}");
             if($task_type != "")  array_push($whereArr , "task_type = {$task_type}");
@@ -92,7 +93,7 @@ class TaskMapper extends Mapper
               tasks.status,
               tasks.task_type,
               tasks.member_id,
-              tasks.created_at,
+              tasks.created_at ,
               tasks.client_id,
               tasks.priority,
               member.username as membername,
@@ -114,7 +115,7 @@ class TaskMapper extends Mapper
               tasks.status,
               tasks.task_type,
               tasks.member_id,
-              tasks.created_at,
+              tasks.created_at ,
               tasks.client_id,
               tasks.site_url,
               tasks.priority,
@@ -139,7 +140,7 @@ class TaskMapper extends Mapper
               tasks.status,
               tasks.task_type,
               tasks.member_id,
-              tasks.created_at,
+              tasks.created_at ,
               tasks.client_id,
               tasks.site_url,
               tasks.priority,
@@ -168,7 +169,7 @@ class TaskMapper extends Mapper
               tasks.status,
               tasks.task_type,
               tasks.member_id,
-              tasks.created_at,
+              tasks.created_at ,
               tasks.client_id,
               tasks.site_url,
               tasks.priority,
