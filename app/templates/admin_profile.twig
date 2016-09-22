@@ -1,0 +1,35 @@
+{% extends 'layout.twig' %}
+{% block title %} Create Task{% endblock %}
+{% block contant_wrapper %}
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="pull-left text-uppercase">Update your profile</h4>
+
+        </div>
+    </div>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <form role="form" method="post" action="/task/profile_update">
+                <fieldset>
+                    <div class="form-group">
+                        <input class="form-control" value=" {{ session.user.0.id }}" name="user_id" type="hidden">
+                        <b>Username</b>
+                        <input class="form-control" value="{{ session.user.0.username }}" name="username" type="text" autofocus  style="margin-top: 10px" required>
+                    </div>
+                    <div class="form-group">
+                        <b>Password</b>
+                        <input class="form-control"   name="password" type="password" required style="margin-top: 10px" required>
+                    </div>
+
+                    <!-- Change this to a button or input when using this as a form -->
+                    <button type="submit" class="btn btn-lg btn-success">Update</button>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+
+{% endblock %}

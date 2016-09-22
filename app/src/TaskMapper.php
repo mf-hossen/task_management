@@ -65,7 +65,7 @@ class TaskMapper extends Mapper
 
             $client_id = $data['client_id'];
             $member_id = $data['member_id'];
-            $created_date = $data['created_date'];
+            $created_at = $data['created_at'];
             $priority = $data['priority'];
             $task_status = $data['task_status'];
             $task_type = $data['task_type'];
@@ -73,7 +73,7 @@ class TaskMapper extends Mapper
             $whereArr = array();
             if($client_id != "") array_push($whereArr , "client_id = {$client_id}");
             if($member_id != "") array_push( $whereArr , "member_id = {$member_id}");
-            if($created_date != "")  array_push($whereArr , "date(created_at) = {$created_date}");
+            if($created_at != "")  array_push($whereArr , "date(created_at) = {$created_at}");
             if($priority != "")  array_push($whereArr ,"priority = {$priority}");
             if($task_status != "") array_push($whereArr , "status = {$task_status}");
             if($task_type != "")  array_push($whereArr , "task_type = {$task_type}");
@@ -187,7 +187,7 @@ class TaskMapper extends Mapper
 
     public function getCountComplete()
     {
-       $sql="SELECT COUNT(*) from tasks where status=1";
+        $sql="SELECT COUNT(*) from tasks where status=1";
         $stmt = $this->db->query($sql);
         return $stmt;
 
@@ -200,7 +200,7 @@ class TaskMapper extends Mapper
 
             $client_id = $data['client_id'];
             $member_id = $data['member_id'];
-            $created_date = $data['created_date'];
+            $created_at = $data['created_at'];
             $priority = $data['priority'];
             $task_status = $data['task_status'];
             $task_type = $data['task_type'];
@@ -208,7 +208,7 @@ class TaskMapper extends Mapper
             $whereArr = array();
             if($client_id != "") array_push($whereArr , "client_id = {$client_id}");
             if($member_id != "") array_push( $whereArr , "member_id = {$member_id}");
-            if($created_date != "")  array_push($whereArr , "date(created_at) = {$created_date}");
+            if($created_at != "")  array_push($whereArr , "date(created_at) = {$created_at}");
             if($priority != "")  array_push($whereArr ,"priority = {$priority}");
             if($task_status != "") array_push($whereArr , "status = {$task_status}");
             if($task_type != "")  array_push($whereArr , "task_type = {$task_type}");
@@ -419,8 +419,8 @@ class TaskMapper extends Mapper
         $taskID = array_values($data['task_id']);
         $ids = join(',', $taskID);
 
-/*        var_dump($data['task_id']);
-        var_dump($data['status']);*/
+        /*        var_dump($data['task_id']);
+                var_dump($data['status']);*/
         //var_dump($ids);
         //die();
         try{
@@ -430,7 +430,7 @@ class TaskMapper extends Mapper
             $stmt->bindParam(':site_url',$data['site_url']);
             //$stmt->bindParam(':ids',$ids);
             $stmt->execute();
-           // var_dump($stmt->debugDumpParams()); die();
+            // var_dump($stmt->debugDumpParams()); die();
 
             return true;
 
@@ -578,7 +578,9 @@ class TaskMapper extends Mapper
             $stmt->bindParam(':member_id', $data['member_id']);
             $stmt->bindParam(':priority', $data['priority']);
             $stmt->execute();
-            return true;
+            $details = $this->taskDetails($taskID);
+            return $details['task_id'];
+
         } catch (Exception $e) {
             throw $e;
 
@@ -610,5 +612,29 @@ class TaskMapper extends Mapper
         $stmt = $this->db->query($sql);
         return $stmt->fetchAll();
     }
+
+    public function profileUpdate($data)
+    {
+        $user_id=$data['user_id'];
+        $password=$data['username'];
+        //var_dump($user_id); die();
+        //var_dump($password); die();
+        try{
+
+            $stmt = $this->db->prepare("UPDATE  users SET username = :username, password=:password where id in ($user_id)");
+            $stmt->bindParam(':username',$data['username']);
+            $stmt->bindParam(':password',sha1($data['password']));
+            $stmt->execute();
+            // var_dump($stmt->debugDumpParams()); die();
+
+            return true;
+
+        }catch (Exception $e){
+            throw $e;
+        }
+
+    }
+
+
 
 }

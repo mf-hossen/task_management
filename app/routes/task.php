@@ -6,7 +6,7 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 
 $app->get('/task/create', function (Request $request, Response $response) {
-   //var_dump(\App\Utility::test());
+    //var_dump(\App\Utility::test());
     //die();
     $mapper = new \App\TaskMapper($this->db);
     $mapper_member = new \App\MemberMapper($this->db);
@@ -46,18 +46,18 @@ $app->get('/task/list[/{type}]', function (Request $request, Response $response)
         //var_dump($task); die();
     }elseif($dateType == 'complete'){
         $typeTitle = 'COMPLETE';
-        $task=$mapper->getCompleteTask();
+        $task=$mapper->getCompleteTask($queryParams);
     }elseif($dateType == 'pending'){
         $typeTitle = 'PENDING';
-        $task=$mapper->getPendingTask();
+        $task=$mapper->getPendingTask($queryParams);
     }
 
-    $delete_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'message'=>$delete_message , 'typeTitle' => $typeTitle , 'mem'=>$member,]);
+    $update_message = $this->flash->getMessages();
+    $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'message'=>$update_message , 'typeTitle' => $typeTitle , 'mem'=>$member,]);
     return $response;
 })->add($mw);
 
-$app->get('getCountComplete[/{type}]', function (Request $request, Response $response) {
+$app->get('/task/getCountComplete[/{type}]', function (Request $request, Response $response) {
     $dateType = $request->getAttribute('type');
 
     $mapper = new \App\TaskMapper($this->db);
@@ -68,7 +68,7 @@ $app->get('getCountComplete[/{type}]', function (Request $request, Response $res
         $typeTitle = 'ALLTASK';
         $task=$mapper->getCountTask();
         //var_dump($task); die();
-    }elseif($dateType == 'completetasK'){
+    }elseif($dateType == 'completetask'){
         $typeTitle = 'COMPLETETASK';
         $task=$mapper->getCountComplete();
     }elseif($dateType == 'pendingtask'){
@@ -76,7 +76,7 @@ $app->get('getCountComplete[/{type}]', function (Request $request, Response $res
         $task=$mapper->getCountPending();
     }
     //$delete_message = $this->flash->getMessages();
-    //$response = $this->view->render($response, "tasklist.twig",['task'=>$task,'message'=>$delete_message , 'typeTitle' => $typeTitle]);
+    $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'typeTitle' => $typeTitle]);
     //return $response;
 })->add($mw);
 
@@ -151,7 +151,7 @@ $app->post('/task/update', function (Request $request, Response $response) {
     //var_dump($sql); die();
     $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
     //$this->flash->addMessage('update_message', 'Successfuly updated !!!');
-    return $response->withRedirect('/task/list/all');
+    return $response->withRedirect('/task/task_details/'.$sql);
 });
 
 $app->get('/task/task_delete/{id}', function(Request $request, Response $response) {
@@ -189,7 +189,7 @@ $app->post('/upload/{id}', function(Request $request, Response $response) {
 
 $app->post('/task/members_status', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-   // var_dump($data); die();
+    // var_dump($data); die();
     if (isset($data['task_id'][0])){
         $mapper = new \App\TaskMapper($this->db);
         $sql=$mapper->updateMemberStatus($data);
@@ -205,12 +205,12 @@ $app->post('/task/members_status', function (Request $request, Response $respons
 
 $app->post('/task/admin_status', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-   // var_dump($data['task_id'][0]);die();
+    //var_dump($data['task_id'][0]);die();
     if (isset($data['task_id'][0])){
         $mapper = new \App\TaskMapper($this->db);
-        $mapper->updateAdminStatus($data);
+        $id=$mapper->updateAdminStatus($data);
         $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
-        return $response->withRedirect('/task/list');
+        return $response->withRedirect('/task/task_details');
     }else{
         $this->flash->addMessage('error', 'Please check in task!!!');
         return $response->withRedirect('/task/list/today');
@@ -218,7 +218,7 @@ $app->post('/task/admin_status', function (Request $request, Response $response)
 
 })->add($mw);
 
-    $app->post('/task/taska_status', function (Request $request, Response $response) {
+$app->post('/task/taska_status', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     //var_dump($data); die();
     $mapper = new \App\TaskMapper($this->db);
@@ -244,4 +244,25 @@ $app->post('/comment', function (Request $request, Response $response){
     $mapper->InsertComment($data);
     return $response->withRedirect('/task/task_details/'.$data['task_id']);
 })->add($mw);
+
+$app->get('/task/profile', function (Request $request, Response $response) {
+    //var_dump(\App\Utility::test());
+    //die();
+    $mapper = new \App\TaskMapper($this->db);
+    $mapper_member = new \App\MemberMapper($this->db);
+    $msg = $this->flash->getMessages();
+    return $this->view->render($response, 'admin_profile.twig',['message'=>$msg]);
+})->add($mw);
+
+$app->post('/task/profile_update', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    //var_dump($data); die();
+    //var_dump($data); die();
+    $mapper = new \App\TaskMapper($this->db);
+    $sql=$mapper->profileUpdate($data);
+    //var_dump($sql); die();
+    $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
+    //$this->flash->addMessage('update_message', 'Successfuly updated !!!');
+    return $response->withRedirect('/task/profile');
+});
 
