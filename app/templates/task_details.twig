@@ -24,7 +24,7 @@
 
                 {% elseif session.user.0.role=='Member' %}
                     <form action="/task/taskm_status" method="post">
-                        <div class="col-lg-8">
+                        <div class="col-lg-5">
                             {%  if details.status==1%}
                                 Completed
                             {%  else %}
@@ -35,13 +35,21 @@
                                 <option value="5">Invalid</option>
                             </select>
                         </div>
-                            <div class="col-lg-4">
-                                <input type="hidden" name="task_id" value="{{ details.task_id }}">
-                                <input type="submit" class="btn btn-success">
-                            </div>
+
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" name="site_url" placeholder="Site URL" required>
+                        </div>
+
+                        <div class="col-md-2">
+                            <input type="hidden" name="task_id" value="{{ details.task_id }}">
+                            <input type="submit" class="btn btn-success">
+                        </div>
+
+
                         {% endif %}
                     </form>
                 {% endif %}
+
             </div>
         </div>
     </div>
@@ -57,6 +65,10 @@
                 <option value="2">Incomplete</option>
             </select>
         </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" name="site_url" placeholder="Site URL" required>
+        </div>
+
         <div class="col-md-1">
             <input type="hidden" name="task_id" value="{{ details.task_id }}">
             <input type="submit" class="btn btn-success">
@@ -183,18 +195,25 @@
                 </tr>
 
                 <tr>
+                    <td style="width:200px"><b>Site Url:</b></td>
+                    <td>
+                        {{ details.site_url ? details.site_url : 'N/A' }}
+                    </td>
+                </tr>
+
+                <tr>
                     <td style="width:200px"><b>Task Status:</b></td>
                     <td>
                         {% if  details.status==1 %}
-                            <span class="text-success text-uppercase"> Complete </span>
+                            <span class="text-success text-uppercase" style="color:#46af48;font-weight:600">Complete </span>
                         {% elseif details.status==2 %}
-                            <span class="text-danger text-uppercase"> Incomplete </span>
+                            <span class="text-danger text-uppercase" style="color: #e82f21;font-weight:600"> Incomplete </span>
                         {% elseif details.status==3 %}
-                            <span class="text-warning text-uppercase">Pending </span>
+                            <span class="text-warning text-uppercase" style="color: #e82f21;font-weight:600">Pending </span>
                         {% elseif details.status==4 %}
-                            <span class="text-primary text-uppercase">Done </span>
+                            <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Done </span>
                         {% elseif details.status==5 %}
-                            <span class="text-default text-uppercase">Invalid </span>
+                            <span class="text-default text-uppercase" style="color: #e82f21;font-weight:600">Invalid </span>
                         {% endif %}
                     </td>
                 </tr>

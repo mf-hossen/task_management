@@ -10,26 +10,9 @@
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
                 </a>
 
-                <!-- Button trigger modal -->
-                <a href="" data-toggle="modal" data-target="#myModal" class="btn btn-info btn-group  text-uppercase">
-                    <span type="button" class="glyphicon glyphicon-search"></span> Search
-                </a>
 
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <span aria-hidden="true" class="close" data-dismiss="modal" aria-label="Close">&times;</span>
-                            </div>
+            <a class="btn btn-primary" data-toggle="modal" href="#modal-id">Search Task</a>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Search</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
         </div>
@@ -43,7 +26,7 @@
     <form action="/task/admin_status" method="post">
     <div class="row">
         <div class="col-md-4">
-            <select name="status" id="inputID" class="form-control" required>
+            <select name="status" id="inputID" class="form-control">
                 <option value=""> -- Select Status --</option>
                 <option value="1">Complete</option>
                 <option value="2">Incomplete</option>
@@ -67,6 +50,7 @@
                     <th>Assign To</th>
                     <th>Task Type</th>
                     <th>Status</th>
+                    <th>Site URL</th>
                     <th>Assign Date</th>
 
 
@@ -97,18 +81,20 @@
                         </td>
                         <td>
                             {% if  tasks.status==1 %}
-                                <span class="text-success text-uppercase"> Complete </span>
+                                <span class="text-success text-uppercase" style="color:#46af48;font-weight:600">Complete </span>
                             {% elseif tasks.status==2 %}
-                                <span class="text-danger text-uppercase"> Incomplete </span>
+                                <span class="text-danger text-uppercase" style="color: #e82f21;font-weight:600"> Incomplete </span>
                             {% elseif tasks.status==3 %}
-                                <span class="text-warning text-uppercase">Pending </span>
+                                <span class="text-warning text-uppercase" style="color: #FFA07A;font-weight:600">Pending </span>
                             {% elseif tasks.status==4 %}
-                                <span class="text-primary text-uppercase">Done </span>
+                                <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Done </span>
                             {% elseif tasks.status==5 %}
-                                <span class="text-default text-uppercase">Invalid </span>
+                                <span class="text-default text-uppercase" style="color: #e82f21;font-weight:600">Invalid </span>
                             {% endif %}
 
                         </td>
+
+                        <td>{{ tasks.site_url |raw}}</td>
                         <td>{{ tasks.created_at|date('d M, Y') }}</td>
 
 
@@ -130,5 +116,97 @@
             </table>
         </div>
     </div>
+          <div class="modal fade" id="modal-id">
+              <div class="modal-dialog">
+                  <form action="" method="get">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title">Search Task</h4>
+                          </div>
+                          <div class="modal-body">
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="">Client ID</label>
+                                          <input type="number" class="form-control" name="client_id" id="" placeholder="Client ID">
+                                      </div>
+
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="">Member</label>
+                                          <select class="form-control" name="member_id" id="member">
+                                              <option value="">Choose member</option>
+                                              {% for members in mem %}
+                                                  <option value="{{ members.id }}">{{ members.first_name }}</option>
+                                              {% endfor %}
+                                          </select>
+                                      </div>
+
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="">Created Date</label>
+                                          <input type="date" class="form-control" name="created_date" id="" placeholder="Created Date">
+                                      </div>
+
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="">Priority</label>
+                                          <select class="form-control" name="priority">
+                                              <option value="">Choose Prirority</option>
+                                              <option value="1">High</option>
+                                              <option value="2">Medium</option>
+                                              <option value="2">Low</option>
+                                          </select>
+
+                                      </div>
+
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="">Status</label>
+                                          <select class="form-control" name="task_status" id="task_type">
+                                              <option value="">Choose Status</option>
+                                              <option value="1">Complete</option>
+                                              <option value="2">Incomplete</option>
+                                              <option value="3">Pending</option>
+                                              <option value="4">Done</option>
+                                              <option value="5">Invalid</option>
+                                          </select>
+
+                                      </div>
+
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label for="">Type</label>
+                                          <select class="form-control" name="task_type" id="task_type">
+                                              <option value="">Choose Type</option>
+                                              <option value="1">Edit</option>
+                                              <option value="2">Redesign</option>
+                                              <option value="3">New</option>
+                                          </select>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Search</button>
+                          </div>
+                      </div><!-- /.modal-content -->
+                  </form>
+              </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
     {% endif %}
 {% endblock %}

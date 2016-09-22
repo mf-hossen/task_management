@@ -13,89 +13,107 @@
     {%  if task is empty %}
         There has no task
     {% else %}
-    <form action="/task/members_status" method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <select name="status" id="inputID" class="form-control" required>
-                    <option value=""> -- Select One --</option>
-                    <option value="3">Pending</option>
-                    <option value="4">Done</option>
-                    <option value="5">Invalid</option>
-                </select>
+        <form action="/task/members_status" method="post">
+            <div class="row" id="assignForm">
+                <div class="col-md-4">
+                    <select name="status" id="inputID" class="form-control" required>
+                        <option value=""> -- Select Status --</option>
+                        <option value="3">Pending</option>
+                        <option value="4">Done</option>
+                        <option value="5">Invalid</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="site_url" placeholder="Site URL" required>
+                </div>
+
+                <div class="col-md-1">
+                    <input type="submit" class="btn btn-success">
+                </div>
             </div>
-            <div class="col-md-1">
-                <input type="submit" class="btn btn-success">
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-lg-12">
+            <br>
+            <div class="row">
+                <div class="col-lg-12">
 
-                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>Client ID</th>
-                        <th>Created By</th>
-                        <th>Task Type</th>
-                        <th>Status</th>
-                        <th>Assign Date</th>
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Client ID</th>
+                            <th>Created By</th>
+                            <th>Task Type</th>
+                            <th>Status</th>
+                            <th>Assign Date</th>
 
 
-                        <th style="text-align: right">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for tasks in task %}
-                        <tr class="odd gradeX">
-                            <td>
-                                {% if  tasks.status==1 or tasks.status==4 %}
-                                {% else %}
-                                    <input type="checkbox" name="task_id[]" value="{{ tasks.task_id }}" >
-                                {% endif %}
-
-                            </td>
-                            <td>{{ tasks.client_id }}</td>
-                            <td>{{ tasks.users_full_name }}</td>
-                            <td>
-                                {% if  tasks.task_type==1 %}
-                                    <span class="label label-success"> Edit </span>
-                                {% elseif tasks.task_type==2 %}
-                                    <span class="label label-primary"> Redesign </span>
-                                {% elseif tasks.task_type==3 %}
-                                    <span class="label label-info">New </span>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if  tasks.status==1 %}
-                                    <span class="text-success text-uppercase"> Complete </span>
-                                {% elseif tasks.status==2 %}
-                                    <span class="text-danger text-uppercase"> Incomplete </span>
-                                {% elseif tasks.status==3 %}
-                                    <span class="text-warning text-uppercase">Pending </span>
-                                {% elseif tasks.status==4 %}
-                                    <span class="text-primary text-uppercase">Done </span>
-                                {% elseif tasks.status==5 %}
-                                    <span class="text-default text-uppercase">Invalid </span>
-                                {% endif %}
-
-                            </td>
-                            <td>{{ tasks.created_at|date('d M, Y') }}</td>
-
-
-                            <td style="text-align: right">
-                                <a href="/task/task_details/{{ tasks.task_id }}"><span
-                                            class="glyphicon glyphicon-eye-open"
-                                            data-toggle="tooltip" title="Details"></span></a>
-
-                            </td>
+                            <th style="text-align: right">Action</th>
                         </tr>
-                    {% endfor %}
+                        </thead>
+                        <tbody>
+                        {% for tasks in task %}
+                            <tr class="odd gradeX">
+                                <td>
+                                    {% if  tasks.status==1 or tasks.status==4 %}
+                                    {% else %}
+                                        <input type="checkbox" name="task_id[]" value="{{ tasks.task_id }}"  class="assign" >
+                                    {% endif %}
 
-                    </tbody>
-                </table>
+                                </td>
+                                <td>{{ tasks.client_id }}</td>
+                                <td>{{ tasks.users_full_name }}</td>
+                                <td>
+                                    {% if  tasks.task_type==1 %}
+                                        <span class="label label-success"> Edit </span>
+                                    {% elseif tasks.task_type==2 %}
+                                        <span class="label label-primary"> Redesign </span>
+                                    {% elseif tasks.task_type==3 %}
+                                        <span class="label label-info">New </span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if  tasks.status==1 %}
+                                        <span class="text-success text-uppercase" style="color:#46af48;font-weight:600">Complete </span>
+                                    {% elseif tasks.status==2 %}
+                                        <span class="text-danger text-uppercase" style="color: #e82f21;font-weight:600"> Incomplete </span>
+                                    {% elseif tasks.status==3 %}
+                                        <span class="text-warning text-uppercase" style="color: #e82f21;font-weight:600">Pending </span>
+                                    {% elseif tasks.status==4 %}
+                                        <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Done </span>
+                                    {% elseif tasks.status==5 %}
+                                        <span class="text-default text-uppercase" style="color: #e82f21;font-weight:600">Invalid </span>
+                                    {% endif %}
+
+                                </td>
+                                <td>{{ tasks.created_at|date('d M, Y') }}</td>
+
+
+                                <td style="text-align: right">
+                                    <a href="/task/task_details/{{ tasks.task_id }}"><span
+                                                class="glyphicon glyphicon-eye-open"
+                                                data-toggle="tooltip" title="Details"></span></a>
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
     {% endif %}
+{% endblock %}
+{% block jsBottom %}
+    <script>
+        $('#assignForm').hide();
+
+        $('.assign').change(function () {
+            if ($(this).prop("checked")) {
+                $('#assignForm').show();
+            }/* else {
+             $('#assignForm').hide();
+             }*/
+        });
+    </script>
+
 {% endblock %}

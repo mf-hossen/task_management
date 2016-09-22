@@ -29,6 +29,7 @@ $app->post('/task/insert', function (Request $request, Response $response) {
         $newfile->moveTo("attached/$uploadFileName");
     }
     $mapper = new \App\TaskMapper($this->db);
+
     $lastId = $mapper->addTask($data);
     $mapper->addttached($filePath,$lastId);
     $this->flash->addMessage('success', 'Task is assigned!!!');
@@ -38,15 +39,21 @@ $app->post('/task/insert', function (Request $request, Response $response) {
 
 $app->get('/task/list[/{type}]', function (Request $request, Response $response) {
     //$dateType = $request->get('date_type');
+    $queryParams = $request->getQueryParams();
+    //var_dump($queryParams);
+    //die();
     $dateType = $request->getAttribute('type');
+
+    $mapper_member = new \App\MemberMapper($this->db);
+    $member=$mapper_member->getUser();
 
     $mapper = new \App\TaskMapper($this->db);
     if ($dateType == 'today') {
         $typeTitle = 'TODAY';
-        $task = $mapper->getTodayTask();
+        $task = $mapper->getTodayTask($queryParams);
     } elseif($dateType == 'all') {
         $typeTitle = 'ALL';
-        $task=$mapper->getTask();
+        $task=$mapper->getTask($queryParams);
         //var_dump($task); die();
     }elseif($dateType == 'complete'){
         $typeTitle = 'COMPLETE';
@@ -55,8 +62,9 @@ $app->get('/task/list[/{type}]', function (Request $request, Response $response)
         $typeTitle = 'PENDING';
         $task=$mapper->getPendingTask();
     }
+
     $delete_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'message'=>$delete_message , 'typeTitle' => $typeTitle]);
+    $response = $this->view->render($response, "tasklist.twig",['task'=>$task,'message'=>$delete_message , 'typeTitle' => $typeTitle , 'mem'=>$member,]);
     return $response;
 })->add($mw);
 
@@ -96,6 +104,7 @@ $app->get('/task/members_task_list[/{type}]', function (Request $request, Respon
         $task=$mapper->memberAllTask();
         //var_dump($task); die();
     }
+
     $status_message = $this->flash->getMessages();
     $response = $this->view->render($response, "member_tasklist.twig",['task'=>$task, 'message'=>$status_message]);
     return $response;
@@ -145,12 +154,23 @@ $app->get('/task/task_update/{id}', function(Request $request, Response $respons
     return $response;
 })->add($mw);
 
+$app->post('/task/update', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    //var_dump($data); die();
+    $mapper = new \App\TaskMapper($this->db);
+    $sql=$mapper->editTask($data);
+    //var_dump($sql); die();
+    $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
+    //$this->flash->addMessage('update_message', 'Successfuly updated !!!');
+    return $response->withRedirect('/task/list/all');
+});
+
 $app->get('/task/task_delete/{id}', function(Request $request, Response $response) {
     $id = $request->getAttribute('id');
     $mapper = new \App\TaskMapper($this->db);
     $mapper->taskDelete($id);
     $this->flash->addMessage('error', 'Task is Deleted!!!');
-    return $response->withRedirect('/task/list');
+    return $response->withRedirect('/task/list/all');
 })->add($mw);
 
 $app->get('/task/attached/{id}', function(Request $request, Response $response) {
