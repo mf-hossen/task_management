@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 <label for="member">Assign To</label>
                                 <select class="form-control" name="member_id" id="member" required>
-                                    <option value="">Choose member</option>
+                                    <option value="" class="disabled">Choose member</option>
                                     {% for members in mem %}
                                         <option value="{{ members.id }}">{{ members.first_name }}</option>
                                     {% endfor %}
@@ -67,7 +67,7 @@
                             <div class="form-group">
                                 <label for="task_type">Task Type</label>
                                 <select class="form-control" name="task_type" id="task_type" required>
-                                    <option value="">Choose Type</option>
+                                    <option value="" class="disabled">Choose Type</option>
                                     <option value="1">Edit</option>
                                     <option value="2">Redesign</option>
                                     <option value="3">New</option>
@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 <label for="task_type">Priority</label>
                                 <select class="form-control" name="priority" id="priority" required>
-                                    <option value="">Choose Level</option>
+                                    <option value="" class="disabled">Choose Level</option>
                                     <option value="1">High</option>
                                     <option value="2">Regular</option>
                                 </select>
