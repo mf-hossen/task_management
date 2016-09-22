@@ -19,7 +19,7 @@ $app->get('/task/create', function (Request $request, Response $response) {
 $app->post('/task/insert', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     //$map = new \App\TaskMapper($this->db);
-    $files = $request->getUploadedFiles();
+    /*$files = $request->getUploadedFiles();
     $newfile = $files['attached'];
     $uploadFileName = $newfile->getClientFilename();
     if ($newfile->getError() === UPLOAD_ERR_OK) {
@@ -27,11 +27,11 @@ $app->post('/task/insert', function (Request $request, Response $response) {
         //var_dump($uploadFileName);die();
         $filePath = "attached/$uploadFileName";
         $newfile->moveTo("attached/$uploadFileName");
-    }
+    }*/
     $mapper = new \App\TaskMapper($this->db);
 
     $lastId = $mapper->addTask($data);
-    $mapper->addttached($filePath,$lastId);
+    //$mapper->addttached($filePath,$lastId);
     $this->flash->addMessage('success', 'Task is assigned!!!');
     //return $response->withRedirect('/task/attached/' . $lastId);
     return $response->withRedirect('/task/task_details/' . $lastId);
