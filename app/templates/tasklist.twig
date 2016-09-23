@@ -26,7 +26,7 @@
 
       {% else %}
     <form action="/task/admin_status" method="post">
-    <div class="row">
+    <div class="row"  id="assignForm">
         <div class="col-md-4">
             <select name="status" id="inputID" class="form-control">
                 <option value=""> -- Select Status --</option>
@@ -62,13 +62,12 @@
                 </tr>
                 </thead>
                 <tbody>
-          {{ dump(task) }}
                 {% for tasks in task %}
                     <tr class="odd gradeX">
                         <td>
 
                             {% if  tasks.status==4 %}
-                                <input type="checkbox" name="task_id[]" value="{{ tasks.task_id }}">
+                                <input type="checkbox" name="task_id[]" value="{{ tasks.task_id }}" class="assign" >
                             {% endif %}
 
                         </td>
@@ -135,7 +134,7 @@
                                   <div class="col-md-6">
                                       <div class="form-group">
                                           <label for="">Client ID</label>
-                                          <input type="number" class="form-control" name="client_id" id="" placeholder="Client ID">
+                                          <input type="number" class="form-control" name="client_id" id="" placeholder="Client ID" class="assign">
                                       </div>
 
                                   </div>
@@ -214,4 +213,17 @@
           </div><!-- /.modal -->
 
     {% endif %}
+{% endblock %}
+{% block jsBottom %}
+<script>
+    $('#assignForm').hide();
+
+    $('.assign').change(function () {
+        if ($(this).prop("checked")) {
+            $('#assignForm').show();
+        }/* else {
+         $('#assignForm').hide();
+         }*/
+    });
+</script>
 {% endblock %}
