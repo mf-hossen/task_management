@@ -500,17 +500,16 @@ class TaskMapper extends Mapper
             $stmt = $this->db->prepare("INSERT INTO comments (
             comments,
             task_id,
-            user_id,
-            username)VALUES (
+            user_id
+           )VALUES (
             :commennts,
             :task_id,
-            :user_id,
-            :username)");
+            :user_id
+            )");
 
             $stmt->bindParam(':commennts', ucfirst($data['comments']));
             $stmt->bindParam(':task_id', $data['task_id']);
             $stmt->bindParam(':user_id',$data['user_id']);
-            $stmt->bindParam(':username',$data['username']);
             $stmt->execute();
             return $this->db->lastInsertId();
         } catch (Exception $e) {
