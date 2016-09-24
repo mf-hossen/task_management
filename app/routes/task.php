@@ -5,20 +5,18 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 $app->group('/task', function () {
 
-
+    /**
+     * Create task
+     */
     $this->get('/create', function (Request $request, Response $response) {
-        //var_dump(\App\Utility::test());
-        //die();
-        $mapper = new \App\TaskMapper($this->db);
         $mapper_member = new \App\MemberMapper($this->db);
         $member = $mapper_member->getUser();
-        //var_dump($member); die();
         $msg = $this->flash->getMessages();
 
-        return $this->view->render($response, 'task.twig', ['mem' => $member, 'message' => $msg]);
+        return $this->view->render($response, 'admin/task/create.twig', ['mem' => $member, 'message' => $msg]);
     });
 
-    $this->post('/insert', function (Request $request, Response $response) {
+    $this->post('/add', function (Request $request, Response $response) {
         $data = $request->getParsedBody();
         //$map = new \App\TaskMapper($this->db);
         /*$files = $request->getUploadedFiles();
