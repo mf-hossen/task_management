@@ -31,9 +31,11 @@
         <div class="alert alert-success alert-dismissible" role="alert">
 
             {% if(typeTitle == 'ALL') %}
-                <a href="/task/list/today" class="btn btn-danger pull-right" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times; CLOSE </span></a>
+                <a href="/task/list/today" class="btn btn-danger pull-right" data-dismiss="alert"
+                   aria-label="Close"><span aria-hidden="true">&times; CLOSE </span></a>
             {% elseif(typeTitle == 'TODAY') %}
-                <a href="/task/list" class="btn btn-danger pull-right" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times; CLOSE </span></a>
+                <a href="/task/list" class="btn btn-danger pull-right" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times; CLOSE </span></a>
             {% endif %}
 
             <p class="text-primary">Search By:</p>
@@ -66,11 +68,10 @@
             <div class="col-md-1">
                 <input type="submit" class="btn btn-success">
             </div>
+            <br>
 
-            {#<h4>Total Searched:</h4>#}
         </div>
 
-        <br>
 
         <div class="row">
         <div class="col-lg-12">
