@@ -196,7 +196,7 @@ $app->group('/task', function () {
         $id = $request->getAttribute('id');
         $mapper = new \App\TaskMapper($this->db);
         $details_data = $mapper->taskDetails($id);
-        $response = $this->view->render($response, "attach.twig", ['details' => $details_data]);
+        $response = $this->view->render($response, "admin/task/attach.twig", ['details' => $details_data]);
 
         return $response;
     });
