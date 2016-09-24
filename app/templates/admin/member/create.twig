@@ -1,10 +1,10 @@
-{% extends 'layout.twig' %}
+{% extends 'layout/common.twig' %}
 {% block title %} Create Member{% endblock %}
 {% block contant_wrapper %}
 
     <div class="row">
         <div class="col-md-12">
-            <h4 class="pull-left text-uppercase">Create New Member</h4>
+            <h3 class="pull-left text-uppercase title text-uppercase">Create New Member</h3>
             <div class="pull-right btn-toolbar">
                 <a href="/member-list" class="btn btn-info btn-group  text-uppercase">
                     <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Member List
@@ -15,46 +15,45 @@
     <hr>
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <form class="" role="form" action="/member-create" method="post" enctype="multipart/form-data">
+        <div class="col-md-8">
+            <form class="" role="form" action="/member/add" method="post">
                 <fieldset>
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group ">
                                 <label for="first_name">First Name</label>
                                 <input type="text" name="first_name" class="form-control" id="first_name"
-                                       placeholder="First Name" required>
+                                       placeholder="First Name" required tabindex="1">
                             </div>
 
                             <div class="form-group ">
                                 <label for="username">User Name</label>
                                 <input type="text" name="username" class="form-control" id="username"
-                                       placeholder="User Name" required>
+                                       placeholder="User Name" required tabindex="3">
                             </div>
 
                             <div class="form-group ">
                                 <label for="password">Password</label>
                                 <input type="password" name="password" class="form-control" id="password"
-                                       placeholder="password" required>
+                                       placeholder="password" required tabindex="5">
                             </div>
 
                             <div class="form-group ">
                                 <label for="salck_username">Slack User Name</label>
                                 <input type="text" name="salck_username" class="form-control" id="salck_username"
-                                       placeholder="Slack User Name" required>
+                                       placeholder="Slack User Name" tabindex="7">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group ">
                                 <label for="last_name">Last Name</label>
                                 <input type="text" name="last_name" class="form-control" id="last_name"
-                                       placeholder="First Name" required>
+                                       placeholder="First Name" required tabindex="2">
                             </div>
 
                             <div class="form-group">
                                 <label for="role">Role</label>
-                                <select class="form-control" name="role" id="role" required>
+                                <select class="form-control" name="role" id="role" required tabindex="4">
                                     <option value="">Choose Type</option>
                                     <option value="Admin">Admin</option>
                                     <option value="Member">Member</option>
@@ -64,7 +63,7 @@
                             <div class="form-group ">
                                 <label for="password">Confirm Password</label>
                                 <input type="password" name="confirm_password" class="form-control" id="password"
-                                       placeholder="Confirm password" required>
+                                       placeholder="Confirm password" required tabindex="6">
                             </div>
                         </div>
                     </div>
