@@ -1,5 +1,5 @@
 {% extends 'layout/common.twig' %}
-{% block title %} Create Task{% endblock %}
+{% block title %} Edit Task{% endblock %}
 {% block contant_wrapper %}
     <div class="row">
         <div class="col-md-12">
@@ -113,4 +113,30 @@
             </form>
         </div>
     </div>
+{% endblock %}
+
+
+{% block jsBottom %}
+    <!-- include summernote css/js-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote();
+        });
+
+        $('#summernote').summernote({
+            height: 300,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true,                  // set focus to editable area after initializing summernote
+
+        });
+    </script>
+
+{% endblock %}
+
+{% block cssTop %}
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+
 {% endblock %}
