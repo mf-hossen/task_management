@@ -37,8 +37,8 @@
     </ul>
 
     {% if session.user.0.role== 'Admin' %}
-        {% include 'sidebar/admin.twig' %}
+        {% include '/sidebar/admin.twig' %}
     {% elseif session.user.0.role== 'Member' %}
-        {% include 'sidebar/member.twig' %}
+        {% include '/sidebar/member.twig' %}
     {% endif %}
 </nav>
