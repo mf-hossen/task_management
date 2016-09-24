@@ -122,14 +122,14 @@ $app->group('/task', function () {
         return $response;
     });
 
-    $this->get('/task_details/{id}', function (Request $request, Response $response) {
+    $this->get('/{id:[0-9]+}', function (Request $request, Response $response) {
         $id = $request->getAttribute('id');
         $mapper = new \App\TaskMapper($this->db);
         $details_data = $mapper->taskDetails($id);
         $att = $mapper->getAttacched($id);
         $create_message = $this->flash->getMessages();
         $all_comments = $mapper->getAllComments($id);
-        $response = $this->view->render($response, "task_details.twig", [
+        $response = $this->view->render($response, "common/task/view.twig", [
             'details' => $details_data,
             'attached' => $att,
             'message' => $create_message,
