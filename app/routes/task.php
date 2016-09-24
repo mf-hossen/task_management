@@ -159,13 +159,13 @@ $app->group('/task', function () {
     });
 
 
-    $this->get('/task_update/{id}', function (Request $request, Response $response) {
+    $this->get('/edit/{id}', function (Request $request, Response $response) {
         $id = $request->getAttribute('id');
         $mapper = new \App\TaskMapper($this->db);
         $mapper_member = new \App\MemberMapper($this->db);
         $member = $mapper_member->getMember();
         $update_data = $mapper->getTaskId($id);
-        $response = $this->view->render($response, "task_update.twig",
+        $response = $this->view->render($response, "admin/task/edit.twig",
             ['update_data' => $update_data, 'member' => $member]);
 
         return $response;
@@ -180,7 +180,7 @@ $app->group('/task', function () {
         $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
 
         //$this->flash->addMessage('update_message', 'Successfuly updated !!!');
-        return $response->withRedirect('/task/task_details/' . $sql);
+        return $response->withRedirect('/task/view/' . $sql);
     });
 
     $this->get('/task_delete/{id}', function (Request $request, Response $response) {

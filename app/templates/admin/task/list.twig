@@ -62,7 +62,6 @@
         {% for tasks in task %}
             <tr class="odd gradeX">
                 <td>
-
                     {% if  tasks.status==4 %}
                         <input type="checkbox" name="task_id[]" value="{{ tasks.task_id }}" class="assign">
                     {% endif %}
@@ -104,7 +103,7 @@
                 <a href="/task/view/{{ tasks.task_id }}">
                     <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="Details"></span>
                 </a>
-                <a href="/task/task_update/{{ tasks.task_id }}">
+                <a href="/task/edit/{{ tasks.task_id }}">
                     <span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit" style="color: grey"></span>
                 </a>
                 <a href="/task/task_delete/{{ tasks.task_id }}">
