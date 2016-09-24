@@ -34,6 +34,7 @@ $app->group('/member', function () {
                 $mapper = new \App\UserMapper($this->db);
                 $lastID = $mapper->createUser($data);
                 $this->flash->addMessage('success', 'New Member has beed created!!');
+
                 return $response->withStatus(302)->withHeader('Location', '/member/list');
             } else {
                 $this->flash->addMessage('error', 'Password don\'t match');

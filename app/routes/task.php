@@ -45,9 +45,9 @@ $app->group('/task', function () {
         return $response->withRedirect('/task/view/' . $lastId);
     });
 
-    $this->get('/list[/{type}]', function (Request $request, Response $response , $arg) {
+    $this->get('/list[/{type}]', function (Request $request, Response $response, $arg) {
         $queryParams = $request->getQueryParams();
-        $dateType = $request->getAttribute('type' , 'all');
+        $dateType = $request->getAttribute('type', 'all');
 
         $mapper_member = new \App\MemberMapper($this->db);
         $member = $mapper_member->getUser();
@@ -70,7 +70,13 @@ $app->group('/task', function () {
 
         $update_message = $this->flash->getMessages();
         $response = $this->view->render($response, "admin/task/list.twig",
-            ['task' => $task, 'query' => $queryParams , 'message' => $update_message, 'typeTitle' => $typeTitle, 'mem' => $member,]);
+            [
+                'task' => $task,
+                'query' => $queryParams,
+                'message' => $update_message,
+                'typeTitle' => $typeTitle,
+                'mem' => $member,
+            ]);
 
         return $response;
     });
