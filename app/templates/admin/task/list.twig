@@ -11,13 +11,13 @@
                 </a>
                 <a class="btn btn-primary" data-toggle="modal" href="#modal-id">Search Task</a>
             </div>
-        </div>
+        </div>  
     </div>
     <hr>
     {% if task is empty %}
         <div class="row">
-        <div class="col-md-4" style="font-size: 20px; color: red">There has no task</div>
-        <div class="col-md-4"><a href="/task/list/all"><span class="btn btn-success text-uppercase">Back To List</span></a>
+            <div class="col-md-4" style="font-size: 20px; color: red">There has no task</div>
+            <div class="col-md-4"><a href="/task/list/all"><span class="btn btn-success text-uppercase">Back To List</span></a>
         </div>
 
 
@@ -104,10 +104,12 @@
                     <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" title="Details"></span>
                 </a>
                 <a href="/task/edit/{{ tasks.task_id }}">
-                    <span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit" style="color: grey"></span>
+                    <span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit"
+                          style="color: grey"></span>
                 </a>
                 <a href="/task/task_delete/{{ tasks.task_id }}">
-                    <span class="glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove" style="color: red"></span>
+                    <span class="glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove"
+                          style="color: red"></span>
                 </a>
             </td>
             </tr>
