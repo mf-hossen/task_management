@@ -70,7 +70,7 @@ $app->group('/task', function () {
 
         $update_message = $this->flash->getMessages();
         $response = $this->view->render($response, "admin/task/list.twig",
-            ['task' => $task, 'message' => $update_message, 'typeTitle' => $typeTitle, 'mem' => $member,]);
+            ['task' => $task, 'query' => $queryParams , 'message' => $update_message, 'typeTitle' => $typeTitle, 'mem' => $member,]);
 
         return $response;
     });

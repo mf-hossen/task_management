@@ -18,3 +18,7 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
+.title{
+    color: #337ab7;
+    font-weight: bold;
+}
