@@ -36,3 +36,29 @@ $app->get('/logout', function (Request $request, Response $response) {
     return $response->withStatus(302)->withHeader('Location', '/login');
 
 });
+
+$app->get('/settings', function (Request $request, Response $response) {
+    $msg = $this->flash->getMessages();
+    return $this->view->render($response, '/common/settings/profile.twig', ['message' => $msg]);
+})->add($mw);
+
+$app->post('/update-settings', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    if (strlen($data['password']) >= 6) {
+        if ($data['password'] == $data['confirm_password']) {
+            $mapper = new \App\taskMapper($this->db);
+            $mapper->profileUpdate($data);
+            $this->flash->addMessage('success', 'User settings has been changed!!');
+
+            return $response->withStatus(302)->withHeader('Location', '/settings');
+        } else {
+            $this->flash->addMessage('error', 'Password don\'t match');
+
+            return $response->withStatus(302)->withHeader('Location', '/settings');
+        }
+    } else {
+        $this->flash->addMessage('error', 'Password should be minimume six character');
+
+        return $response->withStatus(302)->withHeader('Location', '/settings');
+    }
+})->add($mw);

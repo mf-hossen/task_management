@@ -261,10 +261,8 @@ $app->group('/task', function () {
 
     $this->post('/taska_status', function (Request $request, Response $response) {
         $data = $request->getParsedBody();
-        //var_dump($data); die();
         $mapper = new \App\TaskMapper($this->db);
         $sql = $mapper->updateTaskStatus($data);
-        //var_dump($sql); die();
         $this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
 
         return $response->withRedirect('/task/list/today');
@@ -289,42 +287,5 @@ $app->group('/task', function () {
         return $response->withRedirect('/task/task_details/' . $data['task_id']);
     });
 
-    $this->get('/profile', function (Request $request, Response $response) {
-        //var_dump(\App\Utility::test());
-        //die();
-        $mapper = new \App\TaskMapper($this->db);
-        $mapper_member = new \App\MemberMapper($this->db);
-        $msg = $this->flash->getMessages();
 
-        return $this->view->render($response, 'admin_profile.twig', ['message' => $msg]);
-    });
-
-    $this->post('/profile_update', function (Request $request, Response $response) {
-        $data = $request->getParsedBody();
-        //var_dump($data); die();
-        $data = $request->getParsedBody();
-        $map = new \App\TaskMapper($this->db);
-        if (strlen($data['password']) >= 6) {
-            if ($data['password'] == $data['confirm_password']) {
-                $mapper = new \App\taskMapper($this->db);
-                $mapper->profileUpdate($data);
-                $this->flash->addMessage('success', 'Password has been changed!!');
-
-                return $response->withStatus(302)->withHeader('Location', '/task/profile');
-            } else {
-                $this->flash->addMessage('error', 'Password don\'t match');
-
-                return $response->withStatus(302)->withHeader('Location', '/task/profile');
-            }
-        } else {
-            $this->flash->addMessage('error', 'Password should be minimume six character');
-
-            return $response->withStatus(302)->withHeader('Location', '/task/profile');
-        }
-        //var_dump($sql); die();
-        //$this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
-        //$this->flash->addMessage('update_message', 'Successfuly updated !!!');
-        //return $response->withRedirect('/task/profile');
-    });
-
-})->add($mw);;
+})->add($mw);
