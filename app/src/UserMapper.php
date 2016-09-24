@@ -83,7 +83,7 @@
         {
             $sql = "SELECT * FROM users WHERE id='$id'";
             $stmt = $this->db->query($sql);
-            $res= $stmt->fetchAll();
+            $res= $stmt->fetch();
             return $res;
         }
 
@@ -94,7 +94,6 @@
             $last_name = $data['last_name'];
             $username = $data['username'];
             $role = $data['role'];
-            $slack_username = $data['slack_username'];
 
             try{
 
@@ -102,13 +101,12 @@
                   first_name = :first_name,
                   last_name = :last_name,
                   username = :username,
-                  slack_username = :slack_username,
                   role = :role WHERE id = :id
                 ");
                 $stmt->bindParam(':first_name',$first_name);
                 $stmt->bindParam(':last_name',$last_name);
                 $stmt->bindParam(':username',$username);
-                $stmt->bindParam(':slack_username',$slack_username);
+                //$stmt->bindParam(':slack_username',$slack_username);
                 $stmt->bindParam(':role',$role);
                 $stmt->bindParam(':id',$id);
                 $stmt->execute();

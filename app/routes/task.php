@@ -183,7 +183,7 @@ $app->group('/task', function () {
         return $response->withRedirect('/task/view/' . $sql);
     });
 
-    $this->get('/task_delete/{id}', function (Request $request, Response $response) {
+    $this->get('/delete/{id}', function (Request $request, Response $response) {
         $id = $request->getAttribute('id');
         $mapper = new \App\TaskMapper($this->db);
         $mapper->taskDelete($id);

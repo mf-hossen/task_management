@@ -24,7 +24,7 @@
                 <th>Username</th>
                 <th>Role</th>
                 <th>Slack Username</th>
-                <th>Action</th>
+                <th class="text-right">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -35,9 +35,20 @@
                     <td>{{ row.username }}</td>
                     <td>{{ row.role }}</td>
                     <td>{{ row.slack_username }}</td>
-                    <td>
-                        <a href="/member/edit/{{ row.id }}"><span class="fa fa-pencil"></span></a>
-                        <a href="/member/delete/{{ row.id }}"><span class="fa fa-remove"></span></a>
+                    <td class="text-right">
+                        <a href="/member/edit/{{ row.id }}">
+                            <span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit Member"
+                                  style="color: grey"></span>
+                        </a>
+
+                        <a href="/member/delete/{{ row.id }}"
+                           onclick="return confirm('Are you sure you want to delete?')">
+                            <span class="glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove Member"
+                              style="color: red">
+                            </span>
+                        </a>
+
+
                     </td>
                 </tr>
             {% endfor %}

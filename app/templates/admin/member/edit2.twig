@@ -1,4 +1,4 @@
-{% extends 'layout.twig' %}
+{% extends 'layout/common.twig' %}
 
 {% block nav %}
     <div class="navbar-header">
@@ -42,7 +42,7 @@
         <div class="page-header">
             <h1>Update Member Information</h1>
         </div>
-        <form class="form-horizontal" method="post" action="/member-edit">
+        <form class="form-horizontal" method="post" action="/member/update">
             {% for row in data %}
                 <input type="hidden" value="{{ row.id }}" name="id">
             <div class="form-group">

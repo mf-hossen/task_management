@@ -76,7 +76,7 @@ $app->group('/member', function () {
             $mapper = new \App\UserMapper($this->db);
             $data = $mapper->memberListById($id);
 
-            return $this->view->render($response, 'member-edit.twig', ['data' => $data]);
+            return $this->view->render($response, 'admin/member/edit.twig', ['data' => $data]);
         } else {
             $this->flash->addMessage('error', 'Warning!!! You are not authorized to this page');
 
@@ -90,9 +90,9 @@ $app->group('/member', function () {
             $mapper = new \App\UserMapper($this->db);
             $u = $mapper->memberEdit($data);
             if ($u == true) {
-                $this->flash->addMessage('success', 'New Member has beed created!!');
+                $this->flash->addMessage('success', 'Member has updated successfully!!');
 
-                return $response->withStatus(302)->withHeader('Location', '/member-list/' . $data['id'] . '');
+                return $response->withStatus(302)->withHeader('Location', '/member/list');
             }
         } else {
             $this->flash->addMessage('error', 'Warning!!! You are not authorized to this page');
@@ -109,7 +109,7 @@ $app->group('/member', function () {
             if ($u == true) {
                 $this->flash->addMessage('error', ' Member has beed deleted!!');
 
-                return $response->withStatus(302)->withHeader('Location', '/member-list');
+                return $response->withStatus(302)->withHeader('Location', '/member/list');
             }
         } else {
             $this->flash->addMessage('error', 'Warning!!! You are not authorized to this page');
