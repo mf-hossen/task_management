@@ -104,26 +104,59 @@ $app->group('/task', function () {
         //return $response;
     });
 
-
-    $this->get('/members_task_list[/{type}]', function (Request $request, Response $response) {
-        $dateType = $request->getAttribute('type');
+    /**
+     * Start  Member
+     */
+    $this->get('/member/list[/{type}]', function (Request $request, Response $response) {
+        $dateType = $request->getAttribute('type' , 'all');
         $mapper = new \App\TaskMapper($this->db);
         if ($dateType == 'today') {
             $typeTitle = 'TODAY';
 
             $task = $mapper->memberTodayTask();
         } else {
-            $typeTitle = 'All';
+            $typeTitle = 'ALL';
             $task = $mapper->memberAllTask();
-            //var_dump($task); die();
         }
 
         $status_message = $this->flash->getMessages();
-        $response = $this->view->render($response, "member_tasklist.twig",
-            ['task' => $task, 'message' => $status_message]);
+        $response = $this->view->render($response, "member/task.twig",
+            ['task' => $task, 'message' => $status_message , 'typeTitle' => $typeTitle ]);
 
         return $response;
     });
+
+    $this->post('/member/status', function (Request $request, Response $response) {
+        $data = $request->getParsedBody();
+        if (isset($data['task_id'][0])) {
+            $mapper = new \App\TaskMapper($this->db);
+            $sql = $mapper->updateMemberStatus($data);
+            $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
+
+            return $response->withRedirect('/task/members_task_list/today');
+        } else {
+            $this->flash->addMessage('error', 'Please check in task!!!');
+
+            return $response->withRedirect('/task/members_task_list/today');
+        }
+
+    });
+    $this->post('/member/change_status', function (Request $request, Response $response) {
+        $data = $request->getParsedBody();
+        $mapper = new \App\TaskMapper($this->db);
+        $id = $mapper->updateMemTaskStatus($data);
+        $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
+
+        return $response->withRedirect('/task/view/'.$id);
+    });
+
+    /**
+     * End Member
+     */
+
+
+
+
 
     $this->get('/view/{id:[0-9]+}', function (Request $request, Response $response) {
         $id = $request->getAttribute('id');
@@ -224,22 +257,6 @@ $app->group('/task', function () {
     });
 
 
-    $this->post('/members_status', function (Request $request, Response $response) {
-        $data = $request->getParsedBody();
-        // var_dump($data); die();
-        if (isset($data['task_id'][0])) {
-            $mapper = new \App\TaskMapper($this->db);
-            $sql = $mapper->updateMemberStatus($data);
-            $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
-
-            return $response->withRedirect('/task/members_task_list/today');
-        } else {
-            $this->flash->addMessage('error', 'Please check in task!!!');
-
-            return $response->withRedirect('/task/members_task_list/today');
-        }
-
-    });
 
 
     $this->post('/admin_status', function (Request $request, Response $response) {
@@ -268,23 +285,13 @@ $app->group('/task', function () {
         return $response->withRedirect('/task/list/today');
     });
 
-    $this->post('/taskm_status', function (Request $request, Response $response) {
-        $data = $request->getParsedBody();
-        //var_dump($data); die();
-        $mapper = new \App\TaskMapper($this->db);
-        $sql = $mapper->updateMemTaskStatus($data);
-        //var_dump($sql); die();
-        $this->flash->addMessage('update_message', 'Update! Successfuly Updated!!!');
-
-        return $response->withRedirect('/task/members_task_list/today');
-    });
 
     $this->post('/comment', function (Request $request, Response $response) {
         $data = $request->getParsedBody();
         $mapper = new \App\TaskMapper($this->db);
         $mapper->InsertComment($data);
 
-        return $response->withRedirect('/task/task_details/' . $data['task_id']);
+        return $response->withRedirect('/task/view/' . $data['task_id']);
     });
 
 

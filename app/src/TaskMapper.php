@@ -575,14 +575,7 @@ class TaskMapper extends Mapper
 
     public function updateTaskStatus($data)
     {
-        //var_dump($data); die();
         $taskID = $data['task_id'];
-        //$ids = $taskID;
-
-        //var_dump($data['task_id']);
-        //var_dump($data['status']);
-        //var_dump($ids);
-        //die();
         try {
             //var_dump($taskID); die();
 
@@ -604,29 +597,14 @@ class TaskMapper extends Mapper
 
     public function updateMemTaskStatus($data)
     {
-
-
-        //var_dump($data); die();
         $taskID = $data['task_id'];
-        //$ids = $taskID;
-
-        //var_dump($data['task_id']);
-        //var_dump($data['status']);
-        //var_dump($ids);
-        //die();
         try {
-            //var_dump($taskID); die();
-
             $sql = "UPDATE  tasks SET status = :status , site_url = :site_url  WHERE  id ='$taskID'";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':status', $data['status']);
             $stmt->bindParam(':site_url', $data['site_url']);
-            //$stmt->bindParam(':ids',$ids);
             $stmt->execute();
-
-            // var_dump($stmt->debugDumpParams()); die();
-
-            return true;
+            return $taskID;
 
         } catch (Exception $e) {
             throw $e;

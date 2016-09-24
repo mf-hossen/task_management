@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h4 class="pull-left text-uppercase">Task Details</h4>
+            <h4 class="pull-left text-uppercase title">Task Details</h4>
             <div class="pull-right btn-toolbar">
                 {% if session.user.0.role=='Admin' %}
                     <a href="/task/create" class="btn btn-info btn-group  text-uppercase">
@@ -23,7 +23,7 @@
                     </a>
 
                 {% elseif session.user.0.role=='Member' %}
-                    <form action="/task/taskm_status" method="post">
+                    <form action="/task/member/change_status" method="post">
                         <div class="col-lg-5">
                             {% if details.status==1 %}
                             Completed
