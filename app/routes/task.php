@@ -42,15 +42,12 @@ $app->group('/task', function () {
         $this->flash->addMessage('success', 'Task is assigned!!!');
 
         //return $response->withRedirect('/task/attached/' . $lastId);
-        return $response->withRedirect('/task/task_details/' . $lastId);
+        return $response->withRedirect('/task/view/' . $lastId);
     });
 
-    $this->get('/list[/{type}]', function (Request $request, Response $response) {
-        //$dateType = $request->get('date_type');
+    $this->get('/list[/{type}]', function (Request $request, Response $response , $arg) {
         $queryParams = $request->getQueryParams();
-        //var_dump($queryParams);
-        //die();
-        $dateType = $request->getAttribute('type');
+        $dateType = $request->getAttribute('type' , 'all');
 
         $mapper_member = new \App\MemberMapper($this->db);
         $member = $mapper_member->getUser();
@@ -122,7 +119,7 @@ $app->group('/task', function () {
         return $response;
     });
 
-    $this->get('/{id:[0-9]+}', function (Request $request, Response $response) {
+    $this->get('/view/{id:[0-9]+}', function (Request $request, Response $response) {
         $id = $request->getAttribute('id');
         $mapper = new \App\TaskMapper($this->db);
         $details_data = $mapper->taskDetails($id);
