@@ -65,12 +65,12 @@ $app->group('/member', function () {
     });
 
 
-    $this->get('/member-list/{id}', function (Request $request, Response $response) {
+    $this->get('/list/{id}', function (Request $request, Response $response) {
         $id = $request->getAttribute('id');
         echo 'success ' . $id;
     });
 
-    $this->get('/member-edit/{id}', function (Request $request, Response $response) {
+    $this->get('/edit/{id}', function (Request $request, Response $response) {
         if ($_SESSION['user'][0]['role'] == 'Admin') {
             $id = $request->getAttribute('id');
             $mapper = new \App\UserMapper($this->db);
@@ -84,7 +84,7 @@ $app->group('/member', function () {
         }
     });
 
-    $this->post('/member-edit', function (Request $request, Response $response) {
+    $this->post('/update', function (Request $request, Response $response) {
         if ($_SESSION['user'][0]['role'] == 'Admin') {
             $data = $request->getParsedBody();
             $mapper = new \App\UserMapper($this->db);
@@ -101,7 +101,7 @@ $app->group('/member', function () {
         }
     });
 
-    $this->get('/member-delete/{id}', function (Request $request, Response $response) {
+    $this->get('/delete/{id}', function (Request $request, Response $response) {
         if ($_SESSION['user'][0]['role'] == 'Admin') {
             $id = $request->getAttribute('id');
             $mapper = new \App\UserMapper($this->db);
