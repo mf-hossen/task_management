@@ -46,12 +46,7 @@
     {% endif %}
 
     {% if task is empty %}
-        <div class="row">
-            <div class="col-md-4" style="font-size: 20px; color: red">There has no task</div>
-        </div>
-
-
-
+        {% include '/element/common/no-data.twig' %}
 
     {% else %}
 
