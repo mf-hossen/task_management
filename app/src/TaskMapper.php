@@ -80,7 +80,7 @@ class TaskMapper extends Mapper
                 array_push($whereArr, "member_id = {$member_id}");
             }
             if ($created_at != "") {
-                array_push($whereArr, "date(created_at) = {$created_at}");
+                array_push($whereArr, "date(tasks.created_at) = {$created_at}");
             }
             if ($priority != "") {
                 array_push($whereArr, "priority = {$priority}");
@@ -269,7 +269,7 @@ class TaskMapper extends Mapper
             if ($task_type != "") {
                 array_push($whereArr, "task_type = {$task_type}");
             }
-            array_push($whereArr, "date(created_at)=curdate()");
+            array_push($whereArr, "date(tasks.created_at)=curdate()");
 
             //var_dump($whereArr); die();
             $whereStr = implode(" AND ", $whereArr);

@@ -3,7 +3,7 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-$app->group('/task', function () {
+$app->group('/task', function () use ($mwAdmin){
 
     /**
      * Create task
@@ -14,7 +14,7 @@ $app->group('/task', function () {
         $msg = $this->flash->getMessages();
 
         return $this->view->render($response, 'admin/task/create.twig', ['mem' => $member, 'message' => $msg]);
-    });
+    })->add($mwAdmin);
 
     $this->post('/add', function (Request $request, Response $response) {
         $data = $request->getParsedBody();
@@ -228,7 +228,7 @@ $app->group('/task', function () {
             ['update_data' => $update_data, 'member' => $member]);
 
         return $response;
-    });
+    })->add($mwAdmin);
 
     $this->post('/update', function (Request $request, Response $response) {
         $data = $request->getParsedBody();
