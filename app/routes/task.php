@@ -145,6 +145,12 @@ $app->group('/task', function () {
         $data = $request->getParsedBody();
         $mapper = new \App\TaskMapper($this->db);
         $id = $mapper->updateMemTaskStatus($data);
+
+
+            if($data['status']==4){
+                $f_param = 'CID: '.$data['task_id'].' Task has been done';
+                \App\Utility::postToSlack($f_param);
+            }
         $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
 
         return $response->withRedirect('/task/view/'.$id);

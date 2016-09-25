@@ -665,6 +665,7 @@ class TaskMapper extends Mapper
     public function updateMemTaskStatus($data)
     {
         $taskID = $data['task_id'];
+        //var_dump($data);die();
         try {
             $sql = "UPDATE  tasks SET status = :status , site_url = :site_url  WHERE  id ='$taskID'";
             $stmt = $this->db->prepare($sql);
