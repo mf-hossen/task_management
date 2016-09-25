@@ -595,24 +595,32 @@ class TaskMapper extends Mapper
     }
 
 
-    public function InsertComment($data)
+    public function InsertComment($data, $filePath)
     {
         //var_dump($data);die();
+        //var_dump();die();
+        $username = $_SESSION['user'][0]['username'];
         try {
 
             $stmt = $this->db->prepare("INSERT INTO comments (
             comments,
             task_id,
-            user_id
+            user_id,
+            username,
+            comment_attach
            )VALUES (
             :commennts,
             :task_id,
-            :user_id
+            :user_id,
+            :username,
+            :comment_attach
             )");
 
             $stmt->bindParam(':commennts', ucfirst($data['comments']));
             $stmt->bindParam(':task_id', $data['task_id']);
             $stmt->bindParam(':user_id', $data['user_id']);
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':comment_attach', $filePath);
             $stmt->execute();
 
             return $this->db->lastInsertId();

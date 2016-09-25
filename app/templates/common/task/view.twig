@@ -144,16 +144,20 @@
                             <i style="color: #FFA500"><u>{{ commt.username }}</u></i>
                         {% endif %}
                     </dd>
+                    {% if  commt.comment_attach %}
+                    <a href="/{{ commt.comment_attach }}" class="btn btn-info pull-right">attached file</a><br>
+                        {% endif %}
                     <hr>
                 {% endfor %}
             </dl>
-            <form method="post" action="/task/comment">
+            <form method="post" action="/task/comment" enctype="multipart/form-data">
                 <input type="hidden" value="{{ session.user.0.id }}" name="user_id">
                 <input type="hidden" value="{{ session.user.0.username }}" name="username">
                 <input type="hidden" value="{{ details.task_id }}" name="task_id">
                 <div class="form-group">
-                    <textarea class="form-control" placeholder="Write your comment" name="comments"></textarea>
-                </div>
+                    <textarea class="form-control" placeholder="Write your comment" name="comments"></textarea><br>
+                    <input type="file" name="comment_attach" class=" pull-right">
+                </div><br>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Comments</button>
                 </div>

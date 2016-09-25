@@ -1,5 +1,5 @@
 <?php
-const SLACK = false;
+ $GLOBALS['slack_update'] = false;
 return [
     'settings' => [
         // Slim Settings
