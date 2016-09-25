@@ -10,6 +10,11 @@ class Utility
 
     public static function postToSlack($text, $username = null, $options = [])
     {
+        if($GLOBALS['slack_update']==false){
+
+            return false;
+        }
+
         $data = [
             'api_key' => "jsfi3734lkas29-sdjf28lasdkj2s-2348asaksdjr2",
             'service_id' => "webdesigner-task-management-tools-01",

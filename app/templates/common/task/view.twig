@@ -37,7 +37,7 @@
                                 <option value=""> -- Select Status --</option>
                                 <option value="3">Pending</option>
                                 <option value="4">Done</option>
-                                <option value="5">Invalid</option>
+                               {# <option value="5">Invalid</option>#}
                             </select>
                         </div>
 
@@ -140,6 +140,8 @@
                 {% endif %}
             </div>
             <div class="row">
+                {#{{ dump(session.user.0.role) }}#}
+                {% if (session.user.0.role=='Admin')  %}
                 <div class="col-md-12">
                     <div class="pull-right btn-toolbar">
                         <a href="/task/attached/{{ details.task_id }}" class="btn btn-link btn-group  text-uppercase">
@@ -148,6 +150,7 @@
                     </div>
 
                 </div>
+                    {% endif %}
             </div>
 
             <h4 class="text-primary"><u>Comments:</u></h4>
@@ -163,16 +166,20 @@
                             <i style="color: #FFA500"><u>{{ commt.username }}</u></i>
                         {% endif %}
                     </dd>
+                    {% if  commt.comment_attach %}
+                    <a href="/{{ commt.comment_attach }}" class="btn btn-info pull-right">attached file</a><br>
+                        {% endif %}
                     <hr>
                 {% endfor %}
             </dl>
-            <form method="post" action="/task/comment">
+            <form method="post" action="/task/comment" enctype="multipart/form-data">
                 <input type="hidden" value="{{ session.user.0.id }}" name="user_id">
                 <input type="hidden" value="{{ session.user.0.username }}" name="username">
                 <input type="hidden" value="{{ details.task_id }}" name="task_id">
                 <div class="form-group">
-                    <textarea class="form-control" placeholder="Write your comment" name="comments"></textarea>
-                </div>
+                    <textarea class="form-control" placeholder="Write your comment" name="comments"></textarea><br>
+                    <input type="file" name="comment_attach" class=" pull-right">
+                </div><br>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Comments</button>
                 </div>

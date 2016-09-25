@@ -35,14 +35,14 @@ $app->group('/task', function () {
         $mapper = new \App\TaskMapper($this->db);
         $lastId = $mapper->addTask($data, $userID);
 
-        $firstParam = 'You have  a new task  TaskId-';
+        $firstParam = 'You have  a new task  Client ID-'.$data['client_id'];
 
         \App\Utility::postToSlack($firstParam, $slack_user);
         //$mapper->addttached($filePath,$lastId);
         $this->flash->addMessage('success', 'Task is assigned!!!');
 
-        //return $response->withRedirect('/task/attached/' . $lastId);
-        return $response->withRedirect('/task/view/' . $lastId);
+        return $response->withRedirect('/task/attached/' . $lastId);
+       // return $response->withRedirect('/task/view/' . $lastId);
     });
 
     $this->get('/list[/{type}]', function (Request $request, Response $response, $arg) {
@@ -112,18 +112,11 @@ $app->group('/task', function () {
         $mapper = new \App\TaskMapper($this->db);
         if ($dateType == 'today') {
             $typeTitle = 'TODAY';
+
             $task = $mapper->memberTodayTask();
-        } elseif ($dateType == 'all') {
+        } else {
             $typeTitle = 'ALL';
             $task = $mapper->memberAllTask();
-        }elseif ($dateType == 'complete') {
-            $typeTitle = 'COMPLETE';
-            $task = $mapper->memberCompleteTask();
-
-        }elseif ($dateType == 'pending') {
-            $typeTitle = 'PENDING';
-            $task = $mapper->memberPendingTask();
-
         }
 
         $status_message = $this->flash->getMessages();
@@ -149,9 +142,22 @@ $app->group('/task', function () {
 
     });
     $this->post('/member/change_status', function (Request $request, Response $response) {
+        //var_dump($_SESSION);die();
         $data = $request->getParsedBody();
         $mapper = new \App\TaskMapper($this->db);
         $id = $mapper->updateMemTaskStatus($data);
+
+
+            if($data['status']==4){
+                $f_param = 'CID: '.$data['task_id'].' Task has been completed By -'.$_SESSION['user'][0]['username'];
+                \App\Utility::postToSlack($f_param);
+            }elseif ($data['status']==5){
+                $f_param = 'CID: '.$data['task_id'].' Task Invalid By -'.$_SESSION['user'][0]['username'];
+                \App\Utility::postToSlack($f_param);
+            }elseif ($data['status']==3){
+                $f_param = 'CID: '.$data['task_id'].' Task pending By -'.$_SESSION['user'][0]['username'];
+                \App\Utility::postToSlack($f_param);
+            }
         $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
 
         return $response->withRedirect('/task/view/'.$id);
@@ -294,10 +300,18 @@ $app->group('/task', function () {
 
 
     $this->post('/comment', function (Request $request, Response $response) {
+
+        $files = $request->getUploadedFiles();
+        $newfile = $files['comment_attach'];
+        $rnd = rand(1, 100000);
+        if ($newfile->getError() === UPLOAD_ERR_OK) {
+            $uploadFileName = $newfile->getClientFilename();
+            $filePath = "attached/$rnd.$uploadFileName";
+            $newfile->moveTo($filePath);
+        }
         $data = $request->getParsedBody();
         $mapper = new \App\TaskMapper($this->db);
-        $mapper->InsertComment($data);
-
+        $mapper->InsertComment($data, $filePath);
         return $response->withRedirect('/task/view/' . $data['task_id']);
     });
 
@@ -308,7 +322,5 @@ $app->group('/task', function () {
         //var_dump($data); die();
         $response = $this->view->render($response, "admin/task/admin_task.twig",['task'=>$data]);
     });
-
-
 
 })->add($mw);

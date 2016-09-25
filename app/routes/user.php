@@ -20,11 +20,7 @@ $app->post('/login', function (Request $request, Response $response) {
     $_SESSION['user'] = $chkData;
     //var_dump($_SESSION['user'][0]['first_name']);die();
     if (!empty($chkData)) {
-        if (SLACK==true){
-             \App\Utility::postToSlack($_SESSION['user'][0]['first_name'] . " " . $_SESSION['user'][0]['last_name'] . " has entered into Task Manager System");
-        }
-
-
+        \App\Utility::postToSlack($_SESSION['user'][0]['first_name'] . " " . $_SESSION['user'][0]['last_name'] . " has entered into Task Manager System");
 
         return $response->withStatus(302)->withHeader('Location', '/');
     } else {

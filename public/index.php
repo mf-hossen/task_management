@@ -16,7 +16,6 @@ require __DIR__ . '/../db_config.php';
 // Instantiate the app
 $settings = require __DIR__ . '/../app/settings.php';
 $app = new \Slim\App($settings);
-
 // Register routes
 // Set up dependencies
 require __DIR__ . '/../app/dependencies.php';
@@ -31,3 +30,4 @@ require __DIR__ . '/../app/routes.php';
 
 // Run!
 $app->run();
+
