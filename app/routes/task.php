@@ -301,6 +301,13 @@ $app->group('/task', function () {
         return $response->withRedirect('/task/view/' . $data['task_id']);
     });
 
+    $this->get('/admin_task', function (Request $request, Response $response) {
+        $data=$request->getParsedBody();
+        $mapper = new \App\TaskMapper($this->db);
+        $data=$mapper->AdminTask($data);
+        //var_dump($data); die();
+        $response = $this->view->render($response, "admin/task/admin_task.twig",['task'=>$data]);
+    });
 
 
 
