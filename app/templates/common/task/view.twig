@@ -118,6 +118,8 @@
                 {% endif %}
             </div>
             <div class="row">
+                {#{{ dump(session.user.0.role) }}#}
+                {% if (session.user.0.role=='Admin')  %}
                 <div class="col-md-12">
                     <div class="pull-right btn-toolbar">
                         <a href="/task/attached/{{ details.task_id }}" class="btn btn-link btn-group  text-uppercase">
@@ -126,6 +128,7 @@
                     </div>
 
                 </div>
+                    {% endif %}
             </div>
 
             <h4 class="text-primary"><u>Comments:</u></h4>

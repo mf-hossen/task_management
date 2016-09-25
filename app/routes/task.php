@@ -35,14 +35,14 @@ $app->group('/task', function () {
         $mapper = new \App\TaskMapper($this->db);
         $lastId = $mapper->addTask($data, $userID);
 
-        $firstParam = 'You have  a new task  TaskId-';
+        $firstParam = 'You have  a new task  Client ID-'.$data['client_id'];
 
         \App\Utility::postToSlack($firstParam, $slack_user);
         //$mapper->addttached($filePath,$lastId);
         $this->flash->addMessage('success', 'Task is assigned!!!');
 
-        //return $response->withRedirect('/task/attached/' . $lastId);
-        return $response->withRedirect('/task/view/' . $lastId);
+        return $response->withRedirect('/task/attached/' . $lastId);
+       // return $response->withRedirect('/task/view/' . $lastId);
     });
 
     $this->get('/list[/{type}]', function (Request $request, Response $response, $arg) {
