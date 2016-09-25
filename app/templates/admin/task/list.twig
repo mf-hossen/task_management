@@ -79,6 +79,7 @@
                             <th>Assign To</th>
                             <th>Task Type</th>
                             <th>Status</th>
+                            <th>Priority</th>
                             {#<th>Site URL</th>#}
                             <th>Assign Date</th>
 
@@ -128,6 +129,14 @@
                                               style="color: #e82f21;font-weight:600">Invalid </span>
                                     {% endif %}
 
+                                </td>
+                                <td>
+                                    {% if  tasks.priority==1 %}
+                                        <span class="text-success text-uppercase" style="font-weight:600">HIGH </span>
+                                    {% elseif tasks.priority==2 %}
+                                        <span class="text-info text-uppercase"
+                                              style="font-weight:600"> REGULAR </span>
+                                    {% endif %}
                                 </td>
 
                                 {# <td><a target="_blank" href="{{ tasks.site_url}}">{{ tasks.site_url}}</a></td>#}
