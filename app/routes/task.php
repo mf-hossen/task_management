@@ -3,8 +3,6 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 
-
-
 $app->get('/task/create', function (Request $request, Response $response) {
     //var_dump(\App\Utility::test());
     //die();
