@@ -4,7 +4,7 @@
 {% block contant_wrapper %}
     <div class="row">
         <div class="col-md-12">
-            <h3 class="pull-left text-uppercase title">Create New Member</h3>
+            <h3 class="pull-left text-uppercase title">Members List</h3>
             <div class="pull-right btn-toolbar">
                 <a href="/member/create" class="btn btn-success btn-group  text-uppercase">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create New
@@ -33,7 +33,7 @@
                     <tr>
                         <td>{{ row.first_name }}</td>
                         <td>{{ row.last_name }}</td>
-                        <td>{{ row.username }}</td>
+                        <td><a href="">{{ row.username }}</a></td>
                         <td>{{ row.role }}</td>
                         <td>{{ row.slack_username }}</td>
                         <td class="text-right">

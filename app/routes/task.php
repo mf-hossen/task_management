@@ -112,11 +112,18 @@ $app->group('/task', function () {
         $mapper = new \App\TaskMapper($this->db);
         if ($dateType == 'today') {
             $typeTitle = 'TODAY';
-
             $task = $mapper->memberTodayTask();
-        } else {
+        } elseif ($dateType == 'all') {
             $typeTitle = 'ALL';
             $task = $mapper->memberAllTask();
+        }elseif ($dateType == 'complete') {
+            $typeTitle = 'COMPLETE';
+            $task = $mapper->memberCompleteTask();
+
+        }elseif ($dateType == 'pending') {
+            $typeTitle = 'PENDING';
+            $task = $mapper->memberPendingTask();
+
         }
 
         $status_message = $this->flash->getMessages();
@@ -293,6 +300,8 @@ $app->group('/task', function () {
 
         return $response->withRedirect('/task/view/' . $data['task_id']);
     });
+
+
 
 
 })->add($mw);

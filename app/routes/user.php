@@ -46,7 +46,7 @@ $app->post('/update-settings', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     if (strlen($data['password']) >= 6) {
         if ($data['password'] == $data['confirm_password']) {
-            $mapper = new \App\taskMapper($this->db);
+            $mapper = new \App\TaskMapper($this->db);
             $mapper->profileUpdate($data);
             $this->flash->addMessage('success', 'User settings has been changed!!');
 
