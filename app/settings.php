@@ -1,5 +1,5 @@
 <?php
- $GLOBALS['slack_update'] = true;
+ $GLOBALS['slack_update'] = false;
 return [
     'settings' => [
         // Slim Settings

@@ -22,11 +22,9 @@ ALTER TABLE `tasks` CHANGE `priority` `priority` TINYINT(4) NOT NULL COMMENT '1=
 ALTER TABLE `tasks` CHANGE `task_type` `task_type` TINYINT(4) NOT NULL DEFAULT '3' COMMENT '1 = Edit; 2 = Redesign; 3 = New, 4=live';
 ALTER TABLE `tasks` ADD `slack_username` VARCHAR(200) NOT NULL AFTER `site_url`;
 
-
+--Farhad 22 9 2016--
 ALTER TABLE `users` ADD `slack_username` VARCHAR(200) NOT NULL AFTER `role`;
 
--- Emon 24 11 2016 --
-ALTER TABLE `tasks` CHANGE `slack_username` `slack_username` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
 
---Farhad  24 11 2016--
+--Farhad  24 9 2016--
 ALTER TABLE `comments` ADD `comment_attach` TEXT NULL AFTER `username`;
