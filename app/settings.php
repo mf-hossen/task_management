@@ -1,4 +1,5 @@
 <?php
+const SLACK = false;
 return [
     'settings' => [
         // Slim Settings
