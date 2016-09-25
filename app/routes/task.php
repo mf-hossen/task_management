@@ -35,7 +35,7 @@ $app->post('/task/insert', function (Request $request, Response $response) {
     $mapper = new \App\TaskMapper($this->db);
     $lastId = $mapper->addTask($data,$userID);
 
-    $firstParam = 'You have  a new task  TaskId-';
+    $firstParam = 'You have  a new task';
 
     \App\Utility::postToSlack($firstParam,$slack_user);
     //$mapper->addttached($filePath,$lastId);
