@@ -81,6 +81,19 @@ class UserMapper extends Mapper
 
     }
 
+    public function memberTaskList($data)
+    {
+        $member_id=$data['member_id'];
+        //var_dump($member_id); die();
+        $sql = "SELECT * FROM tasks where member_id='$member_id'";
+        $stmt = $this->db->query($sql);
+        $res = $stmt->fetchAll();
+
+        return $res;
+
+    }
+
+
 
     public function memberListById($id)
     {

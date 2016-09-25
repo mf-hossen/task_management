@@ -1,0 +1,250 @@
+{% extends 'layout/common.twig' %}
+{% block title %} Task{% endblock %}
+
+{% block contant_wrapper %}
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="pull-left text-uppercase title">{{ typeTitle }} Task List</h3>
+            <div class="pull-right btn-toolbar">
+                {% if(typeTitle == 'ALL') %}
+                    <a href="/task/list/today" class="btn btn-warning btn-group  text-uppercase">
+                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Today's List
+                    </a>
+                {% elseif(typeTitle == 'TODAY') %}
+                    <a href="/task/list" class="btn btn-warning btn-group  text-uppercase">
+                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> All List
+                    </a>
+                {% endif %}
+
+                <a href="/task/create" class="btn btn-success btn-group  text-uppercase">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
+                </a>
+                <a class="btn btn-primary" data-toggle="modal" href="#modal-id">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    Search Task
+                </a>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+
+    {% if task is empty %}
+        {% include '/element/common/no-data.twig' %}
+
+    {% else %}
+
+
+        <form action="/task/admin_status" method="post">
+            <div class="row" id="assignForm">
+                <div class="col-md-4">
+                    <select name="status" id="inputID" class="form-control">
+                        <option value=""> -- Select Status --</option>
+                        <option value="1">Complete</option>
+                        <option value="2">Incomplete</option>
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <input type="submit" class="btn btn-success">
+                </div>
+                <br>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Client ID</th>
+                            <th>Created By</th>
+                            <th>Assign To</th>
+                            <th>Task Type</th>
+                            <th>Status</th>
+                            {#<th>Site URL</th>#}
+                            <th>Assign Date</th>
+
+
+                            <th style="text-align: right">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for tasks in task %}
+                            <tr class="odd gradeX">
+                                <td>
+                                    {% if  tasks.status==4 %}
+                                        <input type="checkbox" name="task_id[]" value="{{ tasks.task_id }}"
+                                               class="assign">
+                                    {% endif %}
+
+                                </td>
+
+
+                                <td><a href="/task/view/{{ tasks.task_id }}">{{ tasks.client_id }}</a></td>
+                                <td>{{ tasks.users_full_name }}</td>
+                                <td>{{ tasks.members_full_name }}</td>
+                                <td>
+                                    {% if  tasks.task_type==1 %}
+                                        <span class="label label-warning"> Edit </span>
+                                    {% elseif tasks.task_type==2 %}
+                                        <span class="label label-primary"> Redesign </span>
+                                    {% elseif tasks.task_type==3 %}
+                                        <span class="label label-info">New </span>
+                                    {% elseif tasks.task_type==4 %}
+                                        <span class="label label-success">Live </span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if  tasks.status==1 %}
+                                        <span class="text-success text-uppercase" style="color:#46af48;font-weight:600">Complete </span>
+                                    {% elseif tasks.status==2 %}
+                                        <span class="text-danger text-uppercase"
+                                              style="color: #ff9800 ;font-weight:600"> Incomplete </span>
+                                    {% elseif tasks.status==3 %}
+                                        <span class="text-warning text-uppercase"
+                                              style="color: #ff9800 ;font-weight:600">Pending </span>
+                                    {% elseif tasks.status==4 %}
+                                        <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Done </span>
+                                    {% elseif tasks.status==5 %}
+                                        <span class="text-default text-uppercase"
+                                              style="color: #e82f21;font-weight:600">Invalid </span>
+                                    {% endif %}
+
+                                </td>
+
+                                {# <td><a target="_blank" href="{{ tasks.site_url}}">{{ tasks.site_url}}</a></td>#}
+                                <td>{{ tasks.created_at|date('d M, Y') }}</td>
+                                <td style="text-align: right">
+                                    <a href="/task/view/{{ tasks.task_id }}">
+                                        <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
+                                              title="Details"></span>
+                                    </a>
+                                    <a href="/task/edit/{{ tasks.task_id }}">
+                    <span class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit"
+                          style="color: grey"></span>
+                                    </a>
+                                    <a href="/task/delete/{{ tasks.task_id }}"
+                                       onclick="return confirm('Are you sure you want to delete?')">
+                    <span class="glyphicon glyphicon-remove" data-toggle="tooltip" title="Remove"
+                          style="color: red"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+        <div class="modal fade" id="modal-id">
+            <div class="modal-dialog">
+                <form action="" method="get">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Search Task</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Client ID</label>
+                                        <input type="number" class="form-control" name="client_id" id=""
+                                               placeholder="Client ID" class="assign">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Member</label>
+                                        <select class="form-control" name="member_id" id="member">
+                                            <option value="">Choose member</option>
+                                            {% for members in mem %}
+                                                <option value="{{ members.id }}">{{ members.first_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Created Date</label>
+                                        <input type="date" class="form-control" name="created_date" id=""
+                                               placeholder="Created Date">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Priority</label>
+                                        <select class="form-control" name="priority">
+                                            <option value="">Choose Prirority</option>
+                                            <option value="1">High</option>
+                                            <option value="2">Regular</option>
+                                        </select>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Status</label>
+                                        <select class="form-control" name="task_status" id="task_type">
+                                            <option value="">Choose Status</option>
+                                            <option value="1">Complete</option>
+                                            <option value="2">Incomplete</option>
+                                            <option value="3">Pending</option>
+                                            <option value="4">Done</option>
+                                            <option value="5">Invalid</option>
+                                        </select>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Type</label>
+                                        <select class="form-control" name="task_type" id="task_type">
+                                            <option value="">Choose Type</option>
+                                            <option value="1">Edit</option>
+                                            <option value="2">Redesign</option>
+                                            <option value="3">New</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </form>
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    {% endif %}
+{% endblock %}
+{% block jsBottom %}
+    <script>
+        $('#assignForm').hide();
+
+        $('.assign').change(function () {
+            if ($(this).prop("checked")) {
+                $('#assignForm').show();
+            }
+            /* else {
+             $('#assignForm').hide();
+             }*/
+        });
+    </script>
+{% endblock %}

@@ -755,5 +755,33 @@ class TaskMapper extends Mapper
 
     }
 
+    public function AdminTask()
+    {
+        $member_id = $_SESSION['user'][0]['id'];
+        $sql = "SELECT 
+              users.id as user_id, 
+              users.username,
+              concat(users.first_name , ' ', users.last_name ) as users_full_name,
+              users.role, 
+              tasks.description,
+              tasks.id as task_id,
+              tasks.status,
+              tasks.task_type,
+              tasks.member_id,
+              tasks.client_id,
+              tasks.created_at,
+              tasks.site_url,
+              tasks.priority,
+              member.username as membername,
+              concat(member.first_name , ' ', member.last_name ) as members_full_name
+              FROM `tasks` 
+              left join users on tasks.user_id = users.id 
+              left join users as member on tasks.member_id =member.id where tasks.member_id='$member_id' 
+              AND tasks.member_id='$member_id' order by task_id DESC ";
+        $stmt = $this->db->query($sql);
+
+        return $stmt->fetchAll();
+    }
+
 
 }
