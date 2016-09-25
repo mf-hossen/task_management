@@ -1,11 +1,11 @@
-{% extends 'layout.twig' %}
+{% extends '/layout/common.twig' %}
 {% block title %} Create Task{% endblock %}
 {% block contant_wrapper %}
     <div class="row">
         <div class="col-md-12">
-            <h4 class="pull-left text-uppercase">Create New Task</h4>
+            <h3 class="pull-left text-uppercase title">Create New Task</h3>
             <div class="pull-right btn-toolbar">
-                <a href="/task/list/all" class="btn btn-info btn-group  text-uppercase">
+                <a href="/task/list/all" class="btn btn-warning btn-group  text-uppercase">
                     <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Task List
                 </a>
             </div>
@@ -14,7 +14,7 @@
     <hr>
     <div class="row">
         <div class="col-md-12">
-            <form class="" role="form" action="/task/insert" method="post" enctype="multipart/form-data">
+            <form class="" role="form" action="/task/add" method="post" enctype="multipart/form-data">
                 <fieldset>
 
                     <div class="row">
@@ -106,4 +106,32 @@
         </div>
     </div>
 {% endblock %}
+
+
+
+{% block jsBottom %}
+    <!-- include summernote css/js-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#summernote').summernote();
+        });
+
+        $('#summernote').summernote({
+            height: 300,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true,                  // set focus to editable area after initializing summernote
+
+        });
+    </script>
+
+{% endblock %}
+
+{% block cssTop %}
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
+
+{% endblock %}
+
 

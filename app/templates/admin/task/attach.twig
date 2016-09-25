@@ -1,26 +1,23 @@
-{% extends 'layout.twig' %}
+{% extends 'layout/common.twig' %}
 {% block title %} Add Attachment{% endblock %}
 {% block contant_wrapper %}
     <div class="row">
         <div class="col-md-12">
             <h4 class="pull-left text-uppercase">Add attachment</h4>
             <div class="pull-right btn-toolbar">
-                <a href="/task/task_details/{{ details['task_id'] }}" class="btn btn-info btn-group  text-uppercase">
-                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back to details
-                </a>
-                <a href="/task/task_details/{{ details['task_id'] }}" class="btn btn-info btn-group  text-uppercase">
+                <a href="/task/view/{{ details['task_id'] }}" class="btn btn-info btn-group  text-uppercase">
                     <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span> Back to details
                 </a>
             </div>
         </div>
     </div>
     <hr>
-
     <div class="row">
         <div class="col-md-8 col-sm-12">
-            <form action="/upload/{{ details['task_id'] }}"
+            <form action="/task/upload/{{ details['task_id'] }}"
                   class="dropzone"
-                  id="my-awesome-dropzone"></form>
+                  id="my-awesome-dropzone">
+            </form>
         </div>
         <div class="col-md-4 col-sm-12">
             <table class="table table-bordered">
@@ -28,45 +25,38 @@
                     <td><b> Task ID </b></td>
                     <td> {{ details['task_id'] }}</td>
                 </tr>
-
                 <tr>
                     <td><b>Assign From:</b></td>
                     <td>
                         {{ details.username }}
                     </td>
                 </tr>
-
-
                 <tr>
                     <td><b>Assign To:</b></td>
                     <td>
                         {{ details.membername }}
                     </td>
                 </tr>
-
-
                 <tr>
                     <td><b>Client ID:</b></td>
                     <td>
                         {{ details.client_id }}
                     </td>
                 </tr>
-
                 <tr>
                     <td><b>Created Date:</b></td>
                     <td>
                         {{ details.created_at }}
                     </td>
                 </tr>
-
             </table>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="pull-left btn-toolbar">
-                <a href="/task/task_details/{{ details['task_id'] }}" class="btn btn-success btn-group  text-uppercase">
-                     Task Details
+                <a href="/task/view/{{ details['task_id'] }}" class="btn btn-success btn-group  text-uppercase">
+                    Task Details
                 </a>
             </div>
 

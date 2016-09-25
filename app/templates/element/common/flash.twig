@@ -1,19 +1,8 @@
-{#
-{% if msg is not empty %}
-    <div class="alert alert-danger">
-        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <strong>{{ msg.badlink.0 }}</strong>
-        <strong>{{ msg.failed.0 }}</strong>
-        <strong>{{ msg.delete.0 }}</strong>
-    </div>
-{% endif %}
-#}
-
 {% if message is not null and message is not empty %}
     {% if(message['success']) %}
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-             {{ message['success'][0] }}
+            {{ message['success'][0] }}
         </div>
     {% endif %}
 {% endif %}
@@ -22,7 +11,7 @@
     {% if(message['error']) %}
         <div class="alert alert-danger">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-             {{ message['error'][0] }}
+            {{ message['error'][0] }}
         </div>
     {% endif %}
 {% endif %}

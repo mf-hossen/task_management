@@ -1,4 +1,4 @@
-{% extends 'layout.twig' %}
+{% extends 'layout/common.twig' %}
 {% block title %} Task Details{% endblock %}
 
 
@@ -7,27 +7,27 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h4 class="pull-left text-uppercase">Task Details</h4>
+            <h4 class="pull-left text-uppercase title">Task Details</h4>
             <div class="pull-right btn-toolbar">
                 {% if session.user.0.role=='Admin' %}
-                <a href="/task/create" class="btn btn-info btn-group  text-uppercase">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
-                </a>
-                <a href="/task/task_update/{{ details.task_id }}" class="btn btn-warning btn-group  text-uppercase">
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update
-                </a>
+                    <a href="/task/create" class="btn btn-info btn-group  text-uppercase">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
+                    </a>
+                    <a href="/task/edit/{{ details.task_id }}" class="btn btn-warning btn-group  text-uppercase">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update
+                    </a>
 
 
-                <a href="/task/list/all" class="btn btn-info btn-group  text-uppercase">
-                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Task
-                </a>
+                    <a href="/task/list/all" class="btn btn-info btn-group  text-uppercase">
+                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> Task
+                    </a>
 
                 {% elseif session.user.0.role=='Member' %}
-                    <form action="/task/taskm_status" method="post">
+                    <form action="/task/member/change_status" method="post">
                         <div class="col-lg-5">
-                            {%  if details.status==1%}
-                                Completed
-                            {%  else %}
+                            {% if details.status==1 %}
+                            Completed
+                            {% else %}
                             <select name="status" id="inputID" class="form-control" required>
                                 <option value=""> -- Select Status --</option>
                                 <option value="3">Pending</option>
@@ -55,28 +55,28 @@
     </div>
     <br>
     {% if session.user.0.role=='Admin' %}
-    {% if details.status==4 %}
-    <form action="/task/taska_status" method="post">
-    <div class="row">
-        <div class="col-md-4">
-            <select name="status" id="inputID" class="form-control" required>
-                <option value=""> -- Select Status --</option>
-                <option value="1">Complete</option>
-                <option value="2">Incomplete</option>
-            </select>
-        </div>
-        <div class="col-md-4">
-            <input type="text" class="form-control" name="site_url" placeholder="Site URL" required>
-        </div>
+        {% if details.status==4 %}
+            <form action="/task/taska_status" method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <select name="status" id="inputID" class="form-control" required>
+                        <option value=""> -- Select Status --</option>
+                        <option value="1">Complete</option>
+                        <option value="2">Incomplete</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="site_url" placeholder="Site URL" required>
+                </div>
 
-        <div class="col-md-1">
-            <input type="hidden" name="task_id" value="{{ details.task_id }}">
-            <input type="submit" class="btn btn-success">
-        </div>
-    </div>
-    {% endif %}
-    </form>
+                <div class="col-md-1">
+                    <input type="hidden" name="task_id" value="{{ details.task_id }}">
+                    <input type="submit" class="btn btn-success">
+                </div>
+            </div>
         {% endif %}
+        </form>
+    {% endif %}
     <hr>
     <!-- /.row -->
     <div class="row">
@@ -129,21 +129,22 @@
             </div>
 
             <h4 class="text-primary"><u>Comments:</u></h4>
-          {#  {{ dump(session.user.0) }}#}
+            {#  {{ dump(session.user.0) }}#}
             {#{{ dump(all_comments) }}#}
             <dl>
                 {% for commt in all_comments %}
-                {#<dt>Posted By:   </dt>#}
-                <dd>{{ commt.comments }}  -
-                    {% if session.user.0.username == commt.username %}
-                        <i style="color: green"><u>{{ commt.username }}</u></i>
+                    {#<dt>Posted By:   </dt>#}
+                    <dd>{{ commt.comments }} -
+                        {% if session.user.0.username == commt.username %}
+                            <i style="color: green"><u>{{ commt.username }}</u></i>
                         {% else %}
-                    <i style="color: #FFA500"><u>{{ commt.username }}</u></i>
-                            {% endif %}
-                        </dd><hr>
-                 {% endfor %}
+                            <i style="color: #FFA500"><u>{{ commt.username }}</u></i>
+                        {% endif %}
+                    </dd>
+                    <hr>
+                {% endfor %}
             </dl>
-            <form method="post" action="/comment">
+            <form method="post" action="/task/comment">
                 <input type="hidden" value="{{ session.user.0.id }}" name="user_id">
                 <input type="hidden" value="{{ session.user.0.username }}" name="username">
                 <input type="hidden" value="{{ details.task_id }}" name="task_id">
@@ -163,9 +164,11 @@
                         {% if  details.task_type==1 %}
                             <span class="text-success text-uppercase" style="color:#46af48;font-weight:600">Edit </span>
                         {% elseif details.task_type==2 %}
-                            <span class="text-danger text-uppercase" style="color: #ff9800 ;font-weight:600"> Redesign </span>
+                            <span class="text-danger text-uppercase"
+                                  style="color: #ff9800 ;font-weight:600"> Redesign </span>
                         {% elseif details.task_type==3 %}
-                            <span class="text-warning text-uppercase" style="color: #ff9800 ;font-weight:600">New </span>
+                            <span class="text-warning text-uppercase"
+                                  style="color: #ff9800 ;font-weight:600">New </span>
                         {% elseif details.task_type==4 %}
                             <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Live </span>
                         {% endif %}
@@ -199,7 +202,8 @@
                 <tr>
                     <td style="width:200px"><b>Site Url:</b></td>
                     <td>
-                        <a target="_blank" href="{{ details.site_url}}">{{ details.site_url ? details.site_url : 'N/A' }}</a>
+                        <a target="_blank"
+                           href="{{ details.site_url }}">{{ details.site_url ? details.site_url : 'N/A' }}</a>
                     </td>
                 </tr>
 
@@ -207,15 +211,19 @@
                     <td style="width:200px"><b>Task Status:</b></td>
                     <td>
                         {% if  details.status==1 %}
-                            <span class="text-success text-uppercase" style="color:#46af48;font-weight:600">Complete </span>
+                            <span class="text-success text-uppercase"
+                                  style="color:#46af48;font-weight:600">Complete </span>
                         {% elseif details.status==2 %}
-                            <span class="text-danger text-uppercase" style="color: #ff9800 ;font-weight:600"> Incomplete </span>
+                            <span class="text-danger text-uppercase"
+                                  style="color: #ff9800 ;font-weight:600"> Incomplete </span>
                         {% elseif details.status==3 %}
-                            <span class="text-warning text-uppercase" style="color: #ff9800 ;font-weight:600">Pending </span>
+                            <span class="text-warning text-uppercase"
+                                  style="color: #ff9800 ;font-weight:600">Pending </span>
                         {% elseif details.status==4 %}
                             <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Done </span>
                         {% elseif details.status==5 %}
-                            <span class="text-default text-uppercase" style="color: #e82f21;font-weight:600">Invalid </span>
+                            <span class="text-default text-uppercase"
+                                  style="color: #e82f21;font-weight:600">Invalid </span>
                         {% endif %}
                     </td>
                 </tr>
@@ -223,11 +231,11 @@
                 <tr>
                     <td style="width:200px"><b>Task Priority:</b></td>
                     <td>
-                {% if  details.priority==1 %}
-                    <span class="text-success text-uppercase"> High </span>
-                {% elseif details.priority==2 %}
-                    <span class="text-danger text-uppercase"> Regular </span>
-                {% endif %}
+                        {% if  details.priority==1 %}
+                            <span class="text-success text-uppercase"> High </span>
+                        {% elseif details.priority==2 %}
+                            <span class="text-danger text-uppercase"> Regular </span>
+                        {% endif %}
                     </td>
                 </tr>
 

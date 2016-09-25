@@ -24,3 +24,6 @@ ALTER TABLE `tasks` ADD `slack_username` VARCHAR(200) NOT NULL AFTER `site_url`;
 
 
 ALTER TABLE `users` ADD `slack_username` VARCHAR(200) NOT NULL AFTER `role`;
+
+-- Emon 24 11 2016 --
+ALTER TABLE `tasks` CHANGE `slack_username` `slack_username` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
