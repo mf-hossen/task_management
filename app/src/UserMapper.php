@@ -98,19 +98,20 @@ class UserMapper extends Mapper
         $last_name = $data['last_name'];
         $username = $data['username'];
         $role = $data['role'];
-
+        $slack_username = $data['salck_username'];
         try {
 
             $stmt = $this->db->prepare("UPDATE users SET
                   first_name = :first_name,
                   last_name = :last_name,
                   username = :username,
+                  slack_username = :salck_username,
                   role = :role WHERE id = :id
                 ");
             $stmt->bindParam(':first_name', $first_name);
             $stmt->bindParam(':last_name', $last_name);
             $stmt->bindParam(':username', $username);
-            //$stmt->bindParam(':slack_username',$slack_username);
+            $stmt->bindParam(':salck_username',$slack_username);
             $stmt->bindParam(':role', $role);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
