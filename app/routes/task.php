@@ -114,9 +114,16 @@ $app->group('/task', function () {
             $typeTitle = 'TODAY';
 
             $task = $mapper->memberTodayTask();
-        } else {
-            $typeTitle = 'ALL';
-            $task = $mapper->memberAllTask();
+        }elseif($dateType == 'all') {
+        $typeTitle = 'ALL';
+        $task = $mapper->memberAllTask();
+
+        }elseif($dateType == 'complete') {
+            $typeTitle = 'COMPLETE';
+            $task = $mapper->memberCompleteTask();
+        }elseif($dateType == 'pending') {
+            $typeTitle = 'PENDING';
+            $task = $mapper->memberPendingTask();
         }
 
         $status_message = $this->flash->getMessages();
