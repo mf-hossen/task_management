@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <h3 class="pull-left text-uppercase title">{{ typeTitle }} Task List</h3>
+
             <div class="pull-right btn-toolbar">
                 {% if(typeTitle == 'ALL') %}
                     <a href="/task/list/today" class="btn btn-warning btn-group  text-uppercase">
@@ -21,15 +22,16 @@
                 </a>
                 {% if task is  not empty %}
 
-                <a class="btn btn-primary" data-toggle="modal" href="#modal-id">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    Search Task
-                </a>
+                    <a class="btn btn-primary" data-toggle="modal" href="#modal-id">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        Search Task
+                    </a>
                 {% endif %}
             </div>
         </div>
     </div>
     <hr>
+
     {% if query is not empty %}
         <div class="alert alert-success alert-dismissible" role="alert">
 
@@ -64,13 +66,82 @@
                 </div>
             </div>
             <br>
-            <br>
 
 
             <div class="row">
                 <div class="col-lg-12">
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example" style="text-align: center">
-                        <thead>
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example"
+                           style="text-align: center">
+                        <form method="post" action="#">
+                        <thead style="text-align: center">
+                        <tr>
+                                <td></td>
+                                <td class="col-md-1">
+                                    <input type="text" name="client_id" placeholder="CID" class="form-control">
+                                </td>
+                             <td>
+
+                                    <select name="created_by" class="form-control">
+                                        <option>regtedddd</option>
+                                        <option>dsfg</option>
+                                        <option>regtedd</option>
+                                        <option>regtedd</option>
+                                    </select>
+                                </td>
+                                <td>
+
+                                    <select name="assigned_to" class="form-control">
+                                        <option value="">Member</option>
+                                        {% for members in mem %}
+                                            <option value="{{ members.id }}">{{ members.first_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td>
+
+                                    <select name="task_type" class="form-control">
+                                        <option value="">Type</option>
+                                        <option value="1">Edit</option>
+                                        <option value="2">Redesign</option>
+                                        <option value="3">New</option>
+                                        <option value="4">Live</option>
+                                    </select>
+                                </td>
+                                <td>
+
+                                    <select name="task_status" class="form-control">
+                                        <option value="">Status</option>
+                                        <option value="1">Complete</option>
+                                        <option value="2">Incomplete</option>
+                                        <option value="3">Pending</option>
+                                        <option value="4">Done</option>
+                                        <option value="5">On Prograss</option>
+                                    </select>
+                                </td>
+                                <td>
+
+                                    <select name="created_by" class="form-control">
+                                        <option>regtedddd</option>
+                                        <option>dsfg</option>
+                                        <option>regtedd</option>
+                                        <option>regtedd</option>
+                                    </select>
+                                </td>
+                                <td>
+
+                                    <select name="created_by" class="form-control">
+                                        <option>regtedddd</option>
+                                        <option>dsfg</option>
+                                        <option>regtedd</option>
+                                        <option>regtedd</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-block btn-primary">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                </td>
+                        </tr>
                         <tr>
                             <th></th>
                             <th>Client ID</th>
@@ -85,7 +156,10 @@
 
                             <th style="text-align: right">Action</th>
                         </tr>
+
                         </thead>
+                        </form>
+
                         <tbody>
                         {% for tasks in task %}
                             <tr class="odd gradeX">
@@ -114,18 +188,19 @@
                                 </td>
                                 <td>
                                     {% if  tasks.status==1 %}
-                                        <span class="text-success text-uppercase" style="color:#46af48;font-weight:600">Complete </span>
+                                        <span class="text-success text-uppercase"
+                                              style="color:#46af48;font-weight:600">Complete </span>
                                     {% elseif tasks.status==2 %}
                                         <span class="text-danger text-uppercase"
                                               style="color: #ff9800 ;font-weight:600"> Incomplete </span>
                                     {% elseif tasks.status==3 %}
                                         <span class="text-warning text-uppercase"
-                                              style="color: #ff9800 ;font-weight:600">Pending </span>
+                                              style="color: #e82f21 ;font-weight:600">Pending </span>
                                     {% elseif tasks.status==4 %}
                                         <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Done </span>
                                     {% elseif tasks.status==5 %}
                                         <span class="text-default text-uppercase"
-                                              style="color: #e82f21;font-weight:600">Invalid </span>
+                                              style="color: #ff9800;font-weight:600">On Progress </span>
                                     {% endif %}
 
                                 </td>
@@ -198,14 +273,14 @@
                             <div class="row">
                                 {% if(typeTitle != 'TODAY') %}
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Created Date</label>
-                                        <input type="date" class="form-control" name="created_date" id=""
-                                               placeholder="Created Date">
-                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Created Date</label>
+                                            <input type="date" class="form-control" name="created_date" id=""
+                                                   placeholder="Created Date">
+                                        </div>
 
-                                </div>
+                                    </div>
 
                                 {% endif %}
                                 <div class="col-md-6">
@@ -231,7 +306,7 @@
                                             <option value="2">Incomplete</option>
                                             <option value="3">Pending</option>
                                             <option value="4">Done</option>
-                                            <option value="5">Invalid</option>
+                                            <option value="5">On Prograss</option>
                                         </select>
 
                                     </div>
