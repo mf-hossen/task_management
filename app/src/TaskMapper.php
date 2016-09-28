@@ -438,8 +438,6 @@ class TaskMapper extends Mapper
     }
 
 
-
-
     public function taskDetails($id)
     {
         //var_dump($id); die();

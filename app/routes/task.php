@@ -81,28 +81,28 @@ $app->group('/task', function () use ($mwAdmin){
         return $response;
     });
 
-    $this->get('/getCountComplete[/{type}]', function (Request $request, Response $response) {
+    /*$this->get('/getCounttask[/{type}]', function (Request $request, Response $response) {
         $dateType = $request->getAttribute('type');
 
         $mapper = new \App\TaskMapper($this->db);
         if ($dateType == 'todaytask') {
             $typeTitle = 'TODAYTASK';
-            $task = $mapper->getCountToday();
+            $task = $mapper->CountTaskToday();
         } elseif ($dateType == 'alltask') {
             $typeTitle = 'ALLTASK';
-            $task = $mapper->getCountTask();
+            $task = $mapper->countTaskAll();
             //var_dump($task); die();
         } elseif ($dateType == 'completetask') {
             $typeTitle = 'COMPLETETASK';
-            $task = $mapper->getCountComplete();
+            $task = $mapper->CountTaskComplete();
         } elseif ($dateType == 'pendingtask') {
             $typeTitle = 'PENDINGTASK';
-            $task = $mapper->getCountPending();
+            $task = $mapper->CountTaskPending();
         }
         //$delete_message = $this->flash->getMessages();
         $response = $this->view->render($response, "tasklist.twig", ['task' => $task, 'typeTitle' => $typeTitle]);
         //return $response;
-    });
+    });*/
 
     /**
      * Start  Member
@@ -329,5 +329,39 @@ $app->group('/task', function () use ($mwAdmin){
         //var_dump($data); die();
         $response = $this->view->render($response, "admin/task/admin_task.twig",['task'=>$data]);
     });
+
+
+    $this->get('/task_count', function (Request $request, Response $response) {
+        //$data=$request->getParsedBody();
+        $mapper = new \App\TaskMapper($this->db);
+        $task_count=$mapper->countTaskAll();
+       // var_dump($task_count); die();
+        $response = $this->view->render($response, "admin/dashboard.twig",['taskall'=>$task_count]);
+    });
+
+    $this->get('/task_countToday', function (Request $request, Response $response) {
+        //$data=$request->getParsedBody();
+        $mapper = new \App\TaskMapper($this->db);
+        $task_count=$mapper->countTaskToday();
+        // var_dump($task_count); die();
+        $response = $this->view->render($response, "admin/dashboard.twig",['tasktoday'=>$task_count]);
+    });
+
+    $this->get('/task_countPending', function (Request $request, Response $response) {
+        //$data=$request->getParsedBody();
+        $mapper = new \App\TaskMapper($this->db);
+        $task_count=$mapper->countTaskPending();
+        // var_dump($task_count); die();
+        $response = $this->view->render($response, "admin/dashboard.twig",['taskpending'=>$task_count]);
+    });
+
+    $this->get('/task_countComplete', function (Request $request, Response $response) {
+        //$data=$request->getParsedBody();
+        $mapper = new \App\TaskMapper($this->db);
+        $task_count=$mapper->countTaskComplete();
+        // var_dump($task_count); die();
+        $response = $this->view->render($response, "admin/dashboard.twig",['taskcom'=>$task_count]);
+    });
+
 
 })->add($mw);
