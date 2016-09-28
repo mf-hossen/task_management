@@ -39,10 +39,11 @@
                                 <option value="4">Done</option>
                                {# <option value="5">Invalid</option>#}
                             </select>
+                            <input type="hidden" name="cid" value="{{ details.client_id }}">
                         </div>
 
                         <div class="col-md-5">
-                            <input type="text" class="form-control" name="site_url" placeholder="Site URL" required>
+                            <input type="text" class="form-control" name="site_url" placeholder="Site URL">
                         </div>
 
                         <div class="col-md-2">
@@ -69,6 +70,7 @@
                         <option value="1">Complete</option>
                         <option value="2">Incomplete</option>
                     </select>
+                   <input type="hidden" name="task_id" value="{{ details.task_id }}">
                 </div>
                 <div class="col-md-4">
                     <input type="text" class="form-control" name="site_url" placeholder="Site URL" >

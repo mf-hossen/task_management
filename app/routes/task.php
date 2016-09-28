@@ -18,6 +18,7 @@ $app->group('/task', function () use ($mwAdmin){
 
     $this->post('/add', function (Request $request, Response $response) {
         $data = $request->getParsedBody();
+
         //$map = new \App\TaskMapper($this->db);
         /*$files = $request->getUploadedFiles();
         $newfile = $files['attached'];
@@ -149,20 +150,19 @@ $app->group('/task', function () use ($mwAdmin){
 
     });
     $this->post('/member/change_status', function (Request $request, Response $response) {
-        //var_dump($_SESSION);die();
         $data = $request->getParsedBody();
         $mapper = new \App\TaskMapper($this->db);
         $id = $mapper->updateMemTaskStatus($data);
 
 
             if($data['status']==4){
-                $f_param = 'CID: '.$data['task_id'].' Task has been completed By -'.$_SESSION['user'][0]['username'];
+                $f_param = 'CID: '.$data['cid'].' Task has been completed By -'.$_SESSION['user'][0]['username'];
                 \App\Utility::postToSlack($f_param);
             }elseif ($data['status']==5){
-                $f_param = 'CID: '.$data['task_id'].' Task Invalid By -'.$_SESSION['user'][0]['username'];
+                $f_param = 'CID: '.$data['cid'].' Task Invalid By -'.$_SESSION['user'][0]['username'];
                 \App\Utility::postToSlack($f_param);
             }elseif ($data['status']==3){
-                $f_param = 'CID: '.$data['task_id'].' Task pending By -'.$_SESSION['user'][0]['username'];
+                $f_param = 'CID: '.$data['cid'].' Task pending By -'.$_SESSION['user'][0]['username'];
                 \App\Utility::postToSlack($f_param);
             }
         $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
