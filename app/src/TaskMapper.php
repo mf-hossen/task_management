@@ -67,7 +67,7 @@ class TaskMapper extends Mapper
             $client_id = $data['client_id'];
             $member_id = $data['member_id'];
             $created_at = $data['created_date'];
-            // var_dump($created_at);die();
+             //var_dump($created_at);die();
             $priority = $data['priority'];
             $task_status = $data['task_status'];
             $task_type = $data['task_type'];
@@ -80,7 +80,7 @@ class TaskMapper extends Mapper
                 array_push($whereArr, "member_id = {$member_id}");
             }
             if ($created_at != "") {
-                array_push($whereArr, "date(tasks.created_at) = {$created_at}");
+                array_push($whereArr, "date(tasks.created_at) = '{$created_at}'");
             }
             if ($priority != "") {
                 array_push($whereArr, "priority = {$priority}");
@@ -167,6 +167,7 @@ class TaskMapper extends Mapper
 
         }
 
+        //print_r($sql); die();
         $stmt = $this->db->query($sql);
 
         return $stmt->fetchAll();
@@ -245,7 +246,6 @@ class TaskMapper extends Mapper
 
             $client_id = $data['client_id'];
             $member_id = $data['member_id'];
-            $created_at = $data['created_at'];
             $priority = $data['priority'];
             $task_status = $data['task_status'];
             $task_type = $data['task_type'];
@@ -257,9 +257,6 @@ class TaskMapper extends Mapper
             if ($member_id != "") {
                 array_push($whereArr, "member_id = {$member_id}");
             }
-            if ($created_at != "") {
-                array_push($whereArr, "date(tasks.created_at) = {$created_at}");
-            }
             if ($priority != "") {
                 array_push($whereArr, "priority = {$priority}");
             }
@@ -269,6 +266,7 @@ class TaskMapper extends Mapper
             if ($task_type != "") {
                 array_push($whereArr, "task_type = {$task_type}");
             }
+
             array_push($whereArr, "date(tasks.created_at)=curdate()");
 
             //var_dump($whereArr); die();
