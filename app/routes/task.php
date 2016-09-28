@@ -11,9 +11,10 @@ $app->group('/task', function () use ($mwAdmin){
     $this->get('/create', function (Request $request, Response $response) {
         $mapper_member = new \App\MemberMapper($this->db);
         $member = $mapper_member->getUser();
+        $admin = $mapper_member->getAdmin();
         $msg = $this->flash->getMessages();
 
-        return $this->view->render($response, 'admin/task/create.twig', ['mem' => $member, 'message' => $msg]);
+        return $this->view->render($response, 'admin/task/create.twig', ['mem' => $member,'admin'=>$admin, 'message' => $msg]);
     })->add($mwAdmin);
 
     $this->post('/add', function (Request $request, Response $response) {
@@ -48,11 +49,12 @@ $app->group('/task', function () use ($mwAdmin){
 
     $this->get('/list[/{type}]', function (Request $request, Response $response, $arg) {
         $queryParams = $request->getQueryParams();
+        //var_dump($queryParams); die();
         $dateType = $request->getAttribute('type', 'all');
 
         $mapper_member = new \App\MemberMapper($this->db);
         $member = $mapper_member->getUser();
-
+        $admin = $mapper_member->getAdmin();
         $mapper = new \App\TaskMapper($this->db);
         if ($dateType == 'today') {
             $typeTitle = 'TODAY';
@@ -77,6 +79,7 @@ $app->group('/task', function () use ($mwAdmin){
                 'message' => $update_message,
                 'typeTitle' => $typeTitle,
                 'mem' => $member,
+                'admin' => $admin
             ]);
 
         return $response;
