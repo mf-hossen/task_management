@@ -12,7 +12,8 @@ $app->get('/', function (Request $request, Response $response){
     }
     if ($_SESSION['user'][0]['role'] == 'Member') {
         $path = 'member';
-        $count = $mapper->getAdminTaskCount();
+        $count = $mapper->getMemberTaskCount($_SESSION['user'][0]['id']);
+
 
     }
 

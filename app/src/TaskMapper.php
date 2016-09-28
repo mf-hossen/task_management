@@ -821,8 +821,8 @@ class TaskMapper extends Mapper
              WHEN status = 3 THEN 1
              ELSE 0
            END) AS pending_task 
-      FROM tasks WHERE user_id = '$userID'";
-
+      FROM tasks WHERE member_id = $userID";
+        //var_dump($sql); die();
         $stmt = $this->db->query($sql);
         $res = $stmt->fetch();
 
