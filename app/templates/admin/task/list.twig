@@ -19,10 +19,13 @@
                 <a href="/task/create" class="btn btn-success btn-group  text-uppercase">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
                 </a>
+                {% if task is  not empty %}
+
                 <a class="btn btn-primary" data-toggle="modal" href="#modal-id">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                     Search Task
                 </a>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -45,11 +48,7 @@
         </div>
     {% endif %}
 
-    {% if task is empty %}
-        {% include '/element/common/no-data.twig' %}
-
-    {% else %}
-
+    {% if task is not empty %}
 
         <form action="/task/admin_status" method="post">
             <div class="row" id="assignForm">
@@ -63,9 +62,9 @@
                 <div class="col-md-1">
                     <input type="submit" class="btn btn-success">
                 </div>
-                <br>
-
             </div>
+            <br>
+            <br>
 
 
             <div class="row">
@@ -256,6 +255,8 @@
                 </form>
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+    {% else %}
+        {% include '/element/common/no-data.twig' %}
 
     {% endif %}
 {% endblock %}

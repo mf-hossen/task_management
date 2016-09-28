@@ -670,6 +670,7 @@ class TaskMapper extends Mapper
             $stmt->bindParam(':status', $data['status']);
             $stmt->bindParam(':site_url', $data['site_url']);
             $stmt->execute();
+
             return $taskID;
 
         } catch (Exception $e) {
@@ -779,6 +780,53 @@ class TaskMapper extends Mapper
         $stmt = $this->db->query($sql);
 
         return $stmt->fetchAll();
+    }
+
+    public function getAdminTaskCount()
+    {
+        $sql = "SELECT 
+      COUNT(*) AS all_task,
+       SUM(CASE 
+             WHEN date(created_at) = CURDATE()  THEN 1
+             ELSE 0
+           END) AS today_task,
+       SUM(CASE 
+             WHEN status = 1 THEN 1
+             ELSE 0
+           END) AS complete_task, 
+       SUM(CASE 
+             WHEN status = 3 THEN 1
+             ELSE 0
+           END) AS pending_task 
+      FROM tasks";
+        $stmt = $this->db->query($sql);
+        $res = $stmt->fetch();
+
+        return $res;
+    }
+
+    public function getMemberTaskCount($userID)
+    {
+        $sql = "SELECT 
+      COUNT(*) AS all_task,
+       SUM(CASE 
+             WHEN date(created_at) = CURDATE()  THEN 1
+             ELSE 0
+           END) AS today_task,
+       SUM(CASE 
+             WHEN status = 1 THEN 1
+             ELSE 0
+           END) AS complete_task, 
+       SUM(CASE 
+             WHEN status = 3 THEN 1
+             ELSE 0
+           END) AS pending_task 
+      FROM tasks WHERE user_id = '$userID'";
+
+        $stmt = $this->db->query($sql);
+        $res = $stmt->fetch();
+
+        return $res;
     }
 
 
