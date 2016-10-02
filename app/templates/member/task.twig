@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-lg-12">
 
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example" style="text-align: center">
                         <thead>
                         <tr>
                             <th>Client ID</th>
@@ -56,18 +56,19 @@
                                 </td>
                                 <td>
                                     {% if  tasks.status==1 %}
-                                        <span class="text-success text-uppercase" style="color:#46af48;font-weight:600">Complete </span>
+                                        <span class="text-success text-uppercase"
+                                              style="color:#46af48;font-weight:600">Complete </span>
                                     {% elseif tasks.status==2 %}
                                         <span class="text-danger text-uppercase"
                                               style="color: #ff9800 ;font-weight:600"> Incomplete </span>
                                     {% elseif tasks.status==3 %}
                                         <span class="text-warning text-uppercase"
-                                              style="color: #ff9800 ;font-weight:600">Pending </span>
+                                              style="color: #e82f21 ;font-weight:600">Pending </span>
                                     {% elseif tasks.status==4 %}
                                         <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Done </span>
                                     {% elseif tasks.status==5 %}
                                         <span class="text-default text-uppercase"
-                                              style="color: #e82f21;font-weight:600">Invalid </span>
+                                              style="color: #ff9800;font-weight:600">On Progress </span>
                                     {% endif %}
 
                                 </td>

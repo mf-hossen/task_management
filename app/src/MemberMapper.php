@@ -20,6 +20,15 @@ class MemberMapper extends Mapper
 
         return $row;
     }
+
+    public function getAdmin()
+    {
+        $sql = "SELECT * FROM users where role='Admin'";
+        $stmt = $this->db->query($sql);
+        $row = $stmt->fetchAll();
+
+        return $row;
+    }
 }
 
 ?>

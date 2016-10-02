@@ -37,7 +37,7 @@
                                 <option value=""> -- Select Status --</option>
                                 <option value="3">Pending</option>
                                 <option value="4">Done</option>
-                               {# <option value="5">Invalid</option>#}
+                               <option value="5">On Progress</option>
                             </select>
                             <input type="hidden" name="cid" value="{{ details.client_id }}">
                         </div>
@@ -77,6 +77,7 @@
                 </div>
 
                 <div class="col-md-1">
+                    <input type="hidden" name="cid" value="{{ details.task_id }}">
                     <input type="hidden" name="task_id" value="{{ details.task_id }}">
                     <input type="submit" class="btn btn-success">
                 </div>
@@ -90,7 +91,7 @@
                     <option value=""> -- Select Status --</option>
                     <option value="3">Pending</option>
                     <option value="4">Done</option>
-                    <option value="5">Invalid</option>
+                    <option value="5">On Progress</option>
                 </select>
                 </div>
                 <div class="form-group">
@@ -193,15 +194,13 @@
                     <td><b>Task Type:</b></td>
                     <td>
                         {% if  details.task_type==1 %}
-                            <span class="text-success text-uppercase" style="color:#46af48;font-weight:600">Edit </span>
+                            <span class="label label-warning"> Edit </span>
                         {% elseif details.task_type==2 %}
-                            <span class="text-danger text-uppercase"
-                                  style="color: #ff9800 ;font-weight:600"> Redesign </span>
+                            <span class="label label-primary"> Redesign </span>
                         {% elseif details.task_type==3 %}
-                            <span class="text-warning text-uppercase"
-                                  style="color: #ff9800 ;font-weight:600">New </span>
+                            <span class="label label-info">New </span>
                         {% elseif details.task_type==4 %}
-                            <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Live </span>
+                            <span class="label label-success">Live </span>
                         {% endif %}
                     </td>
 
@@ -249,12 +248,12 @@
                                   style="color: #ff9800 ;font-weight:600"> Incomplete </span>
                         {% elseif details.status==3 %}
                             <span class="text-warning text-uppercase"
-                                  style="color: #ff9800 ;font-weight:600">Pending </span>
+                                  style="color: #e82f21 ;font-weight:600">Pending </span>
                         {% elseif details.status==4 %}
                             <span class="text-primary text-uppercase" style="color:#46af48;font-weight:600">Done </span>
                         {% elseif details.status==5 %}
                             <span class="text-default text-uppercase"
-                                  style="color: #e82f21;font-weight:600">Invalid </span>
+                                  style="color: #ff9800;font-weight:600">On Progress </span>
                         {% endif %}
                     </td>
                 </tr>
