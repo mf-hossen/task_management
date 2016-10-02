@@ -38,11 +38,10 @@
                                       style="color:#46af48;font-weight:600">Done </span>
                             {% else %}
                             <select name="status" id="inputID" class="form-control" required>
-                                <option value=""> -- Select Status --</option>
-                                <option value="3">Pending</option>
-                                <option value="4">Done</option>
-                               <option value="5">On Progress</option>
-                               <option value="6">Pause</option>
+                                <option value="3" {{ details.status==3 ? 'selected' : '' }}>Pending</option>
+                                <option value="4"  {{ details.status==4 ? 'selected' : '' }}>Done</option>
+                               <option value="5"  {{ details.status==5 ? 'selected' : '' }}>On Progress</option>
+                               <option value="6"  {{ details.status==6 ? 'selected' : '' }}>Pause</option>
                             </select>
                             <input type="hidden" name="cid" value="{{ details.client_id }}">
                         </div>
@@ -71,7 +70,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <select name="status" id="inputID" class="form-control" required>
-                        <option value=""> -- Select Status --</option>
+                        <option value="" hidden> -- Select Status --</option>
                         <option value="1">Complete</option>
                         <option value="2">Incomplete</option>
                     </select>
@@ -93,7 +92,7 @@
             <form action="/task/member/change_status" class="form-inline" method="post">
                 <div class="form-group">
                 <select name="status" id="inputID" class="form-control" required>
-                    <option value=""> -- Select Status --</option>
+                    <option value="" hidden> -- Select Status --</option>
                     <option value="3">Pending</option>
                     <option value="4">Done</option>
                     <option value="5">On Progress</option>
