@@ -26,3 +26,21 @@
     font-size: 160px;
     color: #a22;
 }
+
+.single_keyword{
+    float: left;
+    width: 100%;
+}
+
+.deleteKeywordRow{
+    position: absolute;
+    margin-top: 27px;
+    cursor: pointer;
+    right: 26px;
+    font-size: 20px;
+    color: #DDD !important;
+}
+
+.deleteKeywordRow:hover{
+    color: #d9534f !important;
+}
