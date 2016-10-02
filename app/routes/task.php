@@ -164,10 +164,13 @@ $this->post('/member/change_status', function (Request $request, Response $respo
         $f_param = 'CID: ' . $data['cid'] . ' Task has been completed By -' . $_SESSION['user'][0]['username'];
         \App\Utility::postToSlack($f_param);
     } elseif ($data['status'] == 5) {
-        $f_param = 'CID: ' . $data['cid'] . ' Task Invalid By -' . $_SESSION['user'][0]['username'];
+        $f_param = 'CID: ' . $data['cid'] . ' Task On Progress  By -' . $_SESSION['user'][0]['username'];
         \App\Utility::postToSlack($f_param);
     } elseif ($data['status'] == 3) {
         $f_param = 'CID: ' . $data['cid'] . ' Task pending By -' . $_SESSION['user'][0]['username'];
+        \App\Utility::postToSlack($f_param);
+    } elseif ($data['status'] == 6) {
+        $f_param = 'CID: ' . $data['cid'] . ' Task pause By -' . $_SESSION['user'][0]['username'];
         \App\Utility::postToSlack($f_param);
     }
     $this->flash->addMessage('success', 'Update! Successfuly Updated!!!');
