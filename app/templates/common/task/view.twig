@@ -31,7 +31,11 @@
                     <form action="/task/member/change_status" method="post">
                         <div class="col-lg-5">
                             {% if details.status==1 %}
-                            Completed
+                            <span class="text-success text-uppercase"
+                                  style="color:#46af48;font-weight:600">Completed </span>
+                            {% elseif details.status==4 %}
+                                <span class="text-success text-uppercase"
+                                      style="color:#46af48;font-weight:600">Done </span>
                             {% else %}
                             <select name="status" id="inputID" class="form-control" required>
                                 <option value=""> -- Select Status --</option>
@@ -44,7 +48,7 @@
                         </div>
 
                         <div class="col-md-5">
-                            <input type="text" class="form-control" name="site_url" placeholder="Site URL">
+                            <input type="text" class="form-control" value="{{ details.site_url }}" name="site_url" placeholder="Site URL">
                         </div>
 
                         <div class="col-md-2">
@@ -74,7 +78,7 @@
                    <input type="hidden" name="task_id" value="{{ details.task_id }}">
                 </div>
                 <div class="col-md-4">
-                    <input type="text" class="form-control" name="site_url" placeholder="Site URL" >
+                    <input type="text" class="form-control"  value="{{ details.site_url }}" name="site_url" placeholder="Site URL" >
                 </div>
 
                 <div class="col-md-1">
@@ -235,7 +239,7 @@
                     <td style="width:200px"><b>Site Url:</b></td>
                     <td>
                         <a target="_blank"
-                           href="{{ details.site_url }}">{{ details.site_url ? details.site_url : 'N/A' }}</a>
+                           href="{{ details.site_url }}">{{ details.site_url }}</a>
                     </td>
                 </tr>
 
