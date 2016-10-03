@@ -64,7 +64,15 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
     } elseif ($dateType == 'all') {
         $typeTitle = 'ALL';
         $task = $mapper->getTask($queryParams);
-        //var_dump($task); die();
+        $total = $mapper->getAdminTaskCount();
+        $total_page = ceil($total['all_task']/10);
+
+            for ($i=1 ; $total_page >=$i; $i++){
+
+                $total_p = $i;
+            }
+
+       // var_dump($total_p); die();
     } elseif ($dateType == 'complete') {
         $typeTitle = 'COMPLETE';
         $task = $mapper->getCompleteTask($queryParams);
@@ -81,9 +89,9 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
             'message' => $update_message,
             'typeTitle' => $typeTitle,
             'mem' => $member,
-            'admin' => $admin
+            'admin' => $admin,
+            'total_page'=>$total_p
         ]);
-
     return $response;
 });
 

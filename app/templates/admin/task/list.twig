@@ -244,6 +244,14 @@
 
                     </tbody>
                 </table>
+                {% if(typeTitle == 'ALL') %}
+
+                <ul class="pagination navbar-right">
+                    {% for i in 1..total_page %}
+                        <li><a href="/task/list?page={{ i }}">{{ i }}</a></li>
+                    {% endfor %}
+                {% endif %}
+                </ul>
             </div>
         </div>
         </form>
@@ -271,7 +279,7 @@
                                         <select class="form-control" name="member_id" id="member">
                                             <option value="">Choose member</option>
                                             {% for members in mem %}
-                                                <option value="{{ members.id }}">{{ members.first_name }}</option>
+                                                <option value="{{ members.id }}"> {{ members.first_name }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>

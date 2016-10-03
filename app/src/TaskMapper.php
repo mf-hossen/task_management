@@ -63,6 +63,18 @@ class TaskMapper extends Mapper
 
     public function getTask($data = false)
     {
+        //var_dump($data['page']); die();
+       if(!isset($data['page'])){
+            $page = 1;
+       }else{
+
+           $page = $data['page'];
+       }
+
+        // var_dump($page); die();
+        $limit = 10;
+        $offset = ($page - 1) * $limit;
+
         if (!empty($data)) {
             $client_id = $data['client_id'];
             $member_id = $data['member_id'];
@@ -71,7 +83,7 @@ class TaskMapper extends Mapper
             $priority = $data['priority'];
             $task_status = $data['task_status'];
             $task_type = $data['task_type'];
-
+            $total_page = $this->getAdminTaskCount();
             $whereArr = array();
             if ($client_id != "") {
                 array_push($whereArr, "client_id = {$client_id}");
@@ -117,7 +129,7 @@ class TaskMapper extends Mapper
               left join users on tasks.user_id = users.id 
               left join users as member on tasks.member_id =member.id 
               WHERE {$whereStr}
-              order by task_id DESC ";
+              order by task_id DESC  LIMIT $offset, $limit";
             } else {
                 $sql = "SELECT 
               users.id as user_id, 
@@ -138,12 +150,13 @@ class TaskMapper extends Mapper
 
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id order by task_id DESC ";
+              left join users as member on tasks.member_id =member.id order by task_id DESC  LIMIT $offset, $limit";
 
             }
 
 
         } else {
+          // var_dump(111); die();
             $sql = "SELECT 
               users.id as user_id, 
               users.username, 
@@ -163,7 +176,7 @@ class TaskMapper extends Mapper
 
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id order by task_id DESC ";
+              left join users as member on tasks.member_id =member.id order by task_id DESC  LIMIT $offset, $limit ";
 
         }
 
@@ -176,7 +189,7 @@ class TaskMapper extends Mapper
 
     public function getCompleteTask()
     {
-        $sql = "SELECT 
+        $sql = "SELECT
               users.id as user_id, 
               users.username, 
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
@@ -204,7 +217,7 @@ class TaskMapper extends Mapper
 
     public function getPendingTask()
     {
-        $sql = "SELECT 
+        $sql = "SELECT
               users.id as user_id, 
               users.username, 
               concat(users.first_name , ' ', users.last_name ) as users_full_name,
