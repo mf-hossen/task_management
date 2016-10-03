@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="col-md-1">
-                    <input type="hidden" name="cid" value="{{ details.task_id }}">
+                    <input type="hidden" name="cid" value="{{ details.client_id }}">
                     <input type="hidden" name="task_id" value="{{ details.task_id }}">
                     <input type="submit" class="btn btn-success" value="Submit">
                 </div>
@@ -119,6 +119,7 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <input type="hidden" name="cid" value="{{ details.client_id }}">
                     <input type="text" class="form-control" value="{{ details.site_url}}" name="site_url" placeholder="Site URL" >
                 </div>
                 <input type="hidden" name="task_id" value="{{ details.task_id }}">
