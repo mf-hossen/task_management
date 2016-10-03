@@ -74,7 +74,7 @@
                             </td>
                             <td>
                                 <select name="admin_id" class="form-control">
-                                    <option value="">Created</option>
+                                    <option value="" hidden>Created</option>
                                     {% for admins in admin %}
                                         <option value="{{ admins.id }}">{{ admins.first_name }}</option>
                                     {% endfor %}
@@ -83,7 +83,7 @@
                             <td>
 
                                 <select name="member_id" class="form-control">
-                                    <option value="">Assigned</option>
+                                    <option value="" hidden>Assigned</option>
                                     {% for members in mem %}
                                         <option value="{{ members.id }}">{{ members.first_name }}</option>
                                     {% endfor %}
@@ -92,7 +92,7 @@
                             <td>
 
                                 <select name="task_type" class="form-control">
-                                    <option value="">Type</option>
+                                    <option value="" hidden>Type</option>
                                     <option value="1">Edit</option>
                                     <option value="2">Redesign</option>
                                     <option value="3">New</option>
@@ -114,7 +114,7 @@
                             <td>
 
                                 <select class="form-control" name="priority">
-                                    <option value="">Prirority</option>
+                                    <option value="" hidden>Prirority</option>
                                     <option value="1">High</option>
                                     <option value="2">Regular</option>
                                 </select>
@@ -136,7 +136,7 @@
                                 <div class="row" id="assignForm">
                                     <div class="col-md-8">
                                         <select name="status" id="inputID" class="form-control">
-                                            <option value=""> -- Select Status --</option>
+                                            <option value="" hidden> -- Select Status --</option>
                                             <option value="1">Complete</option>
                                             <option value="2">Incomplete</option>
                                         </select>
@@ -277,7 +277,7 @@
                                     <div class="form-group">
                                         <label for="">Member</label>
                                         <select class="form-control" name="member_id" id="member">
-                                            <option value="">Choose member</option>
+                                            <option value="" hidden>Choose member</option>
                                             {% for members in mem %}
                                                 <option value="{{ members.id }}"> {{ members.first_name }}</option>
                                             {% endfor %}
@@ -304,7 +304,7 @@
                                     <div class="form-group">
                                         <label for="">Priority</label>
                                         <select class="form-control" name="priority">
-                                            <option value="">Choose Prirority</option>
+                                            <option value="" hidden>Choose Prirority</option>
                                             <option value="1">High</option>
                                             <option value="2">Regular</option>
                                         </select>
@@ -318,7 +318,7 @@
                                     <div class="form-group">
                                         <label for="">Status</label>
                                         <select class="form-control" name="task_status" id="task_type">
-                                            <option value="">Choose Status</option>
+                                            <option value="" hidden>Choose Status</option>
                                             <option value="1">Complete</option>
                                             <option value="2">Incomplete</option>
                                             <option value="3">Pending</option>
@@ -334,7 +334,7 @@
                                     <div class="form-group">
                                         <label for="">Type</label>
                                         <select class="form-control" name="task_type" id="task_type">
-                                            <option value="">Choose Type</option>
+                                            <option value="" hidden>Choose Type</option>
                                             <option value="1">Edit</option>
                                             <option value="2">Redesign</option>
                                             <option value="3">New</option>

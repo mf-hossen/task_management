@@ -809,7 +809,32 @@ class TaskMapper extends Mapper
        SUM(CASE 
              WHEN status = 3 THEN 1
              ELSE 0
-           END) AS pending_task 
+           END) AS pending_task,
+       SUM(CASE 
+             WHEN status = 4 THEN 1
+             ELSE 0
+           END) AS done_task,
+       SUM(CASE 
+             WHEN status = 5 THEN 1
+             ELSE 0
+           END) AS on_progress_task,
+       SUM(CASE 
+             WHEN status = 6 THEN 1
+             ELSE 0
+           END) AS pause_task,
+       SUM(CASE 
+             WHEN status = 1 AND date(created_at) = CURDATE()THEN 1
+             ELSE 0
+           END) AS today_complete_task,
+        SUM(CASE 
+             WHEN status = 4 AND date(created_at) = CURDATE()THEN 1
+             ELSE 0
+           END) AS today_done_task,
+        SUM(CASE 
+             WHEN status = 3 AND date(created_at) = CURDATE()THEN 1
+             ELSE 0
+           END) AS today_pending_task
+       
       FROM tasks";
         $stmt = $this->db->query($sql);
         $res = $stmt->fetch();
@@ -840,6 +865,30 @@ class TaskMapper extends Mapper
 
         return $res;
     }
+
+    public function getToadyTaskCount()
+    {
+        $sql = "SELECT 
+      COUNT(*) AS all_task,
+       SUM(CASE 
+             WHEN date(created_at) = CURDATE()  THEN 1
+             ELSE 0
+           END) AS today_task,
+       SUM(CASE 
+             WHEN status = 1 AND date(created_at) = CURDATE() THEN 1
+             ELSE 0
+           END) AS today_complete_task, 
+       SUM(CASE 
+             WHEN status = 3 AND date(created_at) = CURDATE() THEN 1
+             ELSE 0
+           END) AS today_pending_task 
+      FROM tasks";
+        $stmt = $this->db->query($sql);
+        $res = $stmt->fetch();
+
+        return $res;
+    }
+
 
 
 }

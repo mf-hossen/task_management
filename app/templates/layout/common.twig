@@ -74,13 +74,14 @@
 <!-- Morris Charts JavaScript -->
 <script src="{{ base_url }}/assest/jsplugin/raphael/raphael.min.js"></script>
 <script src="{{ base_url }}/assest/jsplugin/morrisjs/morris.min.js"></script>
-<script src="{{ base_url }}/assest/data/morris-data.js"></script>
+{#<script src="{{ base_url }}/assest/data/morris-data.php"></script>#}
 
 <!-- Custom Theme JavaScript -->
 <script src="{{ base_url }}/assest/dist/js/sb-admin-2.js"></script>
 
 
 {% block jsBottom %}
+    {% include '/element/morris-data.twig' %}
 
 {% endblock %}
 
