@@ -32,10 +32,10 @@
                         <div class="col-lg-5">
                             {% if details.status==1 %}
                             <span class="text-success text-uppercase"
-                                  style="color:#46af48;font-weight:600">Completed </span>
+                                  style="color:#46af48;font-weight:600"></span>
                             {% elseif details.status==4 %}
                                 <span class="text-success text-uppercase"
-                                      style="color:#46af48;font-weight:600">Done </span>
+                                      style="color:#46af48;font-weight:600"></span>
                             {% else %}
                             <select name="status" id="inputID" class="form-control" required>
                                 <option value="3" {{ details.status==3 ? 'selected' : '' }}>Pending</option>
