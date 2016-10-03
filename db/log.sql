@@ -28,3 +28,5 @@ ALTER TABLE `users` ADD `slack_username` VARCHAR(200) NOT NULL AFTER `role`;
 
 --Farhad  24 9 2016--
 ALTER TABLE `comments` ADD `comment_attach` TEXT NULL AFTER `username`;
+--Shanta 03 10 2016
+ALTER TABLE `tasks` CHANGE `status` `status` TINYINT(4) NOT NULL DEFAULT '3' COMMENT '1=Complete, 2=Incomplete, 3=Pending; 4=Done; 5=on progress, 6=pause';
