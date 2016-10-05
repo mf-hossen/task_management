@@ -465,6 +465,8 @@ class TaskMapper extends Mapper
               tasks.client_id,
               tasks.status,
               tasks.site_url,
+              tasks.site_username,
+              tasks.site_password,
               tasks.created_at,
               tasks.priority,
               member.username as membername,
@@ -677,10 +679,12 @@ class TaskMapper extends Mapper
         $taskID = $data['task_id'];
         //var_dump($data);die();
         try {
-            $sql = "UPDATE  tasks SET status = :status , site_url = :site_url  WHERE  id ='$taskID'";
+            $sql = "UPDATE  tasks SET status = :status , site_url = :site_url ,  site_username = :site_username ,  site_password = :site_password   WHERE  id ='$taskID'";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':status', $data['status']);
             $stmt->bindParam(':site_url', $data['site_url']);
+            $stmt->bindParam(':site_username', $data['site_username']);
+            $stmt->bindParam(':site_password', $data['site_password']);
             $stmt->execute();
 
             return $taskID;

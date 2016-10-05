@@ -28,35 +28,45 @@
 
 
                 {% elseif session.user.0.role=='Member' %}
-                    <form action="/task/member/change_status" method="post">
-                        <div class="col-lg-5">
-                            {% if details.status==1 %}
+                    <form action="/task/member/change_status" method="post" class="form-inline">
+                        {% if details.status==1 %}
                             <span class="text-success text-uppercase"
                                   style="color:#46af48;font-weight:600"></span>
-                            {% elseif details.status==4 %}
-                                <span class="text-success text-uppercase"
-                                      style="color:#46af48;font-weight:600"></span>
-                            {% else %}
-                            <select name="status" id="inputID" class="form-control" required>
-                                <option value="3" {{ details.status==3 ? 'selected' : '' }}>Pending</option>
-                                <option value="4"  {{ details.status==4 ? 'selected' : '' }}>Done</option>
-                               <option value="5"  {{ details.status==5 ? 'selected' : '' }}>On Progress</option>
-                               <option value="6"  {{ details.status==6 ? 'selected' : '' }}>Pause</option>
-                            </select>
+                        {% elseif details.status==4 %}
+                            <span class="text-success text-uppercase"
+                                  style="color:#46af48;font-weight:600"></span>
+                        {% else %}
+                            <div class="form-group">
+                                <select name="status" id="inputID" class="form-control" required>
+                                    <option value="3" {{ details.status==3 ? 'selected' : '' }}>Pending</option>
+                                    <option value="4" {{ details.status==4 ? 'selected' : '' }}>Done</option>
+                                    <option value="5" {{ details.status==5 ? 'selected' : '' }}>On Progress</option>
+                                    <option value="6" {{ details.status==6 ? 'selected' : '' }}>Pause</option>
+                                </select>
+                            </div>
                             <input type="hidden" name="cid" value="{{ details.client_id }}">
-                        </div>
+                            <div class="form-group">
 
-                        <div class="col-md-5">
-                            <input type="text" class="form-control" value="{{ details.site_url }}" name="site_url" placeholder="Site URL">
-                        </div>
+                                <input type="text" class="form-control" value="{{ details.site_url }}" name="site_url" placeholder="Site URL" required>
+                            </div>
+                            <div class="form-group">
 
-                        <div class="col-md-2">
+                                <input type="text" class="form-control" value="{{ details.site_username }}"
+                                       name="site_username" placeholder="User Name" required>
+                            </div>
+                            <div class="form-group">
+
+                                <input type="text" class="form-control" value="{{ details.site_password }}"
+                                       name="site_password" placeholder="Password" required>
+                            </div>
+
                             <input type="hidden" name="task_id" value="{{ details.task_id }}">
-                            <input type="submit" class="btn btn-success" value="Submit">
-                        </div>
+                            <div class="form-group">
 
-
+                                <input type="submit" class="btn btn-success" value="Submit">
+                            </div>
                         {% endif %}
+
                     </form>
                 {% endif %}
 
@@ -74,10 +84,11 @@
                         <option value="1">Complete</option>
                         <option value="2">Incomplete</option>
                     </select>
-                   <input type="hidden" name="task_id" value="{{ details.task_id }}">
+                    <input type="hidden" name="task_id" value="{{ details.task_id }}">
                 </div>
                 <div class="col-md-4">
-                    <input type="text" class="form-control"  value="{{ details.site_url }}" name="site_url" placeholder="Site URL" >
+                    <input type="text" class="form-control" value="{{ details.site_url }}" name="site_url"
+                           placeholder="Site URL">
                 </div>
 
                 <div class="col-md-1">
@@ -113,14 +124,15 @@
                     <select name="status" id="inputID" class="form-control" required>
                         <option value="" hidden> -- Select Status --</option>
                         <option value="3" {{ details.status==3 ? 'selected' : '' }}>Pending</option>
-                        <option value="4"  {{ details.status==4 ? 'selected' : '' }}>Done</option>
-                        <option value="5"  {{ details.status==5 ? 'selected' : '' }}>On Progress</option>
-                        <option value="6"  {{ details.status==6 ? 'selected' : '' }}>Pause</option>
+                        <option value="4" {{ details.status==4 ? 'selected' : '' }}>Done</option>
+                        <option value="5" {{ details.status==5 ? 'selected' : '' }}>On Progress</option>
+                        <option value="6" {{ details.status==6 ? 'selected' : '' }}>Pause</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <input type="hidden" name="cid" value="{{ details.client_id }}">
-                    <input type="text" class="form-control" value="{{ details.site_url}}" name="site_url" placeholder="Site URL" >
+                    <input type="text" class="form-control" value="{{ details.site_url }}" name="site_url"
+                           placeholder="Site URL">
                 </div>
                 <input type="hidden" name="task_id" value="{{ details.task_id }}">
                 <input type="submit" class="btn btn-success" value="Submit">
@@ -170,16 +182,17 @@
             </div>
             <div class="row">
                 {#{{ dump(session.user.0.role) }}#}
-                {% if (session.user.0.role=='Admin')  %}
-                <div class="col-md-12">
-                    <div class="pull-right btn-toolbar">
-                        <a href="/task/attached/{{ details.task_id }}" class="btn btn-link btn-group  text-uppercase">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add more files
-                        </a>
-                    </div>
+                {% if (session.user.0.role=='Admin') %}
+                    <div class="col-md-12">
+                        <div class="pull-right btn-toolbar">
+                            <a href="/task/attached/{{ details.task_id }}"
+                               class="btn btn-link btn-group  text-uppercase">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add more files
+                            </a>
+                        </div>
 
-                </div>
-                    {% endif %}
+                    </div>
+                {% endif %}
             </div>
 
             <h4 class="text-primary"><u>Comments:</u></h4>
@@ -196,8 +209,8 @@
                         {% endif %}
                     </dd>
                     {% if  commt.comment_attach %}
-                    <a href="/{{ commt.comment_attach }}" class="btn btn-info pull-right">attached file</a><br>
-                        {% endif %}
+                        <a href="/{{ commt.comment_attach }}" class="btn btn-info pull-right">attached file</a><br>
+                    {% endif %}
                     <hr>
                 {% endfor %}
             </dl>
@@ -208,7 +221,8 @@
                 <div class="form-group">
                     <textarea class="form-control" placeholder="Write your comment" name="comments"></textarea><br>
                     <input type="file" name="comment_attach" class=" pull-right">
-                </div><br>
+                </div>
+                <br>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Comments</button>
                 </div>
@@ -297,6 +311,22 @@
                         {% endif %}
                     </td>
                 </tr>
+
+                <tr>
+                    <td style="width:200px"><b>Site Username:</b></td>
+                    <td>
+                        {{ details.site_username ?  details.site_username : 'N/A'  }}
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td style="width:200px"><b>Site Password:</b></td>
+                    <td>
+                        {{ details.site_password ? details.site_password : 'N/A' }}
+                    </td>
+                </tr>
+
 
                 <tr>
                     <td style="width:200px"><b>Created Date:</b></td>
