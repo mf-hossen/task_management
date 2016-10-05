@@ -10,6 +10,8 @@ require __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
+ini_set('session.gc_maxlifetime', 36000);
+
 require __DIR__ . '/../db_config.php';
 
 
