@@ -823,18 +823,26 @@ class TaskMapper extends Mapper
              ELSE 0
            END) AS pause_task,
        SUM(CASE 
-             WHEN status = 1 AND date(created_at) = CURDATE()THEN 1
+             WHEN status = 1 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
            END) AS today_complete_task,
         SUM(CASE 
-             WHEN status = 4 AND date(created_at) = CURDATE()THEN 1
+             WHEN status = 4 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
            END) AS today_done_task,
-        SUM(CASE 
-             WHEN status = 3 AND date(created_at) = CURDATE()THEN 1
+       SUM(CASE 
+             WHEN status = 5 AND date(created_at) = CURDATE()  THEN 1
              ELSE 0
-           END) AS today_pending_task
-       
+           END) AS today_on_progress_task,
+
+        SUM(CASE 
+             WHEN status = 3 AND date(created_at) = CURDATE() THEN 1
+             ELSE 0
+           END) AS today_pending_task,
+          SUM(CASE 
+             WHEN status = 6 AND date(created_at) = CURDATE() THEN 1
+             ELSE 0
+           END) AS today_pause_task       
       FROM tasks";
         $stmt = $this->db->query($sql);
         $res = $stmt->fetch();

@@ -1,23 +1,68 @@
 <script>
-    $(function() {
+    $(function () {
 
         Morris.Donut({
             element: 'morris-donut-chart1',
-            data: [{
-                label: "Complete",
-                value: {{ count.today_complete_task }}
-            }, {
-                label: "Done",
-                value: {{ count.today_done_task }}
-            }, {
-                label: "Pending",
-                value: {{ count.today_pending_task }}
-            }],
+            data: [
+                {
+                    label: "Complete",
+                    value: {{ count.today_complete_task }}
+                },
+                {
+                    label: "Done",
+                    value: {{ count.today_done_task }}
+                },
+                {
+                    label: "Pending",
+                    value: {{ count.today_pending_task }}
+                },
+                {
+                    label: "Pause",
+                    value: {{ count.today_pause_task }}
+                },
+                {
+                    label: "On Progress",
+                    value: {{ count.today_on_progress_task }}
+                }
+
+                ],
             resize: true
         });
-
 
 
     });
 </script>
 
+<script>
+    $(function () {
+
+        Morris.Donut({
+            element: 'morris-donut-chart',
+            data: [
+                {
+                    label: "Complete",
+                    value: {{ count.complete_task }}
+                },
+                {
+                    label: "Done",
+                    value: {{ count.done_task }}
+                },
+                {
+                    label: "Pending",
+                    value: {{ count.pending_task }}
+                },
+                {
+                    label: "Pause",
+                    value: {{ count.pause_task }}
+                },
+                {
+                    label: "On Progress",
+                    value: {{ count.on_progress_task }}
+                }
+            ],
+            resize: true
+        });
+
+
+    });
+</script>
