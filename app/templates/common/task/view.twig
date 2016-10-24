@@ -196,16 +196,26 @@
             </div>
 
             <h4 class="text-primary"><u>Comments:</u></h4>
-            {#  {{ dump(session.user.0) }}#}
-            {#{{ dump(all_comments) }}#}
             <dl>
                 {% for commt in all_comments %}
-                    {#<dt>Posted By:   </dt>#}
                     <dd>{{ commt.comments }} -
                         {% if session.user.0.username == commt.username %}
-                            <i style="color: green"><u>{{ commt.username }}</u></i>
+                            <i style="color: green">
+                                <u>{{ commt.username }}</u>
+                            </i>
+                            <span>
+                                {{ commt.created_at | date("M d, Y") }}<span
+                                        style="font-size: 10px; color: #999;"> ({{ commt.created_at | date("h:i A") }}
+                                    )</span>
+                            </span>
+
                         {% else %}
                             <i style="color: #FFA500"><u>{{ commt.username }}</u></i>
+                            <span>
+                                {{ commt.created_at | date("M d, Y") }}<span
+                                        style="font-size: 10px; color: #999;"> ({{ commt.created_at | date("h:i A") }}
+                                    )</span>
+                            </span>
                         {% endif %}
                     </dd>
                     {% if  commt.comment_attach %}
