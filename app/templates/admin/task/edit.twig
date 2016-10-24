@@ -97,13 +97,20 @@
 
                                 </select>
                             </div>
-                            {#
-                                                                <div class="form-group">
-                                                                    <label for="date">Submission Date</label>
-                                                                    <input type="date" name="date" class="form-control" id="date"
-                                                                           placeholder="Input Client ID" required>
-                                                                </div>
-                            #}
+
+                            <div class="form-group">
+                                <label for="task_type">Task Status</label>
+                                <select class="form-control" name="status" id="status" required>
+                                    <option value="1" {{ update_data.status == 1 ? 'selected' : '' }}>Complete</option>
+                                    <option value="2" {{ update_data.status == 2 ? 'selected' : '' }}>Incomplete
+                                    </option>
+                                    <option value="3" {{ update_data.status == 3 ? 'selected' : '' }}>Pending</option>
+                                    <option value="4" {{ update_data.status == 4 ? 'selected' : '' }}>Done</option>
+                                    <option value="5" {{ update_data.status == 5 ? 'selected' : '' }}>On Progress
+                                    </option>
+                                    <option value="6" {{ update_data.status == 6 ? 'selected' : '' }}>Pause</option>
+                                </select>
+                            </div>
                         </div>
 
                     </div>

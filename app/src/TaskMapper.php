@@ -519,6 +519,7 @@ class TaskMapper extends Mapper
               tasks.client_id,
               tasks.created_at,
               tasks.site_url,
+              tasks.status,
               tasks.priority,
               tasks.submission_date,
               member.username as membername
@@ -702,12 +703,13 @@ class TaskMapper extends Mapper
 
             //$id = $data['id'];
             //var_dump($id); die();
-            $stmt = $this->db->prepare("update tasks set client_id=:client_id,description=:description,task_type=:task_type, member_id=:member_id, priority=:priority where id='$taskID'");
+            $stmt = $this->db->prepare("update tasks set client_id=:client_id,description=:description,task_type=:task_type, member_id=:member_id, priority=:priority, status=:status where id='$taskID'");
             $stmt->bindParam(':client_id', $data['client_id']);
             $stmt->bindParam(':description', $data['description']);
             $stmt->bindParam(':task_type', $data['task_type']);
             $stmt->bindParam(':member_id', $data['member_id']);
             $stmt->bindParam(':priority', $data['priority']);
+            $stmt->bindParam(':status', $data['status']);
             $stmt->execute();
             $details = $this->taskDetails($taskID);
 
