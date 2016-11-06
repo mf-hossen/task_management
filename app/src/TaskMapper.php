@@ -984,5 +984,14 @@ class TaskMapper extends Mapper
     }
 
 
+    public function topUserbyTask()
+    {
+        $topUser = "SELECT COUNT(t.id) as total_task, t.member_id, u.username, u.id FROM tasks t, users u where u.id = t.member_id group by t.member_id order by total_task desc";
+        $topAllUser = $this->db->query($topUser);
+        $getAllUser = $topAllUser->fetchAll();
+        return $getAllUser;
+    }
+
+
 
 }

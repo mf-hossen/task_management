@@ -7,6 +7,7 @@ $app->get('/', function (Request $request, Response $response){
     $msg = $this->flash->getMessages();
     $barChartData = $mapper->getBarcharTask();
     $countMemberTask = $mapper->getMemberTodayTaskCount();
+    $topUsre = $mapper->topUserbyTask();
     if ($_SESSION['user'][0]['role'] == 'Admin') {
         $path = 'admin';
         $count = $mapper->getAdminTaskCount();
@@ -28,6 +29,6 @@ $app->get('/', function (Request $request, Response $response){
 
     //var_dump($count); die();
     return $this->view->render($response, $path . '/dashboard.twig', ['session' => $_SESSION,
-        'msg' => $msg, 'count' => $count, 'countMemberTask' => $countMemberTask, 'barChartData' => $barChartData]);
+        'msg' => $msg, 'count' => $count, 'countMemberTask' => $countMemberTask, 'barChartData' => $barChartData, 'topusers' => $topUsre]);
 //    return $this->view->render($response, $path. '/morris-data.twig',['barChartData'=>$barChartData]);
 })->add($mw);
