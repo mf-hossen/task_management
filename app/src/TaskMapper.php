@@ -856,9 +856,79 @@ class TaskMapper extends Mapper
         return $res;
     }
 
+    public function getMemberTodayTaskCount()
+    {
+        $member_id = $_SESSION['user'][0]['id'];
+        $sql = "SELECT 
+      COUNT(*) AS all_task,
+       SUM(CASE 
+             WHEN date(created_at) = CURDATE()  THEN 1
+             ELSE 0
+           END) AS today_task,
+       SUM(CASE 
+             WHEN status = 1 THEN 1
+             ELSE 0
+           END) AS complete_task, 
+       SUM(CASE 
+             WHEN status = 3 THEN 1
+             ELSE 0
+           END) AS pending_task,
+       SUM(CASE 
+             WHEN status = 4 THEN 1
+             ELSE 0
+           END) AS done_task,
+       SUM(CASE 
+             WHEN status = 5 THEN 1
+             ELSE 0
+           END) AS on_progress_task,
+       SUM(CASE 
+             WHEN status = 6 THEN 1
+             ELSE 0
+           END) AS pause_task,
+       SUM(CASE 
+             WHEN status = 1 AND date(created_at) = CURDATE() THEN 1
+             ELSE 0
+           END) AS today_complete_task,
+        SUM(CASE 
+             WHEN status = 4 AND date(created_at) = CURDATE() THEN 1
+             ELSE 0
+           END) AS today_done_task,
+       SUM(CASE 
+             WHEN status = 5 AND date(created_at) = CURDATE()  THEN 1
+             ELSE 0
+           END) AS today_on_progress_task,
+
+        SUM(CASE 
+             WHEN status = 3 AND date(created_at) = CURDATE() THEN 1
+             ELSE 0
+           END) AS today_pending_task,
+          SUM(CASE 
+             WHEN status = 6 AND date(created_at) = CURDATE() THEN 1
+             ELSE 0
+           END) AS today_pause_task       
+      FROM tasks WHERE member_id = '$member_id' ";
+        $stmt = $this->db->query($sql);
+        $res = $stmt->fetch();
+
+        return $res;
+    }
+
     public function getBarcharTask(){
 
        $sql = "SELECT COUNT(id) as totalTaskId, date(created_at) as created_day FROM `tasks` GROUP BY created_day desc";
+        $stmt = $this->db->query($sql);
+        $result = $stmt->fetchAll();
+
+        return $result;
+
+    }
+
+    public function getBarcharTaskMember()
+    {
+
+        $member_id = $_SESSION['user'][0]['id'];
+
+        $sql = "SELECT COUNT(id) as totalTaskId, date(created_at) as created_day FROM `tasks` where member_id = '$member_id' GROUP BY created_day desc";
         $stmt = $this->db->query($sql);
         $result = $stmt->fetchAll();
 

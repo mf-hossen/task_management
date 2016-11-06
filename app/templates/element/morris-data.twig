@@ -33,6 +33,43 @@
     });
 </script>
 
+<!--For Member-->
+<script>
+    $(function () {
+
+        Morris.Donut({
+            element: 'morris-donut-chart1-member',
+            data: [
+                {
+                    label: "Complete",
+                    value: {{ countMemberTask.today_complete_task }}
+                },
+                {
+                    label: "Done",
+                    value: {{ countMemberTask.today_done_task }}
+                },
+                {
+                    label: "Pending",
+                    value: {{ countMemberTask.today_pending_task }}
+                },
+                {
+                    label: "Pause",
+                    value: {{ countMemberTask.today_pause_task }}
+                },
+                {
+                    label: "On Progress",
+                    value: {{ countMemberTask.today_on_progress_task }}
+                }
+
+            ],
+            resize: true
+        });
+
+
+    });
+</script>
+
+
 <script>
     $(function () {
 
@@ -74,6 +111,48 @@
     });
 </script>
 
+<!--for Member-->
+<script>
+    $(function () {
+
+        Morris.Donut({
+            element: 'morris-donut-chart-member',
+            data: [
+                {
+                    label: "Complete",
+                    value: {{ countMemberTask.complete_task }}
+                },
+                {
+                    label: "Done",
+                    value: {{ countMemberTask.done_task }}
+                },
+                {
+                    label: "Pending",
+                    value: {{ countMemberTask.pending_task }}
+                },
+                {
+                    label: "Pause",
+                    value: {{ countMemberTask.pause_task }}
+                },
+                {
+                    label: "On Progress",
+                    value: {{ countMemberTask.on_progress_task }}
+                }
+            ],
+            resize: true,
+            labelColor: '#060',
+            colors: [
+                '#0BA462',
+                '#39B580',
+                '#67C69D',
+                '#95D7BB'
+            ]
+        });
+
+
+    });
+</script>
+
 <script>
 
     $(function () {
@@ -88,6 +167,29 @@
                     },
                 {% endfor %}
                 ],
+            xkey: 'createdDate',
+            ykeys: ['totalTask'],
+            labels: ['Task']
+        });
+    });
+
+</script>
+
+<!--For Member-->
+<script>
+
+    $(function () {
+
+        Morris.Bar({
+            element: 'morris-bar-chart-member',
+            data: [
+                {% for taskByMonth in  barChartData %}
+                {
+                    totalTask: '{{ taskByMonth.totalTaskId }}',
+                    createdDate: '{{ taskByMonth.created_day }}'
+                },
+                {% endfor %}
+            ],
             xkey: 'createdDate',
             ykeys: ['totalTask'],
             labels: ['Task']
