@@ -75,26 +75,25 @@
 </script>
 
 <script>
+
     $(function () {
-
-
-
 
         Morris.Bar({
             element: 'morris-bar-chart',
             data: [
                 {% for data in  barChartData %}
                     {
-                        y: '{{ data.totalTaskId }}',
-                        a: '{{ data.created_day }}'
+                        totalTask: '{{ data.totalTaskId }}',
+                        createdDate: '{{ data.created_day }}'
                     },
                 {% endfor %}
                 ],
-            xkey: 'y',
-            ykeys: ['a'],
-            labels: ['Date'],
-            hideHover: 'auto',
-            resize: true
+            xkey: 'createdDate',
+            ykeys: ['totalTask'],
+            labels: ['Task']
+            //hideHover: 'auto',
+            //resize: true
         });
     });
+
 </script>
