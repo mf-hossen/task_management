@@ -8,7 +8,7 @@ $app->get('/', function (Request $request, Response $response){
     if ($_SESSION['user'][0]['role'] == 'Admin') {
         $path = 'admin';
         $count = $mapper->getAdminTaskCount();
-
+        $barChartData = $mapper->getBarcharTask();
     }
     //var_dump($count); die();
     if ($_SESSION['user'][0]['role'] == 'Member') {
@@ -25,5 +25,6 @@ $app->get('/', function (Request $request, Response $response){
 
     //var_dump($count); die();
     return $this->view->render($response, $path . '/dashboard.twig', ['session' => $_SESSION,
-        'msg' => $msg , 'count' => $count]);
+        'msg' => $msg , 'count' => $count, 'barChartData'=>$barChartData]);
+//    return $this->view->render($response, $path. '/morris-data.twig',['barChartData'=>$barChartData]);
 })->add($mw);

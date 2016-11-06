@@ -856,6 +856,16 @@ class TaskMapper extends Mapper
         return $res;
     }
 
+    public function getBarcharTask(){
+
+       $sql = "SELECT COUNT(id) as totalTaskId, date(created_at) as created_day FROM `tasks` GROUP BY created_day desc";
+        $stmt = $this->db->query($sql);
+        $result = $stmt->fetchAll();
+
+        return $result;
+
+    }
+
     public function getMemberTaskCount($userID)
     {
         $sql = "SELECT 
