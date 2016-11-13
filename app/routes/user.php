@@ -59,3 +59,4 @@ $app->post('/update-settings', function (Request $request, Response $response) {
         return $response->withStatus(302)->withHeader('Location', '/settings');
     }
 })->add($mw);
+

@@ -51,7 +51,6 @@ $app->group('/task', function () use ($mwAdmin) {
 
 $this->get('/list[/{type}]', function (Request $request, Response $response, $arg) {
     $queryParams = $request->getQueryParams();
-    //var_dump($queryParams); die();
     $dateType = $request->getAttribute('type', 'all');
 
     $mapper_member = new \App\MemberMapper($this->db);
@@ -95,32 +94,9 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
     return $response;
 });
 
-/*$this->get('/getCounttask[/{type}]', function (Request $request, Response $response) {
-    $dateType = $request->getAttribute('type');
-
-    $mapper = new \App\TaskMapper($this->db);
-    if ($dateType == 'todaytask') {
-        $typeTitle = 'TODAYTASK';
-        $task = $mapper->CountTaskToday();
-    } elseif ($dateType == 'alltask') {
-        $typeTitle = 'ALLTASK';
-        $task = $mapper->countTaskAll();
-        //var_dump($task); die();
-    } elseif ($dateType == 'completetask') {
-        $typeTitle = 'COMPLETETASK';
-        $task = $mapper->CountTaskComplete();
-    } elseif ($dateType == 'pendingtask') {
-        $typeTitle = 'PENDINGTASK';
-        $task = $mapper->CountTaskPending();
-    }
-    //$delete_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "tasklist.twig", ['task' => $task, 'typeTitle' => $typeTitle]);
-    //return $response;
-});*/
-
-/**
- * Start  Member
- */
+    /*
+     * Start  Member
+     */
 $this->get('/member/list[/{type}]', function (Request $request, Response $response) {
     $dateType = $request->getAttribute('type', 'all');
     $mapper = new \App\TaskMapper($this->db);

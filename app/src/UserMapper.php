@@ -143,4 +143,13 @@ class UserMapper extends Mapper
 
         return $res;
     }
+
+    public function userDetails()
+    {
+        $user_id = $_SESSION['user'][0]['id'];
+        $userData = "select * from users where id = '$user_id'";
+
+        $userDetails = $this->db->query($userData);
+        return $userDetails;
+    }
 }

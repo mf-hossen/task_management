@@ -65,26 +65,10 @@ $app->group('/member', function () {
         }
     });
 
-
-
-
     $this->get('/list/{id}', function (Request $request, Response $response) {
         $id = $request->getAttribute('id');
         echo 'success ' . $id;
     });
-
-    /*$this->get('/member_task', function (Request $request, Response $response) {
-        if ($_SESSION['user'][0]['role'] == 'Admin') {
-            $data= $request->getParsedBody();
-            $mapper = new \App\UserMapper($this->db);
-            $task = $mapper->memberTaskList($data);
-            //var_dump($task); die();
-            return $this->view->render($response, 'admin/member/task.twig',['task'=>$task]);
-        }
-
-
-    });*/
-
 
     $this->get('/edit/{id}', function (Request $request, Response $response) {
         if ($_SESSION['user'][0]['role'] == 'Admin') {
