@@ -144,12 +144,17 @@ class UserMapper extends Mapper
         return $res;
     }
 
-    public function userDetails()
+    public function userDetails($id)
     {
-        $user_id = $_SESSION['user'][0]['id'];
-        $userData = "select * from users where id = '$user_id'";
+        /*$userTask = "SELECT * FROM `tasks` WHERE member_id = '$id' ";
+        $userTask = $this->db->query($userTask);
+        $userDetails = $userTask->fetchAll();
+        return $userDetails;*/
 
-        $userDetails = $this->db->query($userData);
+        $userData = "SELECT users.id as user_id, users.username, concat(users.first_name , ' ', users.last_name ) as users_full_name, users.role, tasks.description, tasks.id as task_id, tasks.status, tasks.task_type, tasks.member_id, tasks.created_at , tasks.client_id, tasks.site_url, tasks.priority, member.username as membername, concat(member.first_name , ' ', member.last_name ) as members_full_name FROM `tasks` left join users on tasks.user_id = users.id left join users as member on tasks.member_id =member.id where tasks.member_id='$id' order by task_id DESC  ";
+        $userTask = $this->db->query($userData);
+        $userDetails = $userTask->fetchAll();
         return $userDetails;
+
     }
 }

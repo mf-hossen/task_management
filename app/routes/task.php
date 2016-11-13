@@ -71,7 +71,6 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
                 $total_p = $i;
             }
 
-       // var_dump($total_p); die();
     } elseif ($dateType == 'complete') {
         $typeTitle = 'COMPLETE';
         $task = $mapper->getCompleteTask($queryParams);

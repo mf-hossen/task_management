@@ -117,4 +117,12 @@ $app->group('/member', function () {
             return $response->withStatus(302)->withHeader('Location', '/');
         }
     });
+
+    $this->get('/details/{id}', function (Request $request, Response $response) {
+        $id = $request->getAttribute('id');
+        $mapper = new \App\UserMapper($this->db);
+        $userData = $mapper->userDetails($id);
+        return $this->view->render($response, 'admin/member/details.twig', ['userData' => $userData]);
+    });
+
 })->add($mw);
