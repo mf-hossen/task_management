@@ -179,7 +179,8 @@
 
                             <td><a href="/task/view/{{ tasks.task_id }}">{{ tasks.client_id }}</a></td>
                             <td>{{ tasks.users_full_name }}</td>
-                            <td>{{ tasks.members_full_name }}</td>
+                            <td><a href="/task/assignedtask/{{ tasks.member_id }}">{{ tasks.members_full_name }}</a>
+                            </td>
                             <td>
                                 {% if  tasks.task_type==1 %}
                                     <span class="label label-warning"> Edit </span>

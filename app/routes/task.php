@@ -210,10 +210,9 @@ $this->get('/edit/{id}', function (Request $request, Response $response) {
     $id = $request->getAttribute('id');
     $mapper = new \App\TaskMapper($this->db);
     $mapper_member = new \App\MemberMapper($this->db);
-    $member = $mapper_member->getMember();
+    $member = $mapper_member->getUser();
     $update_data = $mapper->getTaskId($id);
-    $response = $this->view->render($response, "admin/task/edit.twig",
-        ['update_data' => $update_data, 'member' => $member]);
+    $response = $this->view->render($response, "admin/task/edit.twig", ['update_data' => $update_data, 'users' => $member]);
 
     return $response;
 })->add($mwAdmin);
@@ -349,6 +348,13 @@ $this->get('/task_countComplete', function (Request $request, Response $response
     // var_dump($task_count); die();
     $response = $this->view->render($response, "admin/dashboard.twig", ['taskcom' => $task_count]);
 });
+
+    $this->get('/assignedtask/{id}', function (Request $request, Response $response) {
+        $id = $request->getAttribute('id');
+        $mapper = new \App\UserMapper($this->db);
+        $userData = $mapper->userDetails($id);
+        return $this->view->render($response, 'admin/member/details.twig', ['userData' => $userData]);
+    });
 
 
 })->

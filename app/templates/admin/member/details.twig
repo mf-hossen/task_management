@@ -6,29 +6,6 @@
         <div class="col-md-12">
             <h3 class="pull-left text-uppercase title">{{ typeTitle }} Task List</h3>
 
-            {#<div class="pull-right btn-toolbar">
-
-                {% if(typeTitle == 'ALL') %}
-                    <a href="/task/list/today" class="btn btn-warning btn-group  text-uppercase">
-                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Today's List
-                    </a>
-                {% elseif(typeTitle == 'TODAY') %}
-                    <a href="/task/list" class="btn btn-warning btn-group  text-uppercase">
-                        <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> All List
-                    </a>
-                {% endif %}
-
-                <a href="/task/create" class="btn btn-success btn-group  text-uppercase">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create
-                </a>
-                {% if task is  not empty %}
-
-                    <a class="btn btn-primary" data-toggle="modal" href="#modal-id">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        Search Task
-                    </a>
-                {% endif %}
-            </div>#}
         </div>
     </div>
     <hr>

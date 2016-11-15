@@ -53,11 +53,15 @@
                             <div class="form-group">
                                 <label for="member">Assign To</label>
                                 <select class="form-control" name="member_id" id="member">
-                                    <option value="{{ update_data.member_id }}">{{ update_data.membername }}</option>
-                                    {% for members in member %}
-                                        <option value="{{ members.id }}">{{ members.username }}</option>
-                                    {% endfor %}
+                                    {% if update_data.membername %}
+                                        <option selected="selected"
+                                                value="{{ update_data.member_id }}">{{ update_data.membername }}</option>
 
+
+                                        {% for user in users %}
+                                            <option value="{{ user.id }}">{{ user.username }}</option>
+                                    {% endfor %}
+                                    {% endif %}
                                 </select>
                             </div>
 
