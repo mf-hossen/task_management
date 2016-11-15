@@ -88,7 +88,6 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
             'typeTitle' => $typeTitle,
             'mem' => $member,
             'admin' => $admin,
-            'total_page'=>$total_p
         ]);
     return $response;
 });
@@ -207,6 +206,7 @@ $this->get('/attach-zip/{id}', function (Request $request, Response $response) {
 
 
 $this->get('/edit/{id}', function (Request $request, Response $response) {
+    //var_dump(111); die();
     $id = $request->getAttribute('id');
     $mapper = new \App\TaskMapper($this->db);
     $mapper_member = new \App\MemberMapper($this->db);

@@ -115,7 +115,20 @@
                                     <option value="6" {{ update_data.status == 6 ? 'selected' : '' }}>Pause</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+
+                                <label for="task_type">Site Username</label>
+                                <input type="text" name="site_usrename" class="form-control" id="client_id"
+                                       value="{{ update_data.site_username }}" required>
+                            </div>
+                            <div class="form-group">
+
+                                <label for="task_type">Site Password</label>
+                                <input type="text" name="site_password" class="form-control" id="sitepassword"
+                                       value="{{ update_data.site_password }}" required>
+                            </div>
                         </div>
+
 
                     </div>
 

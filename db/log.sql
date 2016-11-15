@@ -32,3 +32,8 @@ ALTER TABLE `comments` ADD `comment_attach` TEXT NULL AFTER `username`;
 ALTER TABLE `tasks` CHANGE `status` `status` TINYINT(4) NOT NULL DEFAULT '3' COMMENT '1=Complete, 2=Incomplete, 3=Pending; 4=Done; 5=on progress, 6=pause';
 -- Emon 05 10 2016
 ALTER TABLE `tasks` ADD `site_username` VARCHAR(128) NOT NULL AFTER `site_url`, ADD `site_password` VARCHAR(128) NOT NULL AFTER `site_username`;
+
+--Shanta 15 11 2016--
+ALTER TABLE `tasks` ADD `action_date` TIMESTAMP NULL AFTER `created_at`;
+UPDATE tasks set action_date = created_at
+ALTER TABLE `tasks` CHANGE `site_username` `site_username` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL, CHANGE `site_password` `site_password` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;

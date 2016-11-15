@@ -33,6 +33,7 @@ class TaskMapper extends Mapper
             client_id,
             submission_date,
             created_at,
+            action_date,
             priority)VALUES (
             :description,
             :task_type,
@@ -41,6 +42,7 @@ class TaskMapper extends Mapper
             :client_id,
             :submission_date,
             :created_at,
+            :action_date,
             :priority)");
 
             $stmt->bindParam(':description', ucfirst($data['description']));
@@ -50,6 +52,7 @@ class TaskMapper extends Mapper
             $stmt->bindParam(':client_id', $data['client_id']);
             $stmt->bindParam(':submission_date', date('Y-m-d'));
             $stmt->bindParam(':created_at', date('Y-m-d h:s:i'));
+            $stmt->bindParam(':action_date', date('Y-m-d h:s:i'));
             $stmt->bindParam(':priority', $data['priority']);
             $stmt->execute();
 
@@ -79,6 +82,7 @@ class TaskMapper extends Mapper
             $client_id = $data['client_id'];
             $member_id = $data['member_id'];
             $created_at = $data['created_date'];
+            $action_date = $data['action_date'];
              //var_dump($created_at);die();
             $priority = $data['priority'];
             $task_status = $data['task_status'];
@@ -297,6 +301,7 @@ class TaskMapper extends Mapper
               tasks.task_type,
               tasks.member_id,
               tasks.created_at,
+              tasks.action_date,
               tasks.client_id,
               tasks.priority,
               member.username as membername,
@@ -325,7 +330,7 @@ class TaskMapper extends Mapper
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id where date(tasks.created_at)=curdate() order by task_id DESC ";
+              left join users as member on tasks.member_id =member.id where date(tasks.action_date)=curdate() order by task_id DESC ";
 
         }
 
@@ -520,6 +525,8 @@ class TaskMapper extends Mapper
               tasks.created_at,
               tasks.site_url,
               tasks.status,
+              tasks.site_username,
+              tasks.site_password,
               tasks.priority,
               tasks.submission_date,
               member.username as membername
@@ -529,7 +536,6 @@ class TaskMapper extends Mapper
               where tasks.id='$id'";
         $stmt = $this->db->query($sql);
         $row = $stmt->fetch();
-
         return $row;
     }
 
@@ -657,15 +663,13 @@ class TaskMapper extends Mapper
     {
         $taskID = $data['task_id'];
         try {
-            //var_dump($taskID); die();
 
-            $sql = "UPDATE tasks SET status = :status WHERE  id ='$taskID'";
+            $sql = "UPDATE tasks SET status = :status, action_date = :action_date WHERE  id ='$taskID'";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':status', $data['status']);
-            //$stmt->bindParam(':ids',$ids);
+            $stmt->bindParam(':action_date', date('Y-m-d h:s:i'));
             $stmt->execute();
 
-            // var_dump($stmt->debugDumpParams()); die();
 
             return true;
 
@@ -698,18 +702,20 @@ class TaskMapper extends Mapper
     public function editTask($data)
     {
         $taskID = $data['task_id'];
-        //var_dump($taskID);die();
+        //var_dump($data);die();
         try {
 
             //$id = $data['id'];
             //var_dump($id); die();
-            $stmt = $this->db->prepare("update tasks set client_id=:client_id,description=:description,task_type=:task_type, member_id=:member_id, priority=:priority, status=:status where id='$taskID'");
+            $stmt = $this->db->prepare("update tasks set client_id=:client_id,description=:description,task_type=:task_type, member_id=:member_id, priority=:priority, status=:status, site_username=:site_username, site_password=:site_password where id='$taskID'");
             $stmt->bindParam(':client_id', $data['client_id']);
             $stmt->bindParam(':description', $data['description']);
             $stmt->bindParam(':task_type', $data['task_type']);
             $stmt->bindParam(':member_id', $data['member_id']);
             $stmt->bindParam(':priority', $data['priority']);
             $stmt->bindParam(':status', $data['status']);
+            $stmt->bindParam(':site_username', $data['site_username']);
+            $stmt->bindParam(':site_password', $data['site_password']);
             $stmt->execute();
             $details = $this->taskDetails($taskID);
 
@@ -805,7 +811,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
       COUNT(*) AS all_task,
        SUM(CASE 
-             WHEN date(created_at) = CURDATE()  THEN 1
+             WHEN date(action_date) = CURDATE()  THEN 1
              ELSE 0
            END) AS today_task,
        SUM(CASE 
@@ -829,24 +835,24 @@ class TaskMapper extends Mapper
              ELSE 0
            END) AS pause_task,
        SUM(CASE 
-             WHEN status = 1 AND date(created_at) = CURDATE() THEN 1
+             WHEN status = 1 AND date(action_date) = CURDATE() THEN 1
              ELSE 0
            END) AS today_complete_task,
         SUM(CASE 
-             WHEN status = 4 AND date(created_at) = CURDATE() THEN 1
+             WHEN status = 4 AND date(action_date) = CURDATE() THEN 1
              ELSE 0
            END) AS today_done_task,
        SUM(CASE 
-             WHEN status = 5 AND date(created_at) = CURDATE()  THEN 1
+             WHEN status = 5 AND date(action_date) = CURDATE()  THEN 1
              ELSE 0
            END) AS today_on_progress_task,
 
         SUM(CASE 
-             WHEN status = 3 AND date(created_at) = CURDATE() THEN 1
+             WHEN status = 3 AND date(action_date) = CURDATE() THEN 1
              ELSE 0
            END) AS today_pending_task,
           SUM(CASE 
-             WHEN status = 6 AND date(created_at) = CURDATE() THEN 1
+             WHEN status = 6 AND date(action_date) = CURDATE() THEN 1
              ELSE 0
            END) AS today_pause_task       
       FROM tasks";
@@ -862,7 +868,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
       COUNT(*) AS all_task,
        SUM(CASE 
-             WHEN date(created_at) = CURDATE()  THEN 1
+             WHEN date(action_date) = CURDATE()  THEN 1
              ELSE 0
            END) AS today_task,
        SUM(CASE 
@@ -886,24 +892,24 @@ class TaskMapper extends Mapper
              ELSE 0
            END) AS pause_task,
        SUM(CASE 
-             WHEN status = 1 AND date(created_at) = CURDATE() THEN 1
+             WHEN status = 1 AND date(action_date) = CURDATE() THEN 1
              ELSE 0
            END) AS today_complete_task,
         SUM(CASE 
-             WHEN status = 4 AND date(created_at) = CURDATE() THEN 1
+             WHEN status = 4 AND date(action_date) = CURDATE() THEN 1
              ELSE 0
            END) AS today_done_task,
        SUM(CASE 
-             WHEN status = 5 AND date(created_at) = CURDATE()  THEN 1
+             WHEN status = 5 AND date(action_date) = CURDATE()  THEN 1
              ELSE 0
            END) AS today_on_progress_task,
 
         SUM(CASE 
-             WHEN status = 3 AND date(created_at) = CURDATE() THEN 1
+             WHEN status = 3 AND date(action_date) = CURDATE() THEN 1
              ELSE 0
            END) AS today_pending_task,
           SUM(CASE 
-             WHEN status = 6 AND date(created_at) = CURDATE() THEN 1
+             WHEN status = 6 AND date(action_date) = CURDATE() THEN 1
              ELSE 0
            END) AS today_pause_task       
       FROM tasks WHERE member_id = '$member_id' ";

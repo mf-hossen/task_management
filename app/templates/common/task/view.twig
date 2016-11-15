@@ -100,22 +100,6 @@
         {% endif %}
         </form>
         {% if details.status==1 %}
-            {#<form action="/task/member/change_status" class="form-inline" method="post">
-                <div class="form-group">
-                <select name="status" id="inputID" class="form-control" required>
-                    <option value="" hidden> -- Select Status --</option>
-                    <option value="3" {{ details.status==3 ? 'selected' : '' }}>Pending</option>
-                    <option value="4"  {{ details.status==4 ? 'selected' : '' }}>Done</option>
-                    <option value="5"  {{ details.status==5 ? 'selected' : '' }}>On Progress</option>
-                    <option value="6"  {{ details.status==6 ? 'selected' : '' }}>Pause</option>
-                </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" name="site_url" placeholder="Site URL" >
-                </div>
-                <input type="hidden" name="task_id" value="{{ details.task_id }}">
-                <input type="submit" class="btn btn-success" value="Submit">
-            </form>#}
         {% endif %}
 
         {% if details.status!=4 and details.status!=1 %}
