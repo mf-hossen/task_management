@@ -156,8 +156,8 @@
                         <th>Task Type</th>
                         <th>Status</th>
                         <th>Priority</th>
-                        {#<th>Site URL</th>#}
-                        <th>Assign Date</th>
+                        {#<th>Created</th>#}
+                        <th>Created Date</th>
 
 
                         <th style="text-align: right">Action</th>
@@ -224,7 +224,7 @@
                             </td>
 
                             {# <td><a target="_blank" href="{{ tasks.site_url}}">{{ tasks.site_url}}</a></td>#}
-                            <td>{{ tasks.created_at|date('d M, Y') }}</td>
+                            <td>{{ tasks.created_at|date('d M, Y') }} </td>
                             <td style="text-align: right">
                                 <a href="/task/view/{{ tasks.task_id }}">
                                         <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
