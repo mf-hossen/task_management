@@ -810,7 +810,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
       COUNT(*) AS all_task,
        SUM(CASE 
-             WHEN date(created_at) = CURDATE()  THEN 1
+             WHEN status != 1  THEN 1
              ELSE 0
            END) AS today_task,
        SUM(CASE 
@@ -836,7 +836,12 @@ class TaskMapper extends Mapper
        SUM(CASE 
              WHEN status = 1 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
-           END) AS today_complete_task,
+           END) AS  today_complete_task,
+       SUM(CASE 
+             WHEN status != 1  THEN 1
+             ELSE 0
+           END) AS today_assigned_task,
+
         SUM(CASE 
              WHEN status = 4 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
