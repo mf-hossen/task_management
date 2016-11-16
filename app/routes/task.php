@@ -352,8 +352,11 @@ $this->get('/task_countComplete', function (Request $request, Response $response
     $this->get('/assignedtask/{id}', function (Request $request, Response $response) {
         $id = $request->getAttribute('id');
         $mapper = new \App\UserMapper($this->db);
+
+        $userMapper = new \App\UserMapper($this->db);
+        $d = $userMapper->memberListById($id);
         $userData = $mapper->userDetails($id);
-        return $this->view->render($response, 'admin/member/details.twig', ['userData' => $userData]);
+        return $this->view->render($response, 'admin/member/details.twig', ['userData' => $userData , 'details' => $d]);
     });
 
 

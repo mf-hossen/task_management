@@ -4,8 +4,13 @@
 {% block contant_wrapper %}
     <div class="row">
         <div class="col-md-12">
-            <h3 class="pull-left text-uppercase title">{{ typeTitle }} Task List</h3>
+            <h3 class="pull-left text-uppercase title">{{ details.first_name }} {{ details.last_name }}'s   {{ typeTitle }} Task List</h3>
+            <div class="pull-right btn-toolbar">
 
+                <a href="/task/list" class="btn btn-warning btn-group  text-uppercase">
+                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Today's list
+                </a>
+            </div>
         </div>
     </div>
     <hr>
