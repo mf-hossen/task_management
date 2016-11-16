@@ -330,7 +330,7 @@ class TaskMapper extends Mapper
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id where status != 1 order by task_id DESC ";
+              left join users as member on tasks.member_id =member.id where ( (status != 1 and date(tasks.created_at) < CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() )) order by task_id DESC ";
 
         }
 
@@ -389,7 +389,7 @@ class TaskMapper extends Mapper
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id where status != 1
+              left join users as member on tasks.member_id =member.id where ( (status != 1 and date(tasks.created_at) < CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() ))
               AND tasks.member_id='$member_id' order by task_id DESC ";
         $stmt = $this->db->query($sql);
 
@@ -683,12 +683,14 @@ class TaskMapper extends Mapper
         $taskID = $data['task_id'];
         //var_dump($data);die();
         try {
-            $sql = "UPDATE  tasks SET status = :status , site_url = :site_url ,  site_username = :site_username ,  site_password = :site_password   WHERE  id ='$taskID'";
+            $sql = "UPDATE  tasks SET status = :status , site_url = :site_url ,  site_username = :site_username ,   action_date = :action_date , site_password = :site_password   WHERE  id ='$taskID'";
             $stmt = $this->db->prepare($sql);
             $stmt->bindParam(':status', $data['status']);
             $stmt->bindParam(':site_url', $data['site_url']);
             $stmt->bindParam(':site_username', $data['site_username']);
             $stmt->bindParam(':site_password', $data['site_password']);
+            $stmt->bindParam(':action_date', date('Y-m-d h:s:i'));
+
             $stmt->execute();
 
             return $taskID;
