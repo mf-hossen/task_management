@@ -44,3 +44,6 @@
 .deleteKeywordRow:hover{
     color: #d9534f !important;
 }
+.no-padding{
+    padding: 0px !important;
+}
