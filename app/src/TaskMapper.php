@@ -330,7 +330,7 @@ class TaskMapper extends Mapper
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id where date(tasks.action_date)=curdate() order by task_id DESC ";
+              left join users as member on tasks.member_id =member.id where date(tasks.created_at)=curdate() order by task_id DESC ";
 
         }
 
@@ -510,8 +510,7 @@ class TaskMapper extends Mapper
     }
 
 
-
-    public function getTaskId($id)
+    public function getTaskById($id)
     {
         $sql = "SELECT 
               users.id as user_id, 
@@ -811,7 +810,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
       COUNT(*) AS all_task,
        SUM(CASE 
-             WHEN date(action_date) = CURDATE()  THEN 1
+             WHEN date(created_at) = CURDATE()  THEN 1
              ELSE 0
            END) AS today_task,
        SUM(CASE 
@@ -835,24 +834,24 @@ class TaskMapper extends Mapper
              ELSE 0
            END) AS pause_task,
        SUM(CASE 
-             WHEN status = 1 AND date(action_date) = CURDATE() THEN 1
+             WHEN status = 1 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
            END) AS today_complete_task,
         SUM(CASE 
-             WHEN status = 4 AND date(action_date) = CURDATE() THEN 1
+             WHEN status = 4 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
            END) AS today_done_task,
        SUM(CASE 
-             WHEN status = 5 AND date(action_date) = CURDATE()  THEN 1
+             WHEN status = 5 AND date(created_at) = CURDATE()  THEN 1
              ELSE 0
            END) AS today_on_progress_task,
 
         SUM(CASE 
-             WHEN status = 3 AND date(action_date) = CURDATE() THEN 1
+             WHEN status = 3 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
            END) AS today_pending_task,
           SUM(CASE 
-             WHEN status = 6 AND date(action_date) = CURDATE() THEN 1
+             WHEN status = 6 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
            END) AS today_pause_task       
       FROM tasks";
@@ -868,7 +867,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
       COUNT(*) AS all_task,
        SUM(CASE 
-             WHEN date(action_date) = CURDATE()  THEN 1
+             WHEN date(created_at) = CURDATE()  THEN 1
              ELSE 0
            END) AS today_task,
        SUM(CASE 
@@ -892,24 +891,24 @@ class TaskMapper extends Mapper
              ELSE 0
            END) AS pause_task,
        SUM(CASE 
-             WHEN status = 1 AND date(action_date) = CURDATE() THEN 1
+             WHEN status = 1 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
            END) AS today_complete_task,
         SUM(CASE 
-             WHEN status = 4 AND date(action_date) = CURDATE() THEN 1
+             WHEN status = 4 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
            END) AS today_done_task,
        SUM(CASE 
-             WHEN status = 5 AND date(action_date) = CURDATE()  THEN 1
+             WHEN status = 5 AND date(created_at) = CURDATE()  THEN 1
              ELSE 0
            END) AS today_on_progress_task,
 
         SUM(CASE 
-             WHEN status = 3 AND date(action_date) = CURDATE() THEN 1
+             WHEN status = 3 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
            END) AS today_pending_task,
           SUM(CASE 
-             WHEN status = 6 AND date(action_date) = CURDATE() THEN 1
+             WHEN status = 6 AND date(created_at) = CURDATE() THEN 1
              ELSE 0
            END) AS today_pause_task       
       FROM tasks WHERE member_id = '$member_id' ";

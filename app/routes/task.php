@@ -211,7 +211,7 @@ $this->get('/edit/{id}', function (Request $request, Response $response) {
     $mapper = new \App\TaskMapper($this->db);
     $mapper_member = new \App\MemberMapper($this->db);
     $member = $mapper_member->getUser();
-    $update_data = $mapper->getTaskId($id);
+    $update_data = $mapper->getTaskById($id);
     $response = $this->view->render($response, "admin/task/edit.twig", ['update_data' => $update_data, 'users' => $member]);
 
     return $response;

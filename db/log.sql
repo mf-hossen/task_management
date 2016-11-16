@@ -35,5 +35,5 @@ ALTER TABLE `tasks` ADD `site_username` VARCHAR(128) NOT NULL AFTER `site_url`, 
 
 --Shanta 15 11 2016--
 ALTER TABLE `tasks` ADD `action_date` TIMESTAMP NULL AFTER `created_at`;
-UPDATE tasks set action_date = created_at
+ALTER TABLE `tasks` ADD `action_date` TIMESTAMP NULL AFTER `created_at`;
 ALTER TABLE `tasks` CHANGE `site_username` `site_username` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL, CHANGE `site_password` `site_password` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
