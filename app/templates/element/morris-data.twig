@@ -45,6 +45,11 @@
             element: 'morris-donut-chart1-member',
             data: [
                 {
+                    label: "Assigned",
+                    value: {{ count.today_task }}
+                },
+
+                {
                     label: "Complete",
                     value: {{ countMemberTask.today_complete_task }}
                 },

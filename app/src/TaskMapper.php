@@ -389,7 +389,7 @@ class TaskMapper extends Mapper
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id where date(tasks.created_at)=curdate()
+              left join users as member on tasks.member_id =member.id where status != 1
               AND tasks.member_id='$member_id' order by task_id DESC ";
         $stmt = $this->db->query($sql);
 
@@ -872,7 +872,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
       COUNT(*) AS all_task,
        SUM(CASE 
-             WHEN date(created_at) = CURDATE()  THEN 1
+             WHEN status != 1  THEN 1
              ELSE 0
            END) AS today_task,
        SUM(CASE 
@@ -951,7 +951,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
       COUNT(*) AS all_task,
        SUM(CASE 
-             WHEN date(created_at) = CURDATE()  THEN 1
+             WHEN status != 1  THEN 1
              ELSE 0
            END) AS today_task,
        SUM(CASE 
@@ -975,7 +975,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
       COUNT(*) AS all_task,
        SUM(CASE 
-             WHEN date(created_at) = CURDATE()  THEN 1
+             WHEN status != 1  THEN 1
              ELSE 0
            END) AS today_task,
        SUM(CASE 
