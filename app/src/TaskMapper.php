@@ -82,7 +82,7 @@ class TaskMapper extends Mapper
             $client_id = $data['client_id'];
             $member_id = $data['member_id'];
             $created_at = $data['created_date'];
-            $action_date = $data['action_date'];
+            //$action_date = $data['action_date'];
              //var_dump($created_at);die();
             $priority = $data['priority'];
             $task_status = $data['task_status'];
@@ -285,6 +285,7 @@ class TaskMapper extends Mapper
             }
 
             array_push($whereArr, "date(tasks.created_at)=curdate()");
+            array_push($whereArr, "date(tasks.action_date)=curdate()");
 
             //var_dump($whereArr); die();
             $whereStr = implode(" AND ", $whereArr);
@@ -330,7 +331,7 @@ class TaskMapper extends Mapper
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id where ( (status != 1 and date(tasks.created_at) < CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() )) order by task_id DESC ";
+              left join users as member on tasks.member_id =member.id where ( (status != 1 and date(tasks.created_at) <= CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() )) order by task_id DESC ";
 
         }
 
@@ -708,13 +709,14 @@ class TaskMapper extends Mapper
 
             //$id = $data['id'];
             //var_dump($id); die();
-            $stmt = $this->db->prepare("update tasks set client_id=:client_id,description=:description,task_type=:task_type, member_id=:member_id, priority=:priority, status=:status, site_username=:site_username, site_password=:site_password where id='$taskID'");
+            $stmt = $this->db->prepare("update tasks set client_id=:client_id,description=:description,task_type=:task_type, member_id=:member_id, priority=:priority, status=:status, action_date =:action_date, site_username=:site_username, site_password=:site_password where id='$taskID'");
             $stmt->bindParam(':client_id', $data['client_id']);
             $stmt->bindParam(':description', $data['description']);
             $stmt->bindParam(':task_type', $data['task_type']);
             $stmt->bindParam(':member_id', $data['member_id']);
             $stmt->bindParam(':priority', $data['priority']);
             $stmt->bindParam(':status', $data['status']);
+            $stmt->bindParam(':action_date', date('Y-m-d h:s:i'));
             $stmt->bindParam(':site_username', $data['site_username']);
             $stmt->bindParam(':site_password', $data['site_password']);
             $stmt->execute();
