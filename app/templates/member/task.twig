@@ -35,6 +35,7 @@
                             <th>Task Type</th>
                             <th>Status</th>
                             <th>Assign Date</th>
+                            <th>Action Date</th>
                             <th style="text-align: right">Action</th>
                         </tr>
                         </thead>
@@ -75,7 +76,8 @@
                                     {% endif %}
 
                                 </td>
-                                <td>{{ tasks.created_at|date('d M, Y') }}</td>
+                                <td>{{ tasks.created_at | date('d M, Y') }}</td>
+                                <td>{{ tasks.action_date | date('d M, Y') }}</td>
 
 
                                 <td style="text-align: right">

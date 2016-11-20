@@ -384,13 +384,14 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.action_date,
               tasks.site_url,
               tasks.priority,
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id where ( (status != 1 and date(tasks.created_at) < CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() ))
+              left join users as member on tasks.member_id =member.id where ( (status != 1 and date(tasks.created_at) <= CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() ))
               AND tasks.member_id='$member_id' order by task_id DESC ";
         $stmt = $this->db->query($sql);
 
