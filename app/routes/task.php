@@ -46,7 +46,7 @@ $app->group('/task', function () use ($mwAdmin) {
 
         $this->flash->addMessage('success', 'Task is assigned!!!');
 
-        return $response->withRedirect('/task/attached/' . $lastId);
+        return $response->withRedirect('/task/view/' . $lastId);
     });
 
 $this->get('/list[/{type}]', function (Request $request, Response $response, $arg) {
