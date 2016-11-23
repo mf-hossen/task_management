@@ -246,6 +246,33 @@ class TaskMapper extends Mapper
         return $stmt->fetchAll();
     }
 
+    public function getPauseTask()
+    {
+        $sql = "SELECT
+              users.id AS user_id, 
+              users.username, 
+              concat(users.first_name , ' ', users.last_name ) AS users_full_name,
+              users.role, 
+              tasks.description,
+              tasks.id AS task_id,
+              tasks.status,
+              tasks.task_type,
+              tasks.member_id,
+              tasks.created_at,
+              tasks.client_id,
+              tasks.site_url,
+              tasks.priority,
+              member.username AS membername,
+              concat(member.first_name , ' ', member.last_name ) AS members_full_name
+
+              FROM `tasks` 
+              LEFT JOIN users ON tasks.user_id = users.id 
+              LEFT JOIN users AS member ON tasks.member_id =member.id WHERE tasks.status=6 ORDER BY task_id DESC ";
+        $stmt = $this->db->query($sql);
+
+        return $stmt->fetchAll();
+    }
+
     public function getCountComplete()
     {
         $sql = "SELECT COUNT(*) from tasks where status=1";

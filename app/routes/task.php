@@ -77,6 +77,9 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
     } elseif ($dateType == 'pending') {
         $typeTitle = 'PENDING';
         $task = $mapper->getPendingTask($queryParams);
+    } elseif ($dateType == 'pause') {
+        $typeTitle = 'PAUSE';
+        $task = $mapper->getPauseTask();
     }
 
     $update_message = $this->flash->getMessages();
@@ -115,8 +118,10 @@ $this->get('/member/list[/{type}]', function (Request $request, Response $respon
     }
 
     $status_message = $this->flash->getMessages();
-    $response = $this->view->render($response, "member/task.twig",
-        ['task' => $task, 'message' => $status_message, 'typeTitle' => $typeTitle]);
+    $response = $this->view->render($response, "member/task.twig", [
+        'task' => $task,
+        'message' => $status_message,
+        'typeTitle' => $typeTitle]);
 
     return $response;
 });
