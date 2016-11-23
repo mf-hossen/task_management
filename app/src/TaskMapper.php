@@ -358,7 +358,7 @@ class TaskMapper extends Mapper
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id where ( (status != 1 and date(tasks.created_at) <= CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() )) order by task_id DESC ";
+              left join users as member on tasks.member_id =member.id where ( (status != 1 and status != 6 and date(tasks.created_at) <= CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() )) order by task_id DESC ";
 
         }
 
