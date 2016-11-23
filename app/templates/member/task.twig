@@ -30,21 +30,23 @@
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                         <tr>
-                            <th>Client ID</th>
-                            <th>Created By</th>
-                            <th>Task Type</th>
-                            <th>Status</th>
-                            <th>Assign Date</th>
-                            <th>Action Date</th>
-                            <th style="text-align: right">Action</th>
+                            <th style="vertical-align: middle; text-align: center;">Client ID</th>
+                            <th style="vertical-align: middle; text-align: center;">Created By</th>
+                            <th style="vertical-align: middle; text-align: center;">Task Type</th>
+                            <th style="vertical-align: middle; text-align: center;">Status</th>
+                            <th style="vertical-align: middle; text-align: center;">Assign Date</th>
+                            <th style="vertical-align: middle; text-align: center;">Action Date</th>
+                            <th style="vertical-align: middle; text-align: center;">Action</th>
                         </tr>
                         </thead>
+
                         <tbody>
                         {% for tasks in task %}
                             <tr class="odd gradeX">
-                                <td><a href="/task/view/{{ tasks.task_id }}">{{ tasks.client_id }}</a></td>
-                                <td>{{ tasks.users_full_name }}</td>
-                                <td>
+                                <td style="vertical-align: middle; text-align: center;"><a
+                                            href="/task/view/{{ tasks.task_id }}">{{ tasks.client_id }}</a></td>
+                                <td style="vertical-align: middle; text-align: center;">{{ tasks.users_full_name }}</td>
+                                <td style="vertical-align: middle; text-align: center;">
                                     {% if  tasks.task_type==1 %}
                                         <span class="label label-warning"> Edit </span>
                                     {% elseif tasks.task_type==2 %}
@@ -55,7 +57,7 @@
                                         <span class="label label-success">Live </span>
                                     {% endif %}
                                 </td>
-                                <td>
+                                <td style="vertical-align: middle; text-align: center;">
                                     {% if  tasks.status==1 %}
                                         <span class="text-success text-uppercase"
                                               style="color:#46af48;font-weight:600">Complete </span>
@@ -76,8 +78,8 @@
                                     {% endif %}
 
                                 </td>
-                                <td>{{ tasks.created_at | date('d M, Y') }}</td>
-                                <td>{{ tasks.action_date | date('d M, Y') }}</td>
+                                <td style="vertical-align: middle; text-align: center;">{{ tasks.created_at | date('d M, Y') }}</td>
+                                <td style="vertical-align: middle; text-align: center;">{{ tasks.action_date | date('d M, Y') }}</td>
 
 
                                 <td style="text-align: right">
@@ -88,7 +90,6 @@
                                 </td>
                             </tr>
                         {% endfor %}
-
                         </tbody>
                     </table>
                 </div>

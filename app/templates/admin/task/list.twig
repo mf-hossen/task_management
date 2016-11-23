@@ -65,8 +65,6 @@
                        >
                     <thead style="text-align: center">
                     <form action="" method="get">
-
-
                         <tr>
                             <td></td>
                             <td class="col-md-1">
@@ -81,7 +79,6 @@
                                 </select>
                             </td>
                             <td>
-
                                 <select name="member_id" class="form-control">
                                     <option value="" hidden>Assigned</option>
                                     {% for members in mem %}
@@ -90,7 +87,6 @@
                                 </select>
                             </td>
                             <td>
-
                                 <select name="task_type" class="form-control">
                                     <option value="" hidden>Type</option>
                                     <option value="1">Edit</option>
@@ -100,7 +96,6 @@
                                 </select>
                             </td>
                             <td>
-
                                 <select name="task_status" class="form-control">
                                     <option value="" hidden>Status</option>
                                     <option value="1">Complete</option>
@@ -112,7 +107,6 @@
                                 </select>
                             </td>
                             <td>
-
                                 <select class="form-control" name="priority">
                                     <option value="" hidden>Prirority</option>
                                     <option value="1">High</option>
@@ -150,18 +144,16 @@
 
                     <tr>
                         <th></th>
-                        <th>Client ID</th>
-                        <th>Created By</th>
-                        <th>Assign To</th>
-                        <th>Task Type</th>
-                        <th>Status</th>
-                        <th>Priority</th>
+                        <th class="col-md-1" style="vertical-align: middle; text-align: center;">Client ID</th>
+                        <th class="col-md-2" style="vertical-align: middle; text-align: center;">Created By</th>
+                        <th class="col-md-2" style="vertical-align: middle; text-align: center;">Assign To</th>
+                        <th class="col-md-1" style="vertical-align: middle; text-align: center;">Task Type</th>
+                        <th class="col-md-1" style="vertical-align: middle; text-align: center;">Status</th>
+                        <th class="col-md-2" style="vertical-align: middle; text-align: center;">Priority</th>
                         {#<th>Created</th>#}
-                        <th>Created Date</th>
-                        <th>Action Date</th>
-
-
-                        <th style="text-align: right">Action</th>
+                        <th style="vertical-align: middle; text-align: center;">Created Date</th>
+                        <th class="col-md-2" style="vertical-align: middle; text-align: center;">Action Date</th>
+                        <th class="col-md-1" style="vertical-align: middle; text-align: center;">Action</th>
                     </tr>
 
                     </thead>
@@ -177,12 +169,13 @@
 
                             </td>
 
-
-                            <td><a href="/task/view/{{ tasks.task_id }}">{{ tasks.client_id }}</a></td>
-                            <td>{{ tasks.users_full_name }}</td>
-                            <td><a href="/task/assignedtask/{{ tasks.member_id }}">{{ tasks.members_full_name }}</a>
+                            <td style="vertical-align: middle; text-align: center;"><a
+                                        href="/task/view/{{ tasks.task_id }}">{{ tasks.client_id }}</a></td>
+                            <td style="vertical-align: middle; text-align: center;">{{ tasks.users_full_name }}</td>
+                            <td style="vertical-align: middle; text-align: center;"><a
+                                        href="/task/assignedtask/{{ tasks.member_id }}">{{ tasks.members_full_name }}</a>
                             </td>
-                            <td>
+                            <td style="vertical-align: middle; text-align: center;">
                                 {% if  tasks.task_type==1 %}
                                     <span class="label label-warning"> Edit </span>
                                 {% elseif tasks.task_type==2 %}
@@ -193,7 +186,7 @@
                                     <span class="label label-success">Live </span>
                                 {% endif %}
                             </td>
-                            <td>
+                            <td style="vertical-align: middle; text-align: center;">
                                 {% if  tasks.status==1 %}
                                     <span class="text-success text-uppercase"
                                           style="color:#46af48;font-weight:600">Complete </span>
@@ -215,7 +208,7 @@
                                 {% endif %}
 
                             </td>
-                            <td>
+                            <td style="vertical-align: middle; text-align: center;">
                                 {% if  tasks.priority==1 %}
                                     <span class="text-success text-uppercase" style="font-weight:600">HIGH </span>
                                 {% elseif tasks.priority==2 %}
@@ -225,9 +218,9 @@
                             </td>
 
                             {# <td><a target="_blank" href="{{ tasks.site_url}}">{{ tasks.site_url}}</a></td>#}
-                            <td  class="col-md-1">{{ tasks.created_at|date('d M, Y') }} </td>
-                            <td class="col-md-1">{{ tasks.action_date | date('d M, Y') }} </td>
-                            <td style="text-align: right">
+                            <td style="vertical-align: middle; text-align: center;">{{ tasks.created_at|date('d M, Y') }} </td>
+                            <td style="vertical-align: middle; text-align: center;">{{ tasks.action_date | date('d M, Y') }} </td>
+                            <td style="vertical-align: middle; text-align: center;>
                                 <a href="/task/view/{{ tasks.task_id }}">
                                         <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip"
                                               title="Details"></span>
