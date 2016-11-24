@@ -66,7 +66,6 @@ class TaskMapper extends Mapper
 
     public function getTask($data = false)
     {
-        //var_dump($data['page']); die();
        if(!isset($data['page'])){
             $page = 1;
        }else{
@@ -74,19 +73,47 @@ class TaskMapper extends Mapper
            $page = $data['page'];
        }
 
-        // var_dump($page); die();
         $limit = 10;
         $offset = ($page - 1) * $limit;
 
         if (!empty($data)) {
-            $client_id = $data['client_id'];
-            $member_id = $data['member_id'];
-            $created_at = $data['created_date'];
-            //$action_date = $data['action_date'];
-             //var_dump($created_at);die();
-            $priority = $data['priority'];
-            $task_status = $data['task_status'];
-            $task_type = $data['task_type'];
+            if (isset($data['client_id'])) {
+                $client_id = $data['client_id'];
+            } else {
+                $client_id = "";
+
+            }
+
+            if (isset($data['member_id'])) {
+                $member_id = $data['member_id'];
+            } else {
+                $member_id = "";
+            }
+
+            if (isset($data['created_date'])) {
+                $created_at = $data['created_date'];
+            } else {
+                $created_at = "";
+            }
+
+            if (isset($data['priority'])) {
+                $priority = $data['priority'];
+            } else {
+                $priority = "";
+            }
+
+            if (isset($data['task_status'])) {
+                $task_status = $data['task_status'];
+            } else {
+                $task_status = "";
+            }
+
+            if (isset($data['$task_type'])) {
+                $task_type = $data['$task_type'];
+            } else {
+                $task_type = "";
+            }
+
             $total_page = $this->getAdminTaskCount();
             $whereArr = array();
             if ($client_id != "") {
@@ -154,7 +181,7 @@ class TaskMapper extends Mapper
 
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id order by task_id DESC  LIMIT $offset, $limit";
+              left join users as member on tasks.member_id = member.id order by task_id DESC  LIMIT $offset, $limit";
 
             }
 
@@ -288,11 +315,42 @@ class TaskMapper extends Mapper
 
         if (!empty($data)) {
 
-            $client_id = $data['client_id'];
-            $member_id = $data['member_id'];
-            $priority = $data['priority'];
-            $task_status = $data['task_status'];
-            $task_type = $data['task_type'];
+            if (isset($data['client_id'])) {
+                $client_id = $data['client_id'];
+            } else {
+                $client_id = "";
+
+            }
+
+            if (isset($data['member_id'])) {
+                $member_id = $data['member_id'];
+            } else {
+                $member_id = "";
+            }
+
+            if (isset($data['created_date'])) {
+                $created_at = $data['created_date'];
+            } else {
+                $created_at = "";
+            }
+
+            if (isset($data['priority'])) {
+                $priority = $data['priority'];
+            } else {
+                $priority = "";
+            }
+
+            if (isset($data['task_status'])) {
+                $task_status = $data['task_status'];
+            } else {
+                $task_status = "";
+            }
+
+            if (isset($data['$task_type'])) {
+                $task_type = $data['$task_type'];
+            } else {
+                $task_type = "";
+            }
 
             $whereArr = array();
             if ($client_id != "") {

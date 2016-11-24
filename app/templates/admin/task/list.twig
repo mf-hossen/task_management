@@ -240,8 +240,8 @@
 
                     </tbody>
                 </table>
-                {% if(typeTitle == 'ALL') %}
 
+                {% if(typeTitle == 'ALL') %}
                 <ul class="pagination navbar-right">
                     {% for i in 1..total_page %}
                         <li><a href="/task/list?page={{ i }}">{{ i }}</a></li>

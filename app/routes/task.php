@@ -60,16 +60,13 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
     if ($dateType == 'today') {
         $typeTitle = 'TODAY';
         $task = $mapper->getTodayTask($queryParams);
+        $total = $mapper->getAdminTaskCount();
+        $total_page = ceil($total['all_task'] / 10);
     } elseif ($dateType == 'all') {
         $typeTitle = 'ALL';
         $task = $mapper->getTask($queryParams);
         $total = $mapper->getAdminTaskCount();
         $total_page = ceil($total['all_task']/10);
-
-            for ($i=1 ; $total_page >=$i; $i++){
-
-                $total_p = $i;
-            }
 
     } elseif ($dateType == 'complete') {
         $typeTitle = 'COMPLETE';
@@ -91,6 +88,7 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
             'typeTitle' => $typeTitle,
             'mem' => $member,
             'admin' => $admin,
+            'total_page' => $total_page
         ]);
     return $response;
 });
