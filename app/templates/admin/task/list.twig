@@ -288,12 +288,11 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                {% if(typeTitle != 'TODAY') %}
-
+                            {% if(typeTitle != 'TODAY') %}
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">From</label>
+                                            <label for="">Created From</label>
                                             <input type="date" class="form-control" name="start_date" id=""
                                                    placeholder="Created Date">
                                         </div>
@@ -302,15 +301,36 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">To</label>
+                                            <label for="">Created To</label>
                                             <input type="date" class="form-control" name="end_date" id=""
                                                    placeholder="Created Date">
                                         </div>
 
                                     </div>
+                                </div>
 
-                                {% endif %}
-                            </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Action From</label>
+                                            <input type="date" class="form-control" name="astart_date" id=""
+                                                   placeholder="Created Date">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Action To</label>
+                                            <input type="date" class="form-control" name="aend_date" id=""
+                                                   placeholder="Created Date">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            {% endif %}
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">

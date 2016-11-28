@@ -116,6 +116,17 @@ class TaskMapper extends Mapper
                 $end_date = "";
             }
 
+            if (isset($data['astart_date'])) {
+                $astart_date = $data['astart_date'];
+            } else {
+                $astart_date = "";
+            }
+            if (isset($data['aend_date'])) {
+                $aend_date = $data['aend_date'];
+            } else {
+                $aend_date = "";
+            }
+
             if (isset($data['priority'])) {
                 $priority = $data['priority'];
             } else {
@@ -153,6 +164,9 @@ class TaskMapper extends Mapper
             }
             if ($start_date != "" && $end_date != "") {
                 array_push($whereArr, "date(tasks.created_at) between '" . $start_date . "' and '" . $end_date . "' ");
+            }
+            if ($astart_date != "" && $aend_date != "") {
+                array_push($whereArr, "date(tasks.action_date) between '" . $astart_date . "' and '" . $aend_date . "' ");
             }
             if ($priority != "") {
                 array_push($whereArr, "priority = {$priority}");
