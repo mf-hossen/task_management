@@ -81,6 +81,12 @@ class TaskMapper extends Mapper
 
             }
 
+            if (isset($data['admin_id'])) {
+                $admin_id = $data['admin_id'];
+            } else {
+                $admin_id = "";
+
+            }
             if (isset($data['member_id'])) {
                 $member_id = $data['member_id'];
             } else {
@@ -91,6 +97,11 @@ class TaskMapper extends Mapper
                 $created_at = $data['created_date'];
             } else {
                 $created_at = "";
+            }
+            if (isset($data['end_date'])) {
+                $end_at = $data['end_date'];
+            } else {
+                $end_at = "";
             }
 
             if (isset($data['priority'])) {
@@ -105,8 +116,8 @@ class TaskMapper extends Mapper
                 $task_status = "";
             }
 
-            if (isset($data['$task_type'])) {
-                $task_type = $data['$task_type'];
+            if (isset($data['task_type'])) {
+                $task_type = $data['task_type'];
             } else {
                 $task_type = "";
             }
@@ -116,11 +127,17 @@ class TaskMapper extends Mapper
             if ($client_id != "") {
                 array_push($whereArr, "client_id = {$client_id}");
             }
+            if ($admin_id != "") {
+                array_push($whereArr, "user_id = {$admin_id}");
+            }
             if ($member_id != "") {
                 array_push($whereArr, "member_id = {$member_id}");
             }
             if ($created_at != "") {
                 array_push($whereArr, "date(tasks.created_at) = '{$created_at}'");
+            }
+            if ($end_at != "") {
+                array_push($whereArr, "date(tasks.action_date) = '{$end_at}'");
             }
             if ($priority != "") {
                 array_push($whereArr, "priority = {$priority}");
@@ -148,6 +165,7 @@ class TaskMapper extends Mapper
               tasks.task_type,
               tasks.member_id,
               tasks.created_at,
+              tasks.action_date,
               tasks.client_id,
               tasks.priority,
               member.username as membername,
@@ -196,7 +214,8 @@ class TaskMapper extends Mapper
               tasks.status,
               tasks.task_type,
               tasks.member_id,
-              tasks.created_at ,
+              tasks.created_at,
+              tasks.action_date,
               tasks.client_id,
               tasks.site_url,
               tasks.priority,
@@ -230,7 +249,8 @@ class TaskMapper extends Mapper
               tasks.status,
               tasks.task_type,
               tasks.member_id,
-              tasks.created_at ,
+              tasks.created_at,
+              tasks.action_date,
               tasks.client_id,
               tasks.site_url,
               tasks.priority,
@@ -259,6 +279,7 @@ class TaskMapper extends Mapper
               tasks.task_type,
               tasks.member_id,
               tasks.created_at,
+              tasks.action_date,
               tasks.client_id,
               tasks.site_url,
               tasks.priority,
@@ -286,6 +307,7 @@ class TaskMapper extends Mapper
               tasks.task_type,
               tasks.member_id,
               tasks.created_at,
+              tasks.action_date,
               tasks.client_id,
               tasks.site_url,
               tasks.priority,
@@ -409,6 +431,7 @@ class TaskMapper extends Mapper
               tasks.task_type,
               tasks.member_id,
               tasks.created_at,
+              tasks.action_date,
               tasks.client_id,
               tasks.site_url,
               tasks.priority,
@@ -612,6 +635,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.action_date,
               tasks.site_url,
               tasks.status,
               tasks.site_username,
