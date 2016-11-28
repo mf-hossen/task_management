@@ -67,7 +67,6 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
         $task = $mapper->getTask($queryParams);
         $total = $mapper->getAdminTaskCount();
         $total_page = ceil($total['all_task']/10);
-
     } elseif ($dateType == 'complete') {
         $typeTitle = 'COMPLETE';
         $task = $mapper->getCompleteTask($queryParams);
@@ -94,6 +93,7 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
             'typeTitle' => $typeTitle,
             'mem' => $member,
             'admin' => $admin,
+            'total_task' => $total,
             'total_page' => $total_page
         ]);
     return $response;

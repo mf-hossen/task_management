@@ -245,14 +245,17 @@
 
                     </tbody>
                 </table>
-
-                {% if(typeTitle == 'ALL') %}
-                <ul class="pagination navbar-right">
-                    {% for i in 1..total_page %}
-                        <li><a href="/task/list?page={{ i }}">{{ i }}</a></li>
-                    {% endfor %}
+                {% if total_task.all_task>9 %}
+                    {% if(typeTitle == 'ALL') %}
+                        <ul class="pagination navbar-right">
+                            {% for i in 1..total_page %}
+                                <li><a href="/task/list?page={{ i }}">{{ i }}</a></li>
+                            {% endfor %}
+                        </ul>
                     {% endif %}
-                </ul>
+                {% else %}
+
+                {% endif %}
             </div>
         </div>
         </form>
