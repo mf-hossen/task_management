@@ -79,7 +79,13 @@
 
                                 </td>
                                 <td style="vertical-align: middle; text-align: center;">{{ tasks.created_at | date('d M, Y') }}</td>
-                                <td style="vertical-align: middle; text-align: center;">{{ tasks.action_date | date('d M, Y') }}</td>
+                                <td style="vertical-align: middle; text-align: center;">
+                                    {% if tasks.action_date is not null %}
+                                        {{ tasks.action_date | date('d M, Y') }}
+                                    {% else %}
+                                        {{ tasks.action_date }}
+                                    {% endif %}
+                                </td>
 
 
                                 <td style="text-align: right">

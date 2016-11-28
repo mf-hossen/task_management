@@ -24,7 +24,7 @@ class TaskMapper extends Mapper
     {
         //var_dump($data); die();
         try {
-            $date = $data['submission_date'];
+            //$date = $data['submission_date'];
             $stmt = $this->db->prepare("INSERT INTO tasks (
             description,
             task_type,
@@ -33,7 +33,6 @@ class TaskMapper extends Mapper
             client_id,
             submission_date,
             created_at,
-            action_date,
             priority)VALUES (
             :description,
             :task_type,
@@ -42,7 +41,6 @@ class TaskMapper extends Mapper
             :client_id,
             :submission_date,
             :created_at,
-            :action_date,
             :priority)");
 
             $stmt->bindParam(':description', ucfirst($data['description']));
@@ -52,7 +50,6 @@ class TaskMapper extends Mapper
             $stmt->bindParam(':client_id', $data['client_id']);
             $stmt->bindParam(':submission_date', date('Y-m-d'));
             $stmt->bindParam(':created_at', date('Y-m-d h:s:i'));
-            $stmt->bindParam(':action_date', date('Y-m-d h:s:i'));
             $stmt->bindParam(':priority', $data['priority']);
             $stmt->execute();
 
@@ -172,7 +169,8 @@ class TaskMapper extends Mapper
               tasks.status,
               tasks.task_type,
               tasks.member_id,
-              tasks.created_at ,
+              tasks.created_at,
+              tasks.action_date,
               tasks.client_id,
               tasks.site_url,
               tasks.priority,
@@ -202,6 +200,8 @@ class TaskMapper extends Mapper
               tasks.client_id,
               tasks.site_url,
               tasks.priority,
+              tasks.action_date,
+
               member.username as membername,
               concat(member.first_name , ' ', member.last_name ) as members_full_name
 
@@ -441,6 +441,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.action_date,
               tasks.site_url,
               tasks.priority,
               member.username as membername,
@@ -498,6 +499,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.action_date,
               tasks.site_url,
               tasks.priority,
               member.username as membername,
@@ -527,6 +529,7 @@ class TaskMapper extends Mapper
               tasks.member_id,
               tasks.client_id,
               tasks.created_at,
+              tasks.action_date,
               tasks.site_url,
               tasks.priority,
               member.username as membername,
