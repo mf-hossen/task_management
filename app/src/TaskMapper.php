@@ -73,6 +73,7 @@ class TaskMapper extends Mapper
         $limit = 10;
         $offset = ($page - 1) * $limit;
 
+
         if (!empty($data)) {
             if (isset($data['client_id'])) {
                 $client_id = $data['client_id'];
@@ -98,10 +99,21 @@ class TaskMapper extends Mapper
             } else {
                 $created_at = "";
             }
-            if (isset($data['end_date'])) {
-                $end_at = $data['end_date'];
+            if (isset($data['action_date'])) {
+                $end_at = $data['action_date'];
             } else {
                 $end_at = "";
+            }
+
+            if (isset($data['start_date'])) {
+                $start_date = $data['start_date'];
+            } else {
+                $start_date = "";
+            }
+            if (isset($data['end_date'])) {
+                $end_date = $data['end_date'];
+            } else {
+                $end_date = "";
             }
 
             if (isset($data['priority'])) {
@@ -138,6 +150,9 @@ class TaskMapper extends Mapper
             }
             if ($end_at != "") {
                 array_push($whereArr, "date(tasks.action_date) = '{$end_at}'");
+            }
+            if ($start_date != "" && $end_date != "") {
+                array_push($whereArr, "date(tasks.created_at) between '" . $start_date . "' and '" . $end_date . "' ");
             }
             if ($priority != "") {
                 array_push($whereArr, "priority = {$priority}");

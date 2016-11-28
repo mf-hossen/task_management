@@ -116,7 +116,7 @@
                             <td class="col-md-2">
                                 <input type="date" class="form-control" name="created_date">
                             </td>
-                            <td class="col-md-1"><input type="date" class="form-control" name="end_date"></td>
+                            <td class="col-md-1"><input type="date" class="form-control" name="action_date"></td>
                             <td class="col-md-1">
                                 <button type="submit" class="btn btn-block btn-primary">
                                     search
@@ -293,26 +293,23 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="">Created Date</label>
-                                            <input type="date" class="form-control" name="created_date" id=""
+                                            <label for="">From</label>
+                                            <input type="date" class="form-control" name="start_date" id=""
+                                                   placeholder="Created Date">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">To</label>
+                                            <input type="date" class="form-control" name="end_date" id=""
                                                    placeholder="Created Date">
                                         </div>
 
                                     </div>
 
                                 {% endif %}
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="">Priority</label>
-                                        <select class="form-control" name="priority">
-                                            <option value="" hidden>Choose Prirority</option>
-                                            <option value="1">High</option>
-                                            <option value="2">Regular</option>
-                                        </select>
-
-                                    </div>
-
-                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -341,6 +338,20 @@
                                             <option value="3">New</option>
                                             <option value="4">Live</option>
                                         </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="">Priority</label>
+                                        <select class="form-control" name="priority">
+                                            <option value="" hidden>Choose Prirority</option>
+                                            <option value="1">High</option>
+                                            <option value="2">Regular</option>
+                                        </select>
+
                                     </div>
 
                                 </div>
