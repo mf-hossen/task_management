@@ -71,11 +71,17 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
     } elseif ($dateType == 'complete') {
         $typeTitle = 'COMPLETE';
         $task = $mapper->getCompleteTask($queryParams);
+        $total = $mapper->getAdminTaskCount();
+        $total_page = ceil($total['all_task'] / 10);
     } elseif ($dateType == 'pending') {
         $typeTitle = 'PENDING';
         $task = $mapper->getPendingTask($queryParams);
+        $total = $mapper->getAdminTaskCount();
+        $total_page = ceil($total['all_task'] / 10);
     } elseif ($dateType == 'pause') {
         $typeTitle = 'PAUSE';
+        $total = $mapper->getAdminTaskCount();
+        $total_page = ceil($total['all_task'] / 10);
         $task = $mapper->getPauseTask();
     }
 
