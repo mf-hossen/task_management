@@ -68,7 +68,7 @@
                         <tr>
                             <td></td>
                             <td class="col-md-1">
-                                <input type="number" name="client_id" placeholder="CID" class="form-control">
+                                <input type="text" name="client_id" placeholder="CID" class="form-control">
                             </td>
                             <td>
                                 <select name="admin_id" class="form-control">
@@ -245,7 +245,7 @@
 
                     </tbody>
                 </table>
-                {% if total_task.all_task>9 %}
+                {% if total_task.all_task>10 %}
                     {% if(typeTitle == 'ALL') %}
                         <ul class="pagination navbar-right">
                             {% for i in 1..total_page %}
