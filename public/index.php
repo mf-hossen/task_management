@@ -8,12 +8,18 @@ if (PHP_SAPI === 'cli-server' && $_SERVER['SCRIPT_FILENAME'] !== __FILE__) {
 
 require __DIR__ . '/../vendor/autoload.php';
 
+// Session timeout
 session_start();
 
-ini_set('session.gc_maxlifetime', 36000);
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 36000)) {
+    // last request was more than 30 minutes ago
+    session_unset();     // unset $_SESSION variable for the run-time
+    session_destroy();   // destroy session data in storage
+}
+$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 
+// DB config
 require __DIR__ . '/../db_config.php';
-
 
 // Instantiate the app
 $settings = require __DIR__ . '/../app/settings.php';
