@@ -178,7 +178,9 @@
                 ],
             xkey: 'createdDate',
             ykeys: ['totalTask'],
-            labels: ['Task']
+            labels: ['Task'],
+            yLabelFormat: function(y){return y != Math.round(y)?'':y;},
+
         });
     });
 
@@ -201,7 +203,9 @@
             ],
             xkey: 'createdDate',
             ykeys: ['totalTask'],
-            labels: ['Task']
+            labels: ['Task'],
+            yLabelFormat: function(y){return y != Math.round(y)?'':y;},
+
         });
     });
 
