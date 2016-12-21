@@ -365,7 +365,7 @@ class TaskMapper extends Mapper
     {
 
         if (!empty($data)) {
-
+           // var_dump(112); die();
             if (isset($data['client_id'])) {
                 $client_id = $data['client_id'];
             } else {
@@ -420,8 +420,7 @@ class TaskMapper extends Mapper
                 array_push($whereArr, "task_type = {$task_type}");
             }
 
-            array_push($whereArr, "date(tasks.created_at)=curdate()");
-            array_push($whereArr, "date(tasks.action_date)=curdate()");
+
 
             //var_dump($whereArr); die();
             $whereStr = implode(" AND ", $whereArr);
@@ -445,7 +444,7 @@ class TaskMapper extends Mapper
               concat(member.first_name , ' ', member.last_name ) as members_full_name
               FROM `tasks` 
               left join users on tasks.user_id = users.id 
-              left join users as member on tasks.member_id =member.id  WHERE {$whereStr} order by task_id DESC ";
+              left join users as member on tasks.member_id =member.id  WHERE  ( (status != 1 and date(tasks.created_at) <= CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() )) and  {$whereStr} order by task_id DESC ";
 
         } else {
 
@@ -956,7 +955,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
       COUNT(*) AS all_task,
        SUM(CASE 
-             WHEN status != 1  THEN 1
+             WHEN  (status != 1 and status != 6 and date(tasks.created_at) <= CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() ) then 1
              ELSE 0
            END) AS today_task,
        SUM(CASE 
@@ -1018,7 +1017,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
       COUNT(*) AS all_task,
        SUM(CASE 
-             WHEN status != 1  THEN 1
+             WHEN  (status != 1 and date(tasks.created_at) <= CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() ) then 1
              ELSE 0
            END) AS today_task,
        SUM(CASE 
@@ -1121,7 +1120,7 @@ class TaskMapper extends Mapper
         $sql = "SELECT 
       COUNT(*) AS all_task,
        SUM(CASE 
-             WHEN status != 1  THEN 1
+             when ( (status != 1 and date(tasks.created_at) <= CURDATE())  or (status = 1 AND date(tasks.action_date) = CURDATE() )) then 1
              ELSE 0
            END) AS today_task,
        SUM(CASE 

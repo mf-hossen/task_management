@@ -60,7 +60,9 @@ $this->get('/list[/{type}]', function (Request $request, Response $response, $ar
     if ($dateType == 'today') {
         $typeTitle = 'TODAY';
         $task = $mapper->getTodayTask($queryParams);
+        //var_dump($task); die();
         $total = $mapper->getAdminTaskCount();
+        //var_dump($total); die();
         $total_page = ceil($total['all_task'] / 10);
     } elseif ($dateType == 'all') {
         $typeTitle = 'ALL';
